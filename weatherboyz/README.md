@@ -1,24 +1,11 @@
-# weatherboyz
+# devlog 📚
 
-## Project setup
+### 2024.5.13
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+개발환경 셋팅 완료🎀
+- vscode
+- vue
+- git
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

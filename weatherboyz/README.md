@@ -1,0 +1,5 @@
+### SKILL
+- VUE-ROUTER
+
+### TO BE CONTINUED
+- 다국어처리

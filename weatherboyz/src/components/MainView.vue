@@ -46,11 +46,11 @@
             <img src="../assets/images/01n.png" alt="">
           </div>
           <div class="data">
-            <p class="time">2PM</p>
+            <p class="time">5PM</p>
             <p class="currentDegree">32&deg;</p>
             <div>
-              <img src="../assets/images/02d.png" alt="">
-              <p class="fail"></p>
+              <img src="../assets/images/50d.png" alt="">
+              <p class="fall">15%</p>
             </div>
           </div>
         </div>
@@ -92,13 +92,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/reset.scss";
 @import "../scss/main.scss";
 
 .leftContainer{
   width: 324px;
+  min-width: 324px;
   height: 700px;
   border-radius: 50px;
-  background: linear-gradient(#16455F, #021239);
+  background: linear-gradient(#16455F, #0e1239);
   box-shadow: 5px 5px 10px gray;
 
   #cityNameBox {
@@ -115,7 +117,7 @@ export default {
           font-family: "Poppins", sans-serif;
           line-height: 2.5;
           text-align: center;
-  
+
           &:first-child {
             width: 241px;
             height: 33px;
@@ -319,12 +321,12 @@ export default {
             &.time {
               font-size: 0.8rem;
               font-weight: 200;
-              margin-top: 7.5px;
+              // margin-top: 7.5px;
             }
 
             &.currentDegree {
               font-size: 1.2rem;
-              margin-top: 7.5px;
+              // margin-top: 7.5px;
             }
           }
 

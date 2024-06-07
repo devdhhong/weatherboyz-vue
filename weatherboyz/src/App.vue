@@ -1,5 +1,4 @@
 <template>
-  <!-- <HOM/> -->
   <router-view/>
 </template>
 
@@ -14,5 +13,5 @@
 </script>
 
 <style>
-
+@import "./scss/reset.scss";
 </style>

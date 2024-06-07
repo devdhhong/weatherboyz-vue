@@ -7,10 +7,10 @@
           <button :class="{ selected : selectedMenu == 'airQuality' }" class="airQuality" @click="btnAirQuality()">airQuality</button>
         </div>
       </div> -->
-      <div>현재(not TBZ)</div>
+      <div class="now">현재는?</div>
       <div class="weatherBox">
         <div class="weatherDegree">
-          <p>10&deg;</p>
+          <p>10&deg; / 나쁨</p>
         </div>
         <div class="weatherIcon">
           <img src="../assets/images/01d.png" alt="MainLogo">
@@ -47,50 +47,12 @@
 </template>
 
 <script>
- 
- function getLocation() {
-    navigator.geolocation.getCurrentPosition(function(pos) {
-        console.log(JSON.stringify(pos));
-        var latitude = pos.coords.latitude;
-        var longitude = pos.coords.longitude;
-        alert("현재 위치는 : " + latitude + ", "+ longitude);
-    }, function(res){
-        console.log(JSON.stringify(res));
-        alert(JSON.stringify(res))
-    });
-
-  }
-// function getCurrentWeather() {
-
-// }
 
 export default {
-  mounted(){
-    getLocation();
-  },
-  watch: {
-    selectedMenu(newValue, oldValue) {
-      console.log(`message changed from ${oldValue} to ${newValue}`);
-    }
+  mounted() {
   },
   data() { 
     return {
-      // 임시 데이터
-      // TemporaryData: [
-      //   {
-      //     title: "습도",
-      //     value: "10%",
-      //   },
-      //   {
-      //     title: "풍속",
-      //     value: "10m/s",
-      //   },
-      //   {
-      //     title: "풍향",
-      //     value: "WS",
-      //   },
-        
-      // ],
       weatherData: [
         {
           date: "6/4",
@@ -123,7 +85,6 @@ export default {
           condition: "30",
         },
       ],
-      selectedMenu : "forecast",
     }
   },
   methods : {
@@ -132,10 +93,8 @@ export default {
     },
     btnAirQuality(){
       this.selectedMenu = "airQuality";
-    }
+    },
   },
-  components: {
-  }
 } 
 
 </script>
@@ -148,6 +107,13 @@ export default {
       width: 100%;
       height: 80vh;
   
+      .now {
+        color: white;
+        display: flex;
+        justify-content: center; /* 수평 중앙 정렬 */
+        align-items: center; /* 수직 중앙 정렬 */
+      }
+
       .buttonBox {
         @include center;
         width: 100%;
@@ -168,9 +134,6 @@ export default {
             outline: 0;
             cursor: pointer;
             color: grey;
-
-  
-  
   
             &.selected {
               background-color: #0889ff;

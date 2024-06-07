@@ -1,7 +1,7 @@
 <template>
     <div id="cityNameBox">
       <div class="cityName">
-        <p>서울특별시</p>
+        <p>{{ cityName }}</p>
         <p>{{ date }}</p>
         <!-- <p class="isBirthday" v-show="true">🎂</p> -->
       </div>
@@ -10,7 +10,11 @@
 
 <script>
 
-function getDate() {
+import axios from 'axios';
+const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org/';
+
+// 날짜 형식
+const getDate = function () {
   const date = new Date();
 
   const year = date.getFullYear();
@@ -28,12 +32,71 @@ function getDate() {
   return `${year}년 ${month}월 ${day}일`;
 }
 
+// 현재 위치 조회 (비동기 함수)
+const getLocation = async function () {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        resolve({ latitude: lat, longitude: lon });
+      },
+      err => {
+        console.error('Error getting location:', err);
+        reject(err);
+      }
+    );
+  });
+};
+
+// 역지오코딩 (비동기 함수)
+const reverseGeocode = async function (latitude, longitude) {
+  try {
+    const response = await axios.get(`${NOMINATIM_BASE_URL}reverse`, {
+      params: {
+        lat: latitude,
+        lon: longitude,
+        format: 'json',
+        addressdetails: 1,
+      },
+    });
+
+    return response.data.address;
+  } catch (error) {
+    console.error('Error reverse geocoding coordinates:', error);
+    throw error;
+  }
+};
+
+// 위치 조회 후 역지오코딩 수행
+const executeGeocoding = async function () {
+  try {
+    // 현재 위치 조회
+    const { latitude, longitude } = await getLocation();
+
+    // 역지오코딩 수행
+    const address = await reverseGeocode(latitude, longitude);
+
+    // 원하는 주소 정보 출력 (예: cityName)
+    console.log(address);
+    return address;
+  }
+  catch (error) {
+    console.error('Error during geocoding:', error);
+  }
+};
+
+const result = await executeGeocoding();
 export default {
+  mounted() {
+    this.cityName = result.quarter || result.city || 'Unknown';
+  },
   data() {
     return {
-      date : getDate(),
+      date: getDate(),
+      cityName: "",
     }
-  }
+  },
 } 
 </script>
 

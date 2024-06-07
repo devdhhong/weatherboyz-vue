@@ -1,6 +1,10 @@
 ### SKILL
 - VUE-ROUTER
 
+### API
+- Nominatim API : 역지오코딩
+
+
 ### TO BE CONTINUED
 - 다국어처리
 
@@ -11,3 +15,4 @@
 미세먼지 많으면 마스크
 
 더비시 주연시 선우시 등등
+

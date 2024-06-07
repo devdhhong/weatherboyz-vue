@@ -15,8 +15,6 @@ import SettingView from "../components/SettingView.vue";
 import CityInfo from "../components/CityInfo.vue";
 import MenuArea from "../components/MenuArea.vue";
 
-
-
 export default {
     data(){
         return{

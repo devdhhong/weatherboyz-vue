@@ -1,5 +1,5 @@
 <template>
-  <div class="mainContainer">
+  <div id="MainView">
     <div id="contentsBox">
       <!-- <div class="buttonBox">
         <div class="buttonBackground">
@@ -7,52 +7,62 @@
           <button :class="{ selected : selectedMenu == 'airQuality' }" class="airQuality" @click="btnAirQuality()">airQuality</button>
         </div>
       </div> -->
-      <div class="now">현재는?</div>
+      <!-- <div class="now">현재는?</div> -->
       <div class="weatherBox">
-        <div class="weatherDegree">
-          <p>10&deg; / 나쁨</p>
-        </div>
+        <!-- <div class="weatherDegree">
+          <p>{{ this.temperature }}&deg;</p>
+        </div> -->
+        <!-- <div class="weatherComment">
+          <p>☂️ 🌨️ 🌪️</p>
+        </div> -->
         <div class="weatherIcon">
-          <img src="../assets/images/01d.png" alt="MainLogo">
+          <!-- <img src="../assets/images/01d.png" alt="MainLogo"> -->
+          <!-- <img src="../assets/weather/hot_kevin.png" alt="MainLogo"> -->
+          <!-- <img :src="imageSrc" alt="MainLogo"> -->
+          <!-- <img src="" alt="MainLogo"> -->
         </div>
-        <!-- <div class="weatherData"> -->
-          <!-- 
-            key값을 적어주는 이유?
-            Vue.js 공식문서에 따르면 특수한 속성인 key는 주로 Vue의 가상 DOM 알고리즘이 
-            노트의 ID를 식별하기 위한 힌트로 사용되기 때문에, 혹여 키값을 부여하지 않으면
-            재정렬과 재생성이 필요한 때가 언제인지 제대로 파악하지 못할 수도 있기 때문이다.
-           -->
-          <!-- <div v-for="Temporary in TemporaryData" :key="Temporary.title" class="detailData">
-            <p>{{ Temporary.title }}</p>
-            <p>{{ Temporary.value }}</p>
-            <p></p>
-          </div> -->
-        <!-- </div> -->
       </div>
     </div>
-    <!-- <div id="todayWeather">
-      <div class="textBox">
-        <p>시간대별 날씨 정보</p>
-        <p>이번주 날씨 보기</p>
-      </div>
-      <div class="scroll-area">
-        <div class="weather-card" v-for="weather in weatherData" :key="weather.date">
-          <p class="date">{{ weather.date }}</p>
-          <p class="condition">{{ weather.condition }}</p>
-          <p class="temperature">{{ weather.minTemp }}° / {{ weather.maxTemp }}°</p>
-        </div>  
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
 
+import * as CONST from '../utils/CONST.js';
+import axios from 'axios';
+
+// 날씨정보 조회
+const getWeather = async function (latitude, longitude) {
+  try {
+    const response = await axios.get(`${CONST.NOW_FORECAST_URL}`, {
+      params: {
+        latitude: latitude,
+        longitude: longitude,
+        current_weather: true,
+        hourly: "rain" 
+      }
+    });
+    console.log(response.data);
+    return response.data.current_weather.temperature;
+  } catch (error) {
+    console.error('Error reverse geocoding coordinates:', error);
+    throw error;
+  }
+};
+
+let lat = localStorage.getItem('latitude');
+let lon = localStorage.getItem('longitude');
+let temperature = await getWeather(lat, lon);
 export default {
   mounted() {
+    this.imageSrc = CONST["IMG_HOT_NEW"];
+    this.temperature = Math.round(temperature);
   },
   data() { 
     return {
+      CONST : {},
+      imageSrc: "",
+      temperature: "",
       weatherData: [
         {
           date: "6/4",
@@ -101,121 +111,62 @@ export default {
 
 <style lang="scss" scoped>
 @import "../scss/main.scss";
-// @import "../scss/mainView.scss";
 
-#contentsBox {
+#MainView {
+  background-color: rgba(234, 195, 195, 0.138);
+
+  width: 100%;
+  height: 47vh;
+
+  position: fixed;
+  top: 39vh;
+
+  .weatherBox {
+    // @include c-center-c;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    // height: 80%;
+
+    .weatherDegree {
+      @include center;
       width: 100%;
-      height: 80vh;
-  
-      .now {
-        color: white;
-        display: flex;
-        justify-content: center; /* 수평 중앙 정렬 */
-        align-items: center; /* 수직 중앙 정렬 */
-      }
+      height: 20%;
 
-      .buttonBox {
-        @include center;
-        width: 100%;
-        height: 20%;
-  
-        .buttonBackground {
-          width: 224px;
-          height: 35px;
-          background-color: #052137;
-          border-radius: 10px;
-          display: flex;
-  
-          button {
-            width: 112px;
-            height: 35px;
-            border: 0;
-            border-radius: 7.5px;
-            outline: 0;
-            cursor: pointer;
-            color: grey;
-  
-            &.selected {
-              background-color: #0889ff;
-              color: white;
-            }
-  
-            // &.forecast {
-            //   background-color: #0889ff;
-            //   color: white;
-            // }
-  
-            // &.airquality {
-            //   background: transparent;
-            //   color: #467599;
-            // }
-          }
-        }
-      }
-  
-      .weatherBox {
-        width: 100%;
-        height: 80%;
-  
-        .weatherDegree {
-          @include center;
-          width: 100%;
-          height: 20%;
-  
-          p {
-            font-size: 3.5rem;
-            font-weight: 500;
-            font-family: 'Be Vietnam Pro', sans-serif;
-            color: white;
-          }
-        }
-  
-        .weatherIcon {
-          @include center;
-          width: 100%;
-          height: 60%;
-  
-          img {
-            height: 160px;
-          }
-        }
+      p {
+        font-size: 3.5rem;
+        font-weight: 500;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        color: white;
       }
     }
-// .weather-card {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   // padding: 10px;
-//   margin: 10px 0;
-//   // border-top: 1px solid grey;
-//   // border: 1px solid grey;
-//   // border-radius: 5px;
-//   // background-color: #ffffff;
-//   // transition: background-color 0.3s ease;
-//   color: white;
-//   padding: 13px 35px;
-// }
+    
+    .weatherComment {
+      @include center;
+      width:  80%;
+      height: 8%;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.3);
 
-// .scroll-area {
-//   max-height: 100%;
-//   overflow-y: auto;
-//   // padding: 10px;
-//   // background-color: #ffffff;
-//   // border: 1px solid #ccc;
-//   // border-radius: 5px;
+      p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        color: white;
+      }
+    }
 
-//   /* 스크롤바 스타일링 */
-//   &::-webkit-scrollbar {
-//     width: 0px;
-//   }
+    .weatherIcon {
+      @include center;
+      width: 100%;
+      height: 40%;
 
-//   &::-webkit-scrollbar-thumb {
-//     // background-color: #00796b;
-//     // border-radius: 10px;
-//   }
-
-//   &::-webkit-scrollbar-track {
-//     // background-color: #f1f1f1;
-//   }
-// }
+      img {
+        height: 200px;
+      }
+    }
+  }
+}
 </style>

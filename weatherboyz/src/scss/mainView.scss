@@ -186,14 +186,14 @@
         width: calc(100% - 70px);
         height: 65%;
         padding: 0 30px;
-        overflow: scroll;
+        // overflow: scroll;
   
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        // -ms-overflow-style: none;
+          // scrollbar-width: none;
   
-        &::-webkit-scrollbar {
-          display: none;
-        }
+        // &::-webkit-scrollbar {
+          //   display: none;
+          // }
   
         .timelyWeather {
           display: flex;
@@ -259,3 +259,14 @@
       }
     }
   }
+//스크롤 관련
+.scroll-area {
+  overflow: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

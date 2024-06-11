@@ -114,21 +114,16 @@ export default {
 
 #MainView {
   background-color: rgba(234, 195, 195, 0.138);
-
   width: 100%;
   height: 47vh;
-
   position: fixed;
   top: 39vh;
 
   .weatherBox {
-    // @include c-center-c;
     display: flex;
     align-items: center;
-    // justify-content: center;
     flex-direction: column;
     width: 100%;
-    // height: 80%;
 
     .weatherDegree {
       @include center;

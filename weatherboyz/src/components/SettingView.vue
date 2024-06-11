@@ -1,54 +1,53 @@
 <template>
-  <div id="SettingView">
-    <li class="settingItem" @click="setNation">
+  <div id="SettingView" class="scroll-area">
+    <li class="settingItem">
       <div class="title">언어 설정</div>
-      <ul class="optionList">
+      <ul class="">
         <li>
-          <input id="r1" type="radio" name="language" value="KOR" checked/>
+          <input id="r1" type="radio" name="language" value="KOR" v-model="setLanguage" @change="changeSetting"/>
           <label for="r1">한국어</label>
         </li>
         <li>
-          <input id="r1" type="radio" name="language" value="ENG" />
-          <label for="r1">영어</label>
+          <input id="r2" type="radio" name="language" value="ENG" v-model="setLanguage" @change="changeSetting"/>
+          <label for="r2">영어</label>
         </li>
       </ul>
-      <!-- <div class=""><input type="radio" name="language" />KOR</div> -->
-      <!-- <div class=""><input type="radio" name="language" />ENG</div> -->
     </li>
-    <li class="settingItem" @click="setTheme">
+    <li class="settingItem">
       <div class="title">테마 설정</div>
-      <button class="btn-select" @click="toggleActive">단체</button>
-       <ul class="list-member selectBox" :class="{ active: isActive }">
-          <li><button type="button" @click="toggleActive">Python</button></li>
-          <li><button type="button" @click="toggleActive">Java</button></li>
-          <li><button type="button">JavaScript</button></li>
-          <li><button type="button">C#</button></li>
-          <li><button type="button">C/C++</button></li>
-          <li><button type="button">C/C++</button></li>
-          <li><button type="button">C/C++</button></li>
-          <li><button type="button">C/C++</button></li>
-          <li><button type="button">C/C++</button></li>
-          <li><button type="button">C/C++</button></li>
-      </ul>
+      <select name="" class="" v-model="setTheme" @change="changeSetting">
+        <option value="0">📚 단체</option>
+        <option value="1">🎀 상</option>
+        <option value="2">🎁 콥</option>
+        <option value="3">🎨 빵</option>
+        <option value="4">🎉 현</option>
+        <option value="5">🎃 주</option>
+        <option value="6">🎆 켑</option>
+        <option value="7">🕶 뉴</option>
+        <option value="8">⚽ 큐</option>
+        <option value="9">👟 학</option>
+        <option value="10">👑 선</option>
+        <option value="11">🎹 릭</option>
+      </select>
     </li>
-    <li class="settingItem" @click="setNation">
+    <li class="settingItem">
       <div class="title">화면 설정</div>
-      <ul class="optionList">
-        <li>
-          <input id="r1" type="radio" name="display" value="LIGHT" checked/>
-          <label for="r1">라이트</label>
+      <ul class="">
+        <li> 
+          <input id="r3" type="radio" name="display" value="LIGHT" v-model="setDisplay" @change="changeSetting"/>
+          <label for="r3">라이트</label>
         </li>
         <li>
-          <input id="r1" type="radio" name="display" value="DARK" />
-          <label for="r1">다크</label>
+          <input id="r4" type="radio" name="display" value="DARK" v-model="setDisplay" @change="changeSetting"/>
+          <label for="r4">다크</label>
         </li>
       </ul>
     </li>
-    <li class="settingItem" @click="setNation">
+    <li class="settingItem">
       <div class="title">기타</div>
-      <ul class="optionList">
+      <ul class="">
         <li>
-          <div class="">이용방법</div>
+          <div class="">이용방법<i class="fa-solid fa-caret-down" style="margin-left: 2%"></i></div> 
         </li>
       </ul>
     </li>
@@ -59,22 +58,28 @@
 </template>
 
 <script>
+
+
 export default {
+  mounted() {
+    this.setLanguage = localStorage.getItem('language') || "KOR"; //KOR or ENG
+    this.setTheme = localStorage.getItem('theme') || "8"; //1~11
+    this.setDisplay = localStorage.getItem('display') || "DARK"; //Light or Dark
+  },
   data() {
     return {
+      setLanguage : "",
+      setTheme : "",
+      setDisplay : "",
       isActive: false,
     };
   },
   methods: {
-    setNation: function () {
-      // alert("1");
-    },
-    setTheme: function () {
-      // alert("2");
-    },
-    toggleActive: function () {
-      this.isActive = !this.isActive;
-    },
+    changeSetting : function(){
+      localStorage.setItem("language", this.setLanguage);
+      localStorage.setItem("theme", this.setTheme);
+      localStorage.setItem("display", this.setDisplay);
+    }
   },
 };
 </script>
@@ -87,12 +92,9 @@ export default {
   position: fixed;
   top: 10vh;
 
-  .settingItem,
-  .copyRight {
-    padding: 5% 7%;
-  }
-
   .settingItem {
+    padding: 5% 7%;
+
     .title {
       width: 100%;
       height: 40px;
@@ -105,29 +107,27 @@ export default {
       border-radius: 5px;
     }
 
+    //라디오 버튼
     ul {
-
-    }
-
-    li {
       margin : 16px;
+      
+      li {
+        margin: 3% 0;
+      }
     }
 
-  }
-
-  .selectBox.active {
-    width: 80%;
-    max-height: 40%; /* 최대 높이를 설정 */
-    overflow-y: auto;  /* 수직 스크롤이 생기도록 설정 */
-    // position: fixed;
-    // // left: 5%;
-    // // top: 30vh;
-    background: #ffffff;
-    display: block;
-  }
-
-  .selectBox {
-    display: none;
+    //셀렉트 박스
+    select {
+      width: 60%;
+      line-height: 2rem;
+      font-size: 0.85rem;
+      border: 1px solid #C4C4C4;
+      margin : 16px;
+      border-radius: 5px;
+      padding: 0 10px;
+      color: grey;
+      font-weight: 350;
+    }
   }
 
   //저작권 표기
@@ -135,12 +135,25 @@ export default {
     position: fixed;
     bottom: 0;
     right: 0;
+    padding: 5% 7%;
 
     p {
       font-size: 10px;
       font-weight: 300;
       color: green($color: #000000);
     }
+  }
+}
+
+//스크롤 관련
+.scroll-area {
+  overflow: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 

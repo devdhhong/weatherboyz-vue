@@ -4,6 +4,7 @@
     border: 0;
     font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
+    font-size: 2vh;
   }
   
   html {
@@ -47,9 +48,4 @@
   li {
     padding-left: 0;
     list-style: none;
-  }
-
-  div,
-  p {
-    font-size: 16px;
   }

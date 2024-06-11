@@ -7,7 +7,9 @@
         <div class="btnClose" @click="btnClose"><i class="fa-solid fa-xmark fa-xl"></i></div>
     </div>
     <div id="OOTDView">
-        <img src="https://placehold.co/1000x1200" alt="">
+        <!-- <img src="https://placehold.co/1000x1200" alt=""> -->
+        <!-- <img src="https://pokemonkorea.co.kr/img/sub/img_compay_info.png" alt=""> -->
+        <img src="https://pokemoncard.co.kr/info/images/renew/1_0-1.png" alt="">
         <div id="SpecialView">
             <p class="blinking">오늘의 필수템 ☂️</p>
         </div>
@@ -60,7 +62,6 @@ export default {
     min-height: 100vh;
     margin: 0 auto;
     max-width: 768px;
-        /* 최대 너비를 768px로 설정 */
     }
     
     #HeaderView {
@@ -90,11 +91,12 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         overflow: hidden;
     
         img {
-            height: auto;
-            width: 80%;
+            max-width: 100%;
+            max-height: 75%;
         }
     }
     
@@ -127,9 +129,6 @@ export default {
             border-radius: 15px;
             margin: 0 5%;
             background-color: #c0deff79;
-        }
-    
-        .infoView {
             perspective: 1000px;
             transition: transform 0.6s;
             transform-style: preserve-3d;
@@ -159,5 +158,10 @@ export default {
             }
     
         }
+
+      .infoView:nth-child(2) {
+        margin-left: 0;
+      }
+
 }
 </style>

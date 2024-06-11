@@ -105,16 +105,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/common.scss";
+// @import "../scss/reset.scss";
 
 #HeaderView {
+  @include center-sb;
   width: 100%;
-  height: 10vh;
+  height: $header_height;
+
   position: fixed;
   top: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   padding: 10%;
 
   .cityInfo {

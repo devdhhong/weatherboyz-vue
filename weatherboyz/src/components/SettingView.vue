@@ -1,7 +1,7 @@
 <template>
   <div id="SettingView" class="scroll-area">
     <li class="settingItem">
-      <div class="title">언어 설정</div>
+      <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
           <input id="r1" type="radio" name="language" value="KOR" v-model="setLanguage" @change="changeSetting"/>
@@ -14,7 +14,7 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">테마 설정</div>
+      <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
         <option value="0">📚 단체</option>
         <option value="1">🎀 상</option>
@@ -31,7 +31,7 @@
       </select>
     </li>
     <li class="settingItem">
-      <div class="title">화면 설정</div>
+      <div class="title">화면 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li> 
           <input id="r3" type="radio" name="display" value="LIGHT" v-model="setDisplay" @change="changeSetting"/>
@@ -44,14 +44,14 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">기타</div>
+      <div class="title">이용 방법<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
-          <div class="">이용방법<i class="fa-solid fa-caret-down" style="margin-left: 2%"></i></div> 
+          <div class="">이용방법<i class="fa-solid fa-caret-down"></i></div> 
         </li>
       </ul>
     </li>
-    <li class="copyRight">
+    <li class="settingItem copyRight">
       <p>© 2024 dhhong. All rights reserved.</p>
     </li>
   </div>
@@ -89,6 +89,7 @@ export default {
 
 #SettingView {
   width: 100%;
+  height: 80vh;
   position: fixed;
   top: 10vh;
 
@@ -132,12 +133,9 @@ export default {
 
   //저작권 표기
   .copyRight {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    padding: 5% 7%;
-
     p {
+      text-align: right;
+      margin-bottom: 5%;
       font-size: 10px;
       font-weight: 300;
       color: green($color: #000000);
@@ -155,6 +153,10 @@ export default {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.fa-caret-down {
+  margin-left: 2%;
 }
 
 </style>

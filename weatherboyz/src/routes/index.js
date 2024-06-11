@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-// import HOM from "~/pages/HOM";
-import HOM from "../pages/HOM.vue";
 import SETTING from "../pages/SETTING.vue";
 import OOTD from "../pages/OOTD.vue";
+import MAIN from "../pages/MAIN.vue";
 
 export default createRouter({
     //hash모드 : 특정 페이지에서 새로고침했을 때, '페이지를 찾을 수 없음'과 같은 메세지 알림을 방지
@@ -13,8 +12,8 @@ export default createRouter({
         {
         //페이지 경로
         path: "/",
-        name: HOM,
-        component: HOM,
+        name: MAIN,
+        component: MAIN,
     },
     {
         //페이지 경로

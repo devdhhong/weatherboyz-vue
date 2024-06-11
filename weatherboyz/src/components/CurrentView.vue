@@ -43,42 +43,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/common.scss";
 @import "../scss/reset.scss";
 
 // 정보 영역
 #CurrentView {
+  @include center-sb;
   width: 100%;
-  height: 22vh;
+  height: $current_height;
   position: fixed;
-  top: 10vh;
-  display: flex;
+  top: $header_height;
+  // display: flex;
 
   .infoView {
     flex: 1; /* 자식 요소들이 동일한 비율로 공간을 차지하도록 설정 */
-    padding: 15px;
-    box-sizing: border-box;
+    padding: 5%;
+    // box-sizing: border-box;
     border-radius: 15px;
     margin: 0 5%;
-    background-color: #c0deff79;
+    background-color: $light_bg_color_1;
   }
 
   // 날씨
   .infoView:nth-child(1) {
     .temperature {
-      display: flex;
-      align-items: center; /* 가로 중앙 정렬 */
+      @include left;
       margin-bottom: 10%;
 
       img {
-        width: 45px;
-        height: 45px;
+        width: 35%;
+        height: 35%;
       }
 
       p {
         margin-left: 3%;
         font-size: 2.2rem;
         font-weight: 1000;
-        color: #343666;
+        color: $light_txt_color_1;
       }
     }
 
@@ -86,7 +87,7 @@ export default {
       margin-top: 2.5%;
       font-size: 0.9rem;
       font-weight: 500;
-      color: #343666;
+      color: $light_txt_color_1;
     }
   }
 

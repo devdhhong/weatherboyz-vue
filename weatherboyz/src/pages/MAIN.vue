@@ -1,8 +1,8 @@
 <template>
-    <div class="wrap">
+    <div id="MainView">
         <HeaderView/>             
         <CurrentView/>             
-        <MainView/>             
+        <ContentsView/>             
         <TimelyView/>             
     </div>
 </template>
@@ -11,7 +11,7 @@
 import CurrentView from "../components/CurrentView.vue";
 import HeaderView from "../components/HeaderView.vue";
 import TimelyView from "../components/TimelyView.vue";
-import MainView from "../components/MainView.vue";
+import ContentsView from "../components/ContentsView.vue";
 
 export default {
     data(){
@@ -19,7 +19,7 @@ export default {
         }
     },
     components: {
-        MainView,    
+        ContentsView,    
         TimelyView,
         HeaderView,
         CurrentView   
@@ -35,8 +35,10 @@ export default {
     현재 페이지 내에서만 적용된다는 의미를 가진다.
 -->
 <style lang="scss" scoped>
+@import "../scss/reset.scss";
+@import "../scss/common.scss";
 
-.wrap{
+.MainView{
     display: flex;
     flex-direction: column;
     min-height: 100vh;

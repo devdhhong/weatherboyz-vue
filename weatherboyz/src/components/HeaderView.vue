@@ -114,7 +114,7 @@ export default {
   height: $header_height;
   position: fixed;
   top: 0;
-  padding: 5vh;
+  padding: 5%;
 
   .cityInfo {
     p {

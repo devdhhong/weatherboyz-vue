@@ -16,18 +16,18 @@
     <li class="settingItem">
       <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
-        <option value="0">📚 단체</option>
-        <option value="1">🎀 상</option>
-        <option value="2">🎁 콥</option>
-        <option value="3">🎨 빵</option>
-        <option value="4">🎉 현</option>
-        <option value="5">🎃 주</option>
-        <option value="6">🎆 켑</option>
-        <option value="7">🕶 뉴</option>
-        <option value="8">⚽ 큐</option>
-        <option value="9">👟 학</option>
-        <option value="10">👑 선</option>
-        <option value="11">🎹 릭</option>
+        <option value="T0">📚 단체</option>
+        <option value="T1">🎀 상</option>
+        <option value="T2">🎁 콥</option>
+        <option value="T3">🎨 빵</option>
+        <option value="T4">🎉 현</option>
+        <option value="T5">🎃 주</option>
+        <option value="T6">🎆 켑</option>
+        <option value="T7">🕶 뉴</option>
+        <option value="T8">⚽ 큐</option>
+        <option value="T9">👟 학</option>
+        <option value="T10">👑 선</option>
+        <option value="T11">🎹 릭</option>
       </select>
     </li>
     <li class="settingItem">
@@ -61,7 +61,7 @@
 export default {
   mounted() {
     this.setLanguage = localStorage.getItem('language') || "KOR"; //KOR or ENG
-    this.setTheme = localStorage.getItem('theme') || "8"; //1~11
+    this.setTheme = localStorage.getItem('theme') || "T0"; //1~11
     this.setDisplay = localStorage.getItem('display') || "DARK"; //Light or Dark
   },
   data() {

@@ -14,10 +14,7 @@
     <div class="infoView" @click="openMusicSite">
       <div>오늘의 노래 🎹</div>
       <div class="songCover">
-        <img
-          src="https://www.akbobada.com/home/akbobada/archive/akbo/img/20210819092125.JPG"
-          alt=""
-        />
+        <img src="https://www.akbobada.com/home/akbobada/archive/akbo/img/20210819092125.JPG" alt=""/>
       </div>
       <div class="songTitle">Thrill Ride</div>
     </div>

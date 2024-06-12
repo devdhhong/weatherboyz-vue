@@ -1,8 +1,31 @@
-/* 이미지 경로 */
-const IMG_HOT_KEVIN = "https://i.namu.wiki/i/nKqSZ2Ky02UFnlGphCvCzd7cGLyIzDSLsN0XwGdqQIgdyonlvlyRUazirHZz8NHOwlRdBpgYLKxmb33xvgMMtvgH9VY-yv9FM_d4evbjDT0F06YXX0ugvfEbhtNVVipBHd1VKkWiy5VnO1CyPW_uSQ.webp";
-const IMG_HOT_NEW = "https://i.namu.wiki/i/gEnRO1IJ0P3bi60jNIkMFMRsxhNA_bDsh2JZzvwvOetReDWICzyzXqyLbfeaK8IxO6y9LSvAKOgzH1jnb98HzRKRzbWLyEfZ8GZQSYUcmwLpmAs9RT8KT7Gjz-YPL87uHj4zSBBGRQD_bSdxs770aQ.webp";
-const IMG_RAINNY_KEVIN = "";
-const IMG_RAINNY_NEW = ""; 
+//이미지 경로 
+//SY JC YH HJ JY KV NW QQ HN SW ER ALL
+//EX- http://via.placeholder.com/가로길이x세로길이/바탕색코드/글자색코드?text=이미지안글자
+
+//케빈
+const IMG_URL = {
+    "T0" : {
+        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-HOT",
+        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-CLOUD",
+        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-RAIN",
+    },
+    "T6" : { //케빈
+        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-HOT",
+        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-CLOUD",
+        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-RAIN",
+    },
+    "T7" : { //뉴
+        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-HOT",
+        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-CLOUD",
+        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-RAIN",
+    },
+};
+
+
+
+
+
+
 
 /* API URL */
 const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org/';
@@ -43,15 +66,8 @@ const WEATHER_CODE = {
 };
 
 export {
+    IMG_URL,
     NOMINATIM_BASE_URL,
     NOW_FORECAST_URL,
-    
-    IMG_HOT_KEVIN,
-    IMG_HOT_NEW,
-    IMG_RAINNY_KEVIN,
-    IMG_RAINNY_NEW,
-
     WEATHER_CODE,
-
-
 }

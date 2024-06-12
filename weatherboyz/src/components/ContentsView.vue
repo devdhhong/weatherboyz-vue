@@ -1,11 +1,7 @@
 <template>
-  <div id="contentsView">
+  <div id="ContentsView">
     <div class="contentsBox">
-      <!-- <div class="weatherBox"> -->
-        <!-- <div class="weatherIcon"> -->
-          <!-- <img src="https://img.insight.co.kr/static/2022/02/11/700/img_20220211115820_05ed80hn.webp" alt="MainLogo"> -->
-        <!-- </div> -->
-      <!-- </div> -->
+      <img :src="imageSrc" alt="">
     </div>
   </div>
 </template>
@@ -37,81 +33,51 @@ const getWeather = async function (latitude, longitude) {
 let lat = localStorage.getItem('latitude');
 let lon = localStorage.getItem('longitude');
 let temperature = await getWeather(lat, lon);
+
+
 export default {
   mounted() {
-    this.imageSrc = CONST["IMG_HOT_NEW"];
+    // let language = localStorage.getItem('language') || "KOR"; //KOR or ENG
+    let theme = localStorage.getItem('theme') || "T0"; //1~11
+    // let display = localStorage.getItem('display') || "DARK"; //Light or Dark
+    
     this.temperature = Math.round(temperature);
+    this.imageSrc = CONST.IMG_URL[theme]["HOT"];
   },
   data() { 
     return {
-      CONST : {},
       imageSrc: "",
       temperature: "",
-      weatherData: [
-        {
-          date: "6/4",
-          minTemp: "10",
-          maxTemp: "30",
-          condition: "30",
-        },
-        {
-          date: "6/4",
-          minTemp: "10",
-          maxTemp: "30",
-          condition: "30",
-        },
-        {
-          date: "6/4",
-          minTemp: "10",
-          maxTemp: "30",
-          condition: "30",
-        },
-        {
-          date: "6/4",
-          minTemp: "10",
-          maxTemp: "30",
-          condition: "30",
-        },
-        {
-          date: "6/4",
-          minTemp: "10",
-          maxTemp: "30",
-          condition: "30",
-        },
-      ],
     }
   },
   methods : {
-    btnForecast(){
-      this.selectedMenu = "forecast";
-    },
-    btnAirQuality(){
-      this.selectedMenu = "airQuality";
-    },
+    setImage(){
+      this.imageSrc = CONST[this.setLanguage]["HOT"];
+    }
   },
 } 
 
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/common.scss";
 @import "../scss/reset.scss";
-// @import "../scss/MAIN.scss";
 
-// #MainView {
-//   width: 100%;
-//   height: 47vh;
-//   position: fixed;
-//   top: 39vh;
+#ContentsView {
+  width: 100%;
+  height: 47%;
+  position: fixed;
+  top: $header_height + $current_height + $special_height;
 
-//   .contentsBox {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
+  .contentsBox {
+    @include center;
+    height: 100%;
+    // overflow: hidden;
 
-//   img {
-//     width: 80%;
-//     border-radius: 1%;
-//   }
-// }
+    img {
+      height: 90%;
+    }
+  }
+
+}
 </style>

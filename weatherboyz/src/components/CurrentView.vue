@@ -1,18 +1,18 @@
 <template>
   <div id="CurrentView">
     <div class="infoView">
-      <div class="currentWeather">
         <div class="temperature">
           <img src="../assets/images/01d.png" alt="" />
           <p>10도</p>
         </div>
-        <div class="weatherInfo feelTemp">체감온도 : 30도</div>
-        <div class="weatherInfo fineDust">미세먼지: 양호</div>
-        <div class="weatherInfo ultraFineDust">초미세먼지: 나쁨</div>
-      </div>
+        <div class="weatherInfo">
+          <div class="feelTemp">체감온도 : 30도</div>
+          <div class="fineDust">미세먼지: 양호</div>
+          <div class="ultraFineDust">초미세먼지: 나쁨</div>
+        </div>
     </div>
     <div class="infoView" @click="openMusicSite">
-      <div>오늘의 추천곡 🎧</div>
+      <div>오늘의 노래 🎹</div>
       <div class="songCover">
         <img
           src="https://www.akbobada.com/home/akbobada/archive/akbo/img/20210819092125.JPG"
@@ -53,12 +53,12 @@ export default {
   height: $current_height;
   position: fixed;
   top: $header_height;
-  // display: flex;
 
   .infoView {
+    padding: 3%;
+    height: 100%;
     flex: 1; /* 자식 요소들이 동일한 비율로 공간을 차지하도록 설정 */
-    padding: 5%;
-    // box-sizing: border-box;
+    box-sizing: border-box;
     border-radius: 15px;
     margin: 0 5%;
     background-color: $light_bg_color_1;
@@ -68,26 +68,27 @@ export default {
   .infoView:nth-child(1) {
     .temperature {
       @include left;
-      margin-bottom: 10%;
+      width: 100%;
+      height: 30%;
 
       img {
-        width: 35%;
-        height: 35%;
+        height: 100%;
       }
 
       p {
-        margin-left: 3%;
-        font-size: 2.2rem;
-        font-weight: 1000;
-        color: $light_txt_color_1;
+        @include text-style-1;
       }
     }
 
     .weatherInfo {
-      margin-top: 2.5%;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: $light_txt_color_1;
+      width: 100%;
+      height: 70%;
+      padding-top: 5%;
+
+      div {
+        @include text-style-4;
+        padding-left: 3%;
+      }
     }
   }
 
@@ -96,46 +97,47 @@ export default {
     margin-left: 0%;
 
     div {
-      display: flex;
-      justify-content: center; /* 세로 중앙 정렬 */
+      @include center;
     }
 
+    //타이틀
     div:nth-child(1) {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #343666;
+      @include text-style-3;
+      width: 100%;
+      height: 10%;
     }
 
+    //앨범커버
     div:nth-child(2) {
       width: 100%;
-      padding-top: 5%;
+      height: 80%;
+      padding: 5% 0;
+
       img {
-        width: 60%;
+        height: 100%;
         border-radius: 5%;
       }
     }
 
+    //노래명
     div:nth-child(3) {
-      padding: 5%;
+      @include text-style-4;
+      width: 100%;
+      height: 10%;
     }
   }
 }
 
 // 이벤트 메세지
 #SpecialView {
+  @include center;
   width: 100%;
-  height: 7vh;
+  height: $special_height;
   position: fixed;
-  top: 32vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: $header_height + $current_height;
 
   p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #130e50;
+    @include text-style-3;
   }
 
   .blinking {

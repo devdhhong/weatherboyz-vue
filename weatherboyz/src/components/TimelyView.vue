@@ -1,10 +1,5 @@
 <template>
   <div id="TimelyView">
-    <!-- <div id="todayWeather"> -->
-    <!-- <div class="textBox">
-        <p>시간대별 날씨 정보</p>
-        <p>이번주 날씨 보기</p>
-      </div> -->
     <div class="scroll-area">
       <div
         class="timelyCard"
@@ -12,12 +7,9 @@
         :key="weather.date">
         <p class="date">{{ weather.date }} 8시</p>
         <img src="../assets/images/01d.png" alt="" />
-        <!-- <p class="condition">{{ weather.condition }}</p> -->
-        <!-- <p class="temperature">{{ weather.minTemp }}° / {{ weather.maxTemp }}°</p> -->
         <p class="temperature">{{ weather.minTemp }}°</p>
       </div>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -57,12 +49,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../scss/reset.scss";
+@import "../scss/common.scss";
 
 #TimelyView {
   width: 100%;
-  height: 14vh;
-
-  background-color: #c0deff79;
+  height: $timely_height;
+  background-color: $light_bg_color_1;
   position: fixed;
   bottom: 0;
   border-radius: 20px 20px 0 0;
@@ -74,25 +66,23 @@ export default {
     white-space: nowrap;
     padding-top: 3%;
 
-
     .timelyCard {
       text-align: center;
       flex: 0 0 25%; /* 기본으로 보이는 아이템 수를 설정 */
 
+      //날짜
       .date {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #130e50;
+        @include text-style-5;
       }
 
+      //사진
       img {
         width: 40%;
       }
 
+      //온도
       .temperature{
-        font-size: 1.0rem;
-        font-weight: 600;
-        color: #130e50;
+        @include text-style-3;
       }
     }
   }

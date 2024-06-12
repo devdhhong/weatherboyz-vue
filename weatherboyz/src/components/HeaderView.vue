@@ -105,22 +105,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/common.scss";
 // @import "../scss/reset.scss";
+@import "../scss/common.scss";
 
 #HeaderView {
   @include center-sb;
   width: 100%;
   height: $header_height;
-
   position: fixed;
   top: 0;
-  padding: 10%;
+  padding: 5vh;
 
   .cityInfo {
     p {
-      font-size: 1.2rem;
-      font-weight: 600;
+      @include text-style-2;
     }
   }
 }

@@ -49,3 +49,10 @@
     padding-left: 0;
     list-style: none;
   }
+
+  /* 모든 요소와 가상 요소에 box-sizing: border-box 적용 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }

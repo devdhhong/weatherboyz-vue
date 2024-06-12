@@ -58,8 +58,6 @@
 </template>
 
 <script>
-
-
 export default {
   mounted() {
     this.setLanguage = localStorage.getItem('language') || "KOR"; //KOR or ENG
@@ -85,33 +83,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/main.scss";
+// @import "../scss/reset.scss";
+@import "../scss/common.scss";
 
 #SettingView {
   width: 100%;
-  height: 80vh;
+  height: $setting_height;
   position: fixed;
-  top: 10vh;
+  top: $header_height;
 
   .settingItem {
     padding: 5% 7%;
 
     .title {
+      @include left;
+      @include text-style-2;
       width: 100%;
       height: 40px;
-      background-color: #c0deff79;
-      display: flex;
-      align-items: center;
-      padding-left: 4%; /* 세로 중앙 정렬 */
-      font-size: 1.1rem;
-      font-weight: 600;
+      background-color: $light_bg_color_1;
+      padding-left: 4%;
+      /* 세로 중앙 정렬 */
       border-radius: 5px;
     }
 
     //라디오 버튼
     ul {
-      margin : 16px;
-      
+      margin: 16px;
+
       li {
         margin: 3% 0;
       }
@@ -119,44 +117,27 @@ export default {
 
     //셀렉트 박스
     select {
+      @include text-style-4;
       width: 60%;
-      line-height: 2rem;
-      font-size: 0.85rem;
       border: 1px solid #C4C4C4;
-      margin : 16px;
+      margin: 16px;
       border-radius: 5px;
       padding: 0 10px;
-      color: grey;
-      font-weight: 350;
     }
   }
 
   //저작권 표기
   .copyRight {
     p {
+      @include text-style-99;
       text-align: right;
       margin-bottom: 5%;
-      font-size: 10px;
-      font-weight: 300;
-      color: green($color: #000000);
     }
   }
-}
 
-//스크롤 관련
-.scroll-area {
-  overflow: auto;
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
+  .fa-caret-down {
+    margin-left: 2%;
   }
-}
-
-.fa-caret-down {
-  margin-left: 2%;
 }
 
 </style>

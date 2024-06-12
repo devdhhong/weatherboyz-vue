@@ -3,7 +3,7 @@
     <div class="contentsBox">
       <!-- <div class="weatherBox"> -->
         <!-- <div class="weatherIcon"> -->
-          <img src="https://img.insight.co.kr/static/2022/02/11/700/img_20220211115820_05ed80hn.webp" alt="MainLogo">
+          <!-- <img src="https://img.insight.co.kr/static/2022/02/11/700/img_20220211115820_05ed80hn.webp" alt="MainLogo"> -->
         <!-- </div> -->
       <!-- </div> -->
     </div>
@@ -95,7 +95,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../scss/reset.scss";
-@import "../scss/MAIN.scss";
+// @import "../scss/MAIN.scss";
 
 // #MainView {
 //   width: 100%;

@@ -64,7 +64,9 @@ $special_height: 7%;
 $contents_height: 47%;
 $timely_height: 14%;
 
-$setting_height: 80%;
+$option_height: 90%;
+$lucky_height: 15%;
+$fashion_height: 70%;
 
 // 색상
 $light_bg_color_1: #d5e4f48f;
@@ -114,6 +116,50 @@ $light_txt_color_1: #343666;
 //---------------------------------------------------------
 //---------------------------------------------------------
 //---------------------------------------------------------
+
+//깜박임 효과
+.blinking {
+  animation: blink 2s infinite; /* 애니메이션 적용 */
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1; /* 가시적 상태 */
+  }
+  25%, 75% {
+    opacity: 0; /* 비가시적 상태 */
+  }
+}
+
+//슬라이드 효과
+/* styles.scss */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up-enter-active {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //스크롤
 .scroll-area {
   overflow: auto;

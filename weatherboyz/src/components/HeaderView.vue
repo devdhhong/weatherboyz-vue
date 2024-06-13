@@ -1,10 +1,40 @@
 <template>
   <div id="HeaderView">
-    <div class="btnLeft" @click="btnLeft"><i class="fa-solid fa-shirt"></i></div>
-    <div class="cityInfo">
-      <p>{{ cityName }}</p>
+    <!-- MAIN -->
+    <div v-if="title == 'MAIN'">
+      <div class="btnLeft" @click="btnLeft">
+        <i class="fa-solid fa-shirt"></i>
+      </div>
+      <div class="title">
+        <p>{{ cityName }}</p>
+      </div>
+      <div class="btnRight" @click="btnRight">
+        <i class="fa-solid fa-gear fa-lg"></i>
+      </div>
     </div>
-    <div class="btnRight" @click="btnRight"><i class="fa-solid fa-gear fa-lg"></i></div>
+    <!-- MAIN -->
+
+    <!-- SETTING -->
+    <div v-else-if="title == 'SETTING'">
+      <div class="title">
+        <p>{{ title }}</p>
+      </div>
+      <div class="btnClose" @click="btnClose">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </div>
+    </div>
+    <!-- SETTING -->
+
+    <!-- OOTBZ -->
+    <div v-else-if="title == 'OOTBZ'">
+      <div class="title">
+        <p>{{ title }}</p>
+      </div>
+      <div class="btnClose" @click="btnClose">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </div>
+    </div>
+    <!-- OOTBZ -->
   </div>
 </template>
 
@@ -22,7 +52,7 @@ const getLocation = async function () {
 
         localStorage.setItem("latitude", lat);
         localStorage.setItem("longitude", lon);
-        
+
         resolve({ latitude: lat, longitude: lon });
       },
       function (err) {
@@ -50,7 +80,7 @@ const executeGeocoding = async function () {
     return address.borough || address.quarter || address.city || "Unknown";
   } catch (error) {
     console.error("Error during geocoding:", error);
-    
+
     const tempLat = 37.2343242;
     const tempLon = 127.453432;
 
@@ -75,8 +105,7 @@ const reverseGeocode = async function (latitude, longitude) {
     });
 
     return response.data.address;
-  } 
-  catch (error) {
+  } catch (error) {
     console.error("Error reverse geocoding coordinates:", error);
     throw error;
   }
@@ -86,6 +115,9 @@ const result = await executeGeocoding();
 export default {
   mounted() {
     this.cityName = result;
+
+    console.log(this.title);
+
     // this.cityName = result.quarter || result.city || 'Unknown';
   },
   data() {
@@ -93,14 +125,23 @@ export default {
       cityName: "",
     };
   },
-  methods: {
-    btnLeft : function(){
-      this.$router.push('/OOTD');
+  props: {
+    title: {
+      type: String,
+      required: false,
     },
-    btnRight : function(){
-      this.$router.push('/SETTING');
+  },
+  methods: {
+    btnLeft: function () {
+      this.$router.push("/OOTD");
+    },
+    btnRight: function () {
+      this.$router.push("/SETTING");
+    },
+    btnClose : function(){
+      this.$router.back();
     }
-  }
+  },
 };
 </script>
 
@@ -109,16 +150,19 @@ export default {
 @import "../scss/common.scss";
 
 #HeaderView {
-  @include center-sb;
   width: 100%;
   height: $header_height;
   position: fixed;
   top: 0;
   padding: 5%;
 
-  .cityInfo {
-    p {
-      @include text-style-2;
+  div {
+    @include center-sb;
+
+    .title {
+      p {
+        @include text-style-2;
+      }
     }
   }
 }

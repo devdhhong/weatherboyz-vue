@@ -28,7 +28,8 @@
 export default {
   watch: {},
   data() {
-    return {};
+    return {
+    };
   },
   methods: {
     openMusicSite : function(){
@@ -135,19 +136,6 @@ export default {
 
   p {
     @include text-style-3;
-  }
-
-  .blinking {
-    animation: blink 2s infinite; /* 애니메이션 적용 */
-  }
-
-  @keyframes blink {
-    0%, 50%, 100% {
-      opacity: 1; /* 가시적 상태 */
-    }
-    25%, 75% {
-      opacity: 0; /* 비가시적 상태 */
-    }
   }
 }
 </style>

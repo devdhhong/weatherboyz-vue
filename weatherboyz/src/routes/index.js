@@ -26,6 +26,11 @@ export default createRouter({
         path: "/OOTD",
         name: OOTD,
         component: OOTD,
+    },
+    // 정의 되지 않은 화면에 접속 시도 시 자동으로 홈화면으로 리다이렉션
+    {
+        path: '/:pathMatch(.*)*',
+        redirect: '/'
     }
 ],
 

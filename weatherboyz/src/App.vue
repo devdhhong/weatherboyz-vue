@@ -3,14 +3,6 @@
 </template>
 
 <script>
-// import HOM from "./pages/HOM.vue";
-// export default {
-//   name: 'App',
-//   components: {
-//     HOM
-//   }
-// }
-
 /**
  * 아이폰 하단의 도구 막대때문에 뷰포트가 정상적으로 보이지 않는 현상 방지 
  */
@@ -44,11 +36,11 @@ export default {
 @import "./scss/reset.scss";
 @import "./scss/common.scss";
 
-#MainView {
-  // height: var(--viewport-height); // CSS 변수 사용
+#MainView,
+#SettingView,
+#OOTDView{
   height: var(--viewport-height); // CSS 변수 사용
-  // border : 1px solid red;
-  // background: red;
 }
+
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="SettingView" class="scroll-area">
+  <div id="OptionView" class="scroll-area">
     <li class="settingItem">
       <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
@@ -86,9 +86,9 @@ export default {
 // @import "../scss/reset.scss";
 @import "../scss/common.scss";
 
-#SettingView {
+#OptionView {
   width: 100%;
-  height: $setting_height;
+  height: $option_height;
   position: fixed;
   top: $header_height;
 

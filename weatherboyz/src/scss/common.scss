@@ -1,4 +1,6 @@
+//-----------------------------------------------
 // GOOGLE FONT LINK
+//-----------------------------------------------
 // #Noto Sans Korean
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 // #Poppins
@@ -57,65 +59,81 @@
   flex-direction: column;
 }
 
-// 높이
-$header_height: 10%;
-$current_height: 22%;
-$special_height: 7%;
-$contents_height: 47%;
-$timely_height: 14%;
-
-$option_height: 90%;
-$lucky_height: 15%;
-$fashion_height: 70%;
-
-// 색상
-$light_bg_color_1: #d5e4f48f;
-$light_txt_color_1: #343666;
-
 // 텍스트
-@mixin text-style-1() {
+@mixin text-style-1() { //헤더
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+@mixin text-style-2() { 
   margin-left: 3%;
   font-size: 2.2rem;
   font-weight: 1000;
-  color: $light_txt_color_1;
-}
-
-@mixin text-style-2() {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: $light_txt_color_1;
 }
 
 @mixin text-style-3() {
   font-size: 1.0rem;
   font-weight: 600;
-  color: $light_txt_color_1;
 }
 
 @mixin text-style-4() {
   font-size: 0.9rem;
   font-weight: 500;
-  color: $light_txt_color_1;
   line-height: 170%;
 }
 
 @mixin text-style-5() {
   font-size: 0.7rem;
   font-weight: 500;
-  color: $light_txt_color_1;
 }
 
 @mixin text-style-99() {
   font-size: 10px;
   font-weight: 300;
-  color: green($color: #000000);
 }
 
-//---------------------------------------------------------
-//---------------------------------------------------------
-//---------------------------------------------------------
-//---------------------------------------------------------
-//---------------------------------------------------------
+//-----------------------------------------------
+// 변수
+//-----------------------------------------------
+// 높이
+$header_height: 10%;
+$current_height: 22%;
+$message_height: 7%;
+$contents_height: 47%;
+$timely_height: 14%;
+$option_height: 90%;
+$lucky_height: 20%;
+$fashion_height: 60%;
+
+// 색상
+:root {
+  --border-color-1: #0F1035;
+  --border-color-2: #C4C4C4;
+  --background-color-1: #0F1035;
+  --background-color-2: #ffffff;
+  --background-color-3: rgba(188, 225, 255, 0.393);
+  --text-color-1: #0F1035;
+  --text-color-2: #ffffff;
+}
+
+.dark-mode {
+  --border-color-1: #ffffff;
+  --border-color-2: #C4C4C4;
+  --background-color-1: #ffffff;
+  --background-color-2: #0F1035;
+  --background-color-3: rgb(184, 193, 201);
+  --text-color-1: #ffffff;
+  --text-color-2: #0F1035;
+}
+
+//-----------------------------------------------
+// 공통
+//-----------------------------------------------
+//아이콘
+.fa-solid {
+  color : var(--background-color-1)
+}
+
 
 //깜박임 효과
 .blinking {
@@ -132,7 +150,6 @@ $light_txt_color_1: #343666;
 }
 
 //슬라이드 효과
-/* styles.scss */
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -148,18 +165,6 @@ $light_txt_color_1: #343666;
   animation: slideUp 0.5s ease-out forwards;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 //스크롤
 .scroll-area {
   overflow: auto;
@@ -171,140 +176,51 @@ $light_txt_color_1: #343666;
   }
 }
 
-//인풋
-input[type="checkbox"],
-input[type="radio"] {
-  --active: #96a3cb;
-  --active-inner: #fff;
-  --focus: 2px rgba(39, 94, 254, 0.3);
-  --border: #7d94ad;
-  --border-hover: #c0deff79;
-  --background: #fff;
-  --disabled: #f6f8ff;
-  --disabled-inner: #e1e6f9;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  height: 21px;
-  outline: none;
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  margin: 0;
-  cursor: pointer;
-  border: 1px solid var(--bc, var(--border));
-  background: var(--b, var(--background));
-  transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
-  &:after {
-    content: "";
-    display: block;
-    left: 0;
-    top: 0;
-    position: absolute;
-    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease),
-      opacity var(--d-o, 0.2s);
-  }
-  &:checked {
-    --b: var(--active);
-    --bc: var(--active);
-    --d-o: 0.3s;
-    --d-t: 0.6s;
-    --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
-  }
-  &:disabled {
-    --b: var(--disabled);
-    cursor: not-allowed;
-    opacity: 0.9;
-    &:checked {
-      --b: var(--disabled-inner);
-      --bc: var(--border);
-    }
-    & + label {
-      cursor: not-allowed;
-    }
-  }
-  &:hover {
-    &:not(:checked) {
-      &:not(:disabled) {
-        --bc: var(--border-hover);
-      }
-    }
-  }
-  &:focus {
-    box-shadow: 0 0 0 var(--focus);
-  }
-  &:not(.switch) {
-    width: 21px;
-    &:after {
-      opacity: var(--o, 0);
-    }
-    &:checked {
-      --o: 1;
-    }
-  }
-  & + label {
-    font-size: 14px;
-    line-height: 21px;
-    display: inline-block;
-    vertical-align: top;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-}
-
-input[type="checkbox"] {
-  &:not(.switch) {
-    border-radius: 7px;
-    &:after {
-      width: 5px;
-      height: 9px;
-      border: 2px solid var(--active-inner);
-      border-top: 0;
-      border-left: 0;
-      left: 7px;
-      top: 4px;
-      transform: rotate(var(--r, 20deg));
-    }
-    &:checked {
-      --r: 43deg;
-    }
-  }
-  &.switch {
-    width: 38px;
-    border-radius: 11px;
-    &:after {
-      left: 2px;
-      top: 2px;
-      border-radius: 50%;
-      width: 15px;
-      height: 15px;
-      background: var(--ab, var(--border));
-      transform: translateX(var(--x, 0));
-    }
-    &:checked {
-      --ab: var(--active-inner);
-      --x: 17px;
-    }
-    &:disabled {
-      &:not(:checked) {
-        &:after {
-          opacity: 0.6;
-        }
-      }
-    }
-  }
+// 라디오 버튼
+label {
+  @include text-style-4;
+  color: var(--text-color-1);
+  margin-left: 3%;
 }
 
 input[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
   border-radius: 50%;
-  &:after {
-    width: 19px;
-    height: 19px;
-    border-radius: 50%;
-    background: var(--active-inner);
-    opacity: 0;
-    transform: scale(var(--s, 0.7));
-  }
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.5s ease-in-out;
+  color: var(--text-color-1);
+
   &:checked {
-    --s: 0.5;
+    border: 0.3em solid var(--text-color-1);
   }
+
+  [type="radio"]:hover {
+    box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+    cursor: pointer;
+  }
+
+  [type="radio"]:hover + span {
+    cursor: pointer;
+  }
+
+  [type="radio"]:disabled {
+    background-color: lightgray;
+    box-shadow: none;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// 셀렉트 박스
+select {
+  @include text-style-4;
+  height: 33px;
+  background-color: var(--background-color-3);
+  color: var(--text-color-1);
+  width: 30%;
+  margin-top: 16px;
+  border-radius: 10px;
+  padding-left: 1%;
 }

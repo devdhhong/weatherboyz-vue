@@ -1,35 +1,7 @@
-//이미지 경로 
-//SY JC YH HJ JY KV NW QQ HN SW ER ALL
-//EX- http://via.placeholder.com/가로길이x세로길이/바탕색코드/글자색코드?text=이미지안글자
-
-//케빈
-const IMG_URL = {
-    "T0" : {
-        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-HOT",
-        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-CLOUD",
-        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-RAIN",
-    },
-    "T6" : { //케빈
-        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-HOT",
-        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-CLOUD",
-        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=KV-RAIN",
-    },
-    "T7" : { //뉴
-        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-HOT",
-        CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-CLOUD",
-        RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=NW-RAIN",
-    },
-};
-
-
-
-
-
-
-
 /* API URL */
 const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org/';
 const NOW_FORECAST_URL = "https://api.open-meteo.com/v1/forecast";
+const NOW_AIRQUALITY_URL = "https://air-quality-api.open-meteo.com/v1/air-quality";
 
 /* WMO 기상 해석코드 (weather code) */
 const WEATHER_CODE = {
@@ -66,8 +38,8 @@ const WEATHER_CODE = {
 };
 
 export {
-    IMG_URL,
     NOMINATIM_BASE_URL,
     NOW_FORECAST_URL,
+    NOW_AIRQUALITY_URL,
     WEATHER_CODE,
 }

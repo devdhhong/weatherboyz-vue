@@ -1,19 +1,24 @@
 <template>
   <div id="FashionView">
-    <img src="https://pokemoncard.co.kr/info/images/renew/1_0-1.png" alt="" />
-    <div id="SpecialView">
-      <p class="blinking">오늘의 필수템 ☂️</p>
+    <img :src="fashionImgPath" alt="" />
+    <div id="MessageView">
+      <p class="">여기다가 뭐적지?</p>
+      <!-- <p class="blinking">오늘의 필수템 ☂️</p> -->
     </div>
   </div>
 </template>
 
 <script>
+import { OOTD } from "../assets/data/OOTD.js";
+
 export default {
   mounted() {
-
+    this.fashionImgPath = OOTD[0].imgPath;
   },
   data() { 
-
+    return {
+      fashionImgPath : "",
+    }
   },
   methods : {
 
@@ -27,34 +32,31 @@ export default {
 @import "../scss/reset.scss";
 
 #FashionView {
+  @include c-center-c;
   width: 100%;
-  height: 60vh;
+  height: $fashion_height;
   position: fixed;
-  top: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  top: $header_height;
+  // overflow: hidden;
 
   img {
     max-width: 100%;
-    max-height: 75%;
+    max-height: 100%;
+    padding-top: 5%
   }
 }
 
 // 이벤트 메세지
-#SpecialView {
+#MessageView {
+  @include center;
   width: 100%;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: $message_height;
+  position: fixed;
+  top: $header_height + $fashion_height;
 
   p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #130e50;
+    @include text-style-3;
+    color : var(--text-color-1);
   }
 }
 </style>

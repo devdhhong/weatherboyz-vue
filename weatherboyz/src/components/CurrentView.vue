@@ -3,7 +3,7 @@
     <div class="infoView">
         <div class="temperature">
           <img src="../assets/images/01d.png" alt="" />
-          <p>10도</p>
+          <p>{{ temperature }}도</p>
         </div>
         <div class="weatherInfo">
           <div class="feelTemp">체감온도 : 30도</div>
@@ -14,21 +14,37 @@
     <div class="infoView" @click="openMusicSite">
       <div>오늘의 노래 🎹</div>
       <div class="songCover">
-        <img src="https://www.akbobada.com/home/akbobada/archive/akbo/img/20210819092125.JPG" alt=""/>
+        <img :src="musicImgPath" alt=""/>
       </div>
-      <div class="songTitle">Thrill Ride</div>
+      <div>{{ musicTitle }}</div>
     </div>
   </div>
-  <div id="SpecialView">
+  <div id="MessageView">
     <p class="blinking">더러분 우산 꼬옥 챙기세요 ☂️</p>
   </div>
 </template>
 
 <script>
+
+import { MUSIC } from "../assets/data/MUSIC.js";
+
 export default {
-  watch: {},
+  mounted() {
+    //날씨
+    let weather = JSON.parse(localStorage.getItem('weather'));
+    
+    this.temperature = Math.round(weather.temperature);
+
+
+    //노래
+    this.musicImgPath = MUSIC[0].coverImgPath;
+    this.musicTitle = MUSIC[0].musicTitle;
+  },
   data() {
     return {
+      temperature: "",
+      musicImgPath: "",
+      musicTitle: "",
     };
   },
   methods: {
@@ -55,11 +71,11 @@ export default {
   .infoView {
     padding: 3%;
     height: 100%;
-    flex: 1; /* 자식 요소들이 동일한 비율로 공간을 차지하도록 설정 */
+    flex: 1; 
     box-sizing: border-box;
     border-radius: 15px;
     margin: 0 5%;
-    background-color: $light_bg_color_1;
+    background-color: var(--background-color-3);
   }
 
   // 날씨
@@ -74,7 +90,8 @@ export default {
       }
 
       p {
-        @include text-style-1;
+        @include text-style-2;
+        color : var(--text-color-1);
       }
     }
 
@@ -85,6 +102,7 @@ export default {
 
       div {
         @include text-style-4;
+        color : var(--text-color-1);
         padding-left: 3%;
       }
     }
@@ -101,6 +119,7 @@ export default {
     //타이틀
     div:nth-child(1) {
       @include text-style-3;
+      color : var(--text-color-1);
       width: 100%;
       height: 10%;
     }
@@ -120,6 +139,7 @@ export default {
     //노래명
     div:nth-child(3) {
       @include text-style-4;
+      color : var(--text-color-1);
       width: 100%;
       height: 10%;
     }
@@ -127,15 +147,16 @@ export default {
 }
 
 // 이벤트 메세지
-#SpecialView {
+#MessageView {
   @include center;
   width: 100%;
-  height: $special_height;
+  height: $message_height;
   position: fixed;
   top: $header_height + $current_height;
 
   p {
     @include text-style-3;
+    color : var(--text-color-1);
   }
 }
 </style>

@@ -16,6 +16,9 @@
 
     <!-- SETTING -->
     <div v-else-if="title == 'SETTING'">
+      <div class="btnClose" @click="btnClose" style="visibility: hidden;">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </div>
       <div class="title">
         <p>{{ title }}</p>
       </div>
@@ -27,6 +30,9 @@
 
     <!-- OOTBZ -->
     <div v-else-if="title == 'OOTBZ'">
+      <div class="btnClose" @click="btnClose" style="visibility: hidden;">
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </div>
       <div class="title">
         <p>{{ title }}</p>
       </div>
@@ -39,86 +45,9 @@
 </template>
 
 <script>
-import * as CONST from "../utils/CONST.js";
-import axios from "axios";
-
-// 현재 위치 조회 (비동기 함수)
-const getLocation = async function () {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      function (pos) {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-
-        localStorage.setItem("latitude", lat);
-        localStorage.setItem("longitude", lon);
-
-        resolve({ latitude: lat, longitude: lon });
-      },
-      function (err) {
-        // alert(JSON.stringify(err.code))
-        // 1: 권한 거부 (Permission denied)
-        // 2: 위치를 사용할 수 없음 (Position unavailable)
-        // 3: 타임아웃 (Timeout)
-        console.error("Error getting location:", err);
-        reject(err);
-      }
-    );
-  });
-};
-
-// 위치 조회 후 역지오코딩 수행
-const executeGeocoding = async function () {
-  try {
-    // 현재 위치 조회
-    const { latitude, longitude } = await getLocation();
-
-    // 역지오코딩 수행
-    const address = await reverseGeocode(latitude, longitude);
-
-    // 원하는 주소 정보 출력 (예: cityName)
-    return address.borough || address.quarter || address.city || "Unknown";
-  } catch (error) {
-    console.error("Error during geocoding:", error);
-
-    const tempLat = 37.2343242;
-    const tempLon = 127.453432;
-
-    localStorage.setItem("latitude", tempLat);
-    localStorage.setItem("longitude", tempLon);
-
-    const address = await reverseGeocode(tempLat, tempLon);
-    return address.borough || address.quarter || address.city || "Unknown";
-  }
-};
-
-// 역지오코딩 (비동기 함수)
-const reverseGeocode = async function (latitude, longitude) {
-  try {
-    const response = await axios.get(`${CONST.NOMINATIM_BASE_URL}reverse`, {
-      params: {
-        lat: latitude,
-        lon: longitude,
-        format: "json",
-        addressdetails: 1,
-      },
-    });
-
-    return response.data.address;
-  } catch (error) {
-    console.error("Error reverse geocoding coordinates:", error);
-    throw error;
-  }
-};
-
-const result = await executeGeocoding();
 export default {
   mounted() {
-    this.cityName = result;
-
-    console.log(this.title);
-
-    // this.cityName = result.quarter || result.city || 'Unknown';
+    this.cityName = localStorage.getItem('location');
   },
   data() {
     return {
@@ -154,14 +83,19 @@ export default {
   height: $header_height;
   position: fixed;
   top: 0;
-  padding: 5%;
+  align-content: center;
 
   div {
     @include center-sb;
+    
+    div {
+      padding: 5%;
+    }
 
     .title {
       p {
-        @include text-style-2;
+        @include text-style-1;
+        color: var(--text-color-1);
       }
     }
   }

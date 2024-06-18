@@ -54,7 +54,7 @@ export default {
 #TimelyView {
   width: 100%;
   height: $timely_height;
-  background-color: $light_bg_color_1;
+  background-color: var(--background-color-3);
   position: fixed;
   bottom: 0;
   border-radius: 20px 20px 0 0;
@@ -73,6 +73,7 @@ export default {
       //날짜
       .date {
         @include text-style-5;
+        color : var(--text-color-1);
       }
 
       //사진
@@ -83,6 +84,7 @@ export default {
       //온도
       .temperature{
         @include text-style-3;
+        color : var(--text-color-1);
       }
     }
   }

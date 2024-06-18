@@ -6,7 +6,7 @@
       :class="{ flipped: isFlipped1 }"
     >
       <div class="front">🎨 행운의 컬러 🎨</div>
-      <div class="back">빨강</div>
+      <div class="back">{{ luckyColor }}</div>
     </div>
     <div
       class="infoView"
@@ -14,20 +14,25 @@
       :class="{ flipped: isFlipped2 }"
     >
       <div class="front">🍀 행운의 아이템 🍀</div>
-      <div class="back">목도리</div>
+      <div class="back">{{ luckyItem }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { OOTD } from "../assets/data/OOTD.js";
+
 export default {
   mounted() {
-
+    this.luckyColor = OOTD[0].luckyColor;
+    this.luckyItem = OOTD[0].luckyItem;
   },
   data() { 
     return {
       isFlipped1: false,
       isFlipped2: false,
+      luckyColor : "",
+      luckyItem : "",
     }
   },
   methods : {
@@ -52,7 +57,7 @@ export default {
   width: 100%;
   height: $lucky_height;
   position: fixed;
-  top: $header_height + $fashion_height;
+  top: $header_height + $fashion_height + $message_height;
   display: flex;
 
   .infoView {
@@ -60,7 +65,7 @@ export default {
     box-sizing: border-box;
     border-radius: 15px;
     margin: 0 5%;
-    background-color: #c0deff79;
+    background-color: var(--background-color-3);
     perspective: 1000px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
@@ -71,14 +76,13 @@ export default {
 
     .front,
     .back {
+      @include center;
+      @include text-style-4;
+      color : var(--text-color-1);
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
     }
 
     .front {

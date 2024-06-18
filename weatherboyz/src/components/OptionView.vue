@@ -4,11 +4,11 @@
       <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
-          <input id="r1" type="radio" name="language" value="KOR" v-model="setLanguage" @change="changeSetting"/>
+          <input disabled id="r1" type="radio" name="language" value="kor" v-model="setLanguage" @change="changeSetting"/>
           <label for="r1">한국어</label>
         </li>
         <li>
-          <input id="r2" type="radio" name="language" value="ENG" v-model="setLanguage" @change="changeSetting"/>
+          <input disabled id="r2" type="radio" name="language" value="eng" v-model="setLanguage" @change="changeSetting"/>
           <label for="r2">영어</label>
         </li>
       </ul>
@@ -16,29 +16,29 @@
     <li class="settingItem">
       <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
-        <option value="T0">📚 단체</option>
-        <option value="T1">🎀 상</option>
-        <option value="T2">🎁 콥</option>
-        <option value="T3">🎨 빵</option>
-        <option value="T4">🎉 현</option>
-        <option value="T5">🎃 주</option>
-        <option value="T6">🎆 켑</option>
-        <option value="T7">🕶 뉴</option>
-        <option value="T8">⚽ 큐</option>
-        <option value="T9">👟 학</option>
-        <option value="T10">👑 선</option>
-        <option value="T11">🎹 릭</option>
+        <option value="T0">⠀단체 📢</option>
+        <option value="T1">⠀상연 🐶</option>
+        <option value="T2">⠀제이콥 🍐</option>
+        <option value="T3">⠀영훈 🍞</option>
+        <option value="T4">⠀현재 🎁</option>
+        <option value="T5">⠀주연 🐱</option>
+        <option value="T6">⠀케빈 🌙</option>
+        <option value="T7">⠀뉴 🐧</option>
+        <option value="T8">⠀큐 🐿️</option>
+        <option value="T9">⠀학년 🍊</option>
+        <option value="T10">⠀선우 ☀️</option>
+        <option value="T11">⠀에릭 🦄</option>
       </select>
     </li>
     <li class="settingItem">
       <div class="title">화면 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li> 
-          <input id="r3" type="radio" name="display" value="LIGHT" v-model="setDisplay" @change="changeSetting"/>
+          <input id="r3" type="radio" name="display" value="light" v-model="setDisplay" @change="changeSetting"/>
           <label for="r3">라이트</label>
         </li>
         <li>
-          <input id="r4" type="radio" name="display" value="DARK" v-model="setDisplay" @change="changeSetting"/>
+          <input id="r4" type="radio" name="display" value="dark" v-model="setDisplay" @change="changeSetting"/>
           <label for="r4">다크</label>
         </li>
       </ul>
@@ -60,9 +60,9 @@
 <script>
 export default {
   mounted() {
-    this.setLanguage = localStorage.getItem('language') || "KOR"; //KOR or ENG
+    this.setLanguage = localStorage.getItem('language') || "kor"; //KOR or ENG
     this.setTheme = localStorage.getItem('theme') || "T0"; //1~11
-    this.setDisplay = localStorage.getItem('display') || "DARK"; //Light or Dark
+    this.setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
   },
   data() {
     return {
@@ -77,6 +77,15 @@ export default {
       localStorage.setItem("language", this.setLanguage);
       localStorage.setItem("theme", this.setTheme);
       localStorage.setItem("display", this.setDisplay);
+
+      // 설정 초기화
+      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.classList.remove('light-mode');
+      document.documentElement.classList.remove('kor-mode');
+      document.documentElement.classList.remove('eng-mode');
+
+      document.documentElement.classList.add(this.setDisplay + '-mode');
+      document.documentElement.classList.add(this.setLanguage + '-mode');
     }
   },
 };
@@ -97,12 +106,12 @@ export default {
 
     .title {
       @include left;
-      @include text-style-2;
+      @include text-style-1;
+      color: var(--text-color-2);
       width: 100%;
       height: 40px;
-      background-color: $light_bg_color_1;
+      background-color: var(--background-color-1);
       padding-left: 4%;
-      /* 세로 중앙 정렬 */
       border-radius: 5px;
     }
 
@@ -111,18 +120,9 @@ export default {
       margin: 16px;
 
       li {
+        @include left;
         margin: 3% 0;
       }
-    }
-
-    //셀렉트 박스
-    select {
-      @include text-style-4;
-      width: 60%;
-      border: 1px solid #C4C4C4;
-      margin: 16px;
-      border-radius: 5px;
-      padding: 0 10px;
     }
   }
 
@@ -130,6 +130,7 @@ export default {
   .copyRight {
     p {
       @include text-style-99;
+      color: var(--text-color-1);
       text-align: right;
       margin-bottom: 5%;
     }

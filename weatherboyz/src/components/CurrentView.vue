@@ -6,9 +6,9 @@
           <p>{{ temperature }}도</p>
         </div>
         <div class="weatherInfo">
-          <div class="feelTemp">체감온도 : 30도</div>
-          <div class="fineDust">미세먼지: 양호</div>
-          <div class="ultraFineDust">초미세먼지: 나쁨</div>
+          <div class="feelTemp">체감온도 : {{ this.apparent_temperature }}도</div>
+          <div class="fineDust">미세먼지: {{ this.pm10 }}</div>
+          <div class="ultraFineDust">초미세먼지: {{ this.pm2_5 }}</div>
         </div>
     </div>
     <div class="infoView" @click="openMusicSite">
@@ -27,22 +27,54 @@
 <script>
 
 import { MUSIC } from "../assets/data/MUSIC.js";
+import * as UTIL from "../utils/UTIL.js";
+
+
+//미세먼지 상태 조회 함수
+const getAirQualityStatus = function(degree1, degree2){
+  let pm10 = ""; //미세먼지
+  let pm2_5 = ""; //초미세먼지
+
+  //대한민국 기준
+  if(degree1 <= 30){ pm10 = "좋음"; }
+  else if(degree1 <= 80){ pm10 = "보통"; }
+  else if(degree1 <= 150){ pm10 = "나쁨"; }
+  else { pm10 = "매우나쁨"; }
+  
+  if(degree2 <= 15){ pm2_5 = "좋음"; }
+  else if(degree2 <= 35){ pm2_5 = "보통"; }
+  else if(degree2 <= 75){ pm2_5 = "나쁨"; }
+  else { pm2_5 = "매우나쁨"; }
+
+  return [pm10, pm2_5];
+};
 
 export default {
   mounted() {
     //날씨
     let weather = JSON.parse(localStorage.getItem('weather'));
-    
-    this.temperature = Math.round(weather.temperature);
+    this.temperature = Math.round(weather.current.temperature);
+    this.apparent_temperature = Math.round(weather.current.apparent_temperature);
 
+    //미세먼지
+    let airQuality = JSON.parse(localStorage.getItem('airQuality'));
+    this.pm10 = getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0]
+    this.pm2_5 = getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
 
     //노래
     this.musicImgPath = MUSIC[0].coverImgPath;
     this.musicTitle = MUSIC[0].musicTitle;
+
+    UTIL.getWeatherIcon();
   },
   data() {
     return {
-      temperature: "",
+      temperature: "",          //온도
+      apparent_temperature: "", //체감온도
+
+      pm10: "",                 //미세먼지
+      pm2_5: "",                //초미세먼지
+
       musicImgPath: "",
       musicTitle: "",
     };

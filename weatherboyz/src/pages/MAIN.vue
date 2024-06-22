@@ -14,6 +14,7 @@ import ContentsView from "../components/ContentsView.vue";
 import TimelyView from "../components/TimelyView.vue";
 
 import * as CONST from "../utils/CONST.js";
+import * as UTIL from "../utils/UTIL.js";
 import axios from "axios";
 
 // 현재 위치 조회 (비동기 함수)
@@ -21,7 +22,6 @@ const getLocation = async function () {
   return new Promise((resolve) => {
     navigator.geolocation.getCurrentPosition(
       function (pos) {
-        
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
@@ -66,40 +66,60 @@ const getWeather = async function () {
       params: {
         latitude: localStorage.getItem('latitude'),
         longitude: localStorage.getItem('longitude'),
-        current_weather: true,
-        hourly: "rain,apparent_temperature" 
-        // hourly: "apparent_temperature" 
+        // hourly: "rain,apparent_temperature",
+        current: "rain,temperature,apparent_temperature,weather_code",
+        daily: "sunrise,sunset",
+        timezone : "auto"
       }
     });
 
-    return response.data.current_weather;
+    return response.data;
 };
 
 
-// 날씨정보 조회
+// 대기정보 조회
 const getAirQuality = async function () {
     const response = await axios.get(`${CONST.NOW_AIRQUALITY_URL}`, {
       params: {
         latitude: localStorage.getItem('latitude'),
         longitude: localStorage.getItem('longitude'),
-        current_weather: true,
-        hourly: "pm10,pm2_5" 
+        // current_weather: true,
+        current: "pm10,pm2_5" 
       }
     });
-    console.log(response.data);
 
     return response.data;
 };
 
-let location = await executeGeocoding();
-let weather = await getWeather();
-let airQuality = await getAirQuality();
+
+let calledTime = localStorage.getItem("calledTime");
+let location = undefined;
+let weather = undefined;
+let airQuality = undefined;
+
+//한번 호출 후 5분 이내에는 재호출 하지 않음 (과도한 API 호출방지를 위함)
+if(calledTime && UTIL.getFormmatedDate() - calledTime < 0){
+    //재호출 X
+    location = localStorage.getItem("location");
+    weather = localStorage.getItem("weather");
+    airQuality = localStorage.getItem("airQuality");
+}
+else{
+    //재호출 O
+    localStorage.setItem("calledTime", UTIL.getFormmatedDate());
+    location = await executeGeocoding();
+    weather = await getWeather();
+    airQuality = await getAirQuality();
+    
+    localStorage.setItem("location", location);
+    localStorage.setItem("weather", JSON.stringify(weather));
+    localStorage.setItem("airQuality", JSON.stringify(airQuality));
+    console.log('재호출');
+}
 
 export default {
     beforeCreate() {
-      localStorage.setItem("location", location);
-      localStorage.setItem("weather", JSON.stringify(weather));
-      localStorage.setItem("airQuality", JSON.stringify(airQuality));
+
     },
     data(){
         return{

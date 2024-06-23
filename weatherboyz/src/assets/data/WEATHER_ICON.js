@@ -1,4 +1,4 @@
-const WEATHER_ICON = {
+const IMG_URL = {
     "SUNNY_DAY" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbgHWnf%2FbtsH9qobmLr%2FUWDRtlC19L8YLFdCRPry1K%2Fimg.png",
     "SUNNY_NIGHT" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FckNxyk%2FbtsH98tLuPy%2FWIcrohfS0O52FSRnNr8tKk%2Fimg.png",
     "SUNNY_SUNRISE" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbN2tcv%2FbtsH9enUxBL%2Fe3crR5vc8IA54bKPcrNFb0%2Fimg.png",
@@ -16,5 +16,5 @@ const WEATHER_ICON = {
 
 
 export {
-    WEATHER_ICON
+    IMG_URL
 };

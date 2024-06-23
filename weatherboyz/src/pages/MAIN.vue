@@ -66,9 +66,10 @@ const getWeather = async function () {
       params: {
         latitude: localStorage.getItem('latitude'),
         longitude: localStorage.getItem('longitude'),
-        // hourly: "rain,apparent_temperature",
+        hourly: "temperature_2m,precipitation,rain,snowfall,weather_code",
         current: "rain,temperature,apparent_temperature,weather_code",
         daily: "sunrise,sunset",
+        forecast_hours : "25",
         timezone : "auto"
       }
     });
@@ -91,14 +92,13 @@ const getAirQuality = async function () {
     return response.data;
 };
 
-
 let calledTime = localStorage.getItem("calledTime");
 let location = undefined;
 let weather = undefined;
 let airQuality = undefined;
 
 //한번 호출 후 5분 이내에는 재호출 하지 않음 (과도한 API 호출방지를 위함)
-if(calledTime && UTIL.getFormmatedDate() - calledTime < 0){
+if(calledTime && UTIL.getFormmatedDate() - calledTime < 5){
     //재호출 X
     location = localStorage.getItem("location");
     weather = localStorage.getItem("weather");

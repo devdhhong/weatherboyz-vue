@@ -1,47 +1,38 @@
 <template>
   <div id="TimelyView">
     <div class="scroll-area">
-      <div
-        class="timelyCard"
-        v-for="weather in weatherData"
-        :key="weather.date">
-        <p class="date">{{ weather.date }} 8시</p>
-        <img src="../assets/images/01d.png" alt="" />
-        <p class="temperature">{{ weather.minTemp }}°</p>
+      <div class="timelyCard" v-for="(weather, index) in weatherTime" :key="index">
+        <p class="date">{{ this.getFormmatedDate(new Date(weather), "mm/dd hh시") }}</p>
+        <img :src="this.getWeatherIcon(this.weatherCode[index], new Date(weather))" alt="" />
+        <p class="temperature">{{ Math.round(this.weatherTemp[index]) }}°</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import * as UTIL from "../utils/UTIL.js";
+
 export default {
-  watch: {
-    selectedMenu(newValue, oldValue) {
-      console.log(`message changed from ${oldValue} to ${newValue}`);
-    },
+  mounted(){
+    let hourly = JSON.parse(localStorage.getItem('weather')).hourly;
+    this.weatherTime = hourly.time;
+    this.weatherCode = hourly.weather_code;
+    this.weatherTemp = hourly.temperature_2m;
   },
   data() {
     return {
-      weatherData: [
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-        { date: "6/4", minTemp: "10", maxTemp: "30", condition: "30" },
-      ],
-      selectedMenu: "forecast",
+      weatherTime: [],
+      weatherCode: [],
+      weatherTemp: [],
     };
   },
   methods: {
-    btnForecast() {
-      this.selectedMenu = "forecast";
+    getFormmatedDate : function(getDate, format){
+      return UTIL.getFormmatedDate(getDate, format);
     },
-    btnAirQuality() {
-      this.selectedMenu = "airQuality";
+    getWeatherIcon : function(code, time){
+      return UTIL.getWeatherIcon(code, time);
     },
   },
 };

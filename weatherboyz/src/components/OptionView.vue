@@ -47,12 +47,14 @@
       <div class="title">이용 방법<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
-          <div class="">이용방법<i class="fa-solid fa-caret-down"></i></div> 
+          <div class="qna">이용하면서 가장 큰 불편함이 뭐야? 어디가서 말안할게..;;<br>
+            @weather_boyz 여기로 연락줘...</div> 
+          <!-- <div class="">이용방법<i class="fa-solid"></i></div>  -->
         </li>
       </ul>
     </li>
     <li class="settingItem copyRight">
-      <p>© 2024 dhhong. All rights reserved.</p>
+      <p>© 2024 @weather_boyz. All rights reserved.</p>
     </li>
   </div>
 </template>
@@ -122,6 +124,13 @@ export default {
       li {
         @include left;
         margin: 3% 0;
+
+        .qna {
+          @include text-style-5;
+          color: var(--text-color-1);
+
+
+        }
       }
     }
   }

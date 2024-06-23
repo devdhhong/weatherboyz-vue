@@ -2,7 +2,7 @@
   <div id="CurrentView">
     <div class="infoView">
         <div class="temperature">
-          <img src="../assets/images/01d.png" alt="" />
+          <img :src="weatherIcon" alt="" />
           <p>{{ temperature }}도</p>
         </div>
         <div class="weatherInfo">
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div id="MessageView">
-    <p class="blinking">더러분 우산 꼬옥 챙기세요 ☂️</p>
+    <p class="blinking">{{ mainMsg }}</p>
   </div>
 </template>
 
@@ -29,46 +29,31 @@
 import { MUSIC } from "../assets/data/MUSIC.js";
 import * as UTIL from "../utils/UTIL.js";
 
-
-//미세먼지 상태 조회 함수
-const getAirQualityStatus = function(degree1, degree2){
-  let pm10 = ""; //미세먼지
-  let pm2_5 = ""; //초미세먼지
-
-  //대한민국 기준
-  if(degree1 <= 30){ pm10 = "좋음"; }
-  else if(degree1 <= 80){ pm10 = "보통"; }
-  else if(degree1 <= 150){ pm10 = "나쁨"; }
-  else { pm10 = "매우나쁨"; }
-  
-  if(degree2 <= 15){ pm2_5 = "좋음"; }
-  else if(degree2 <= 35){ pm2_5 = "보통"; }
-  else if(degree2 <= 75){ pm2_5 = "나쁨"; }
-  else { pm2_5 = "매우나쁨"; }
-
-  return [pm10, pm2_5];
-};
-
 export default {
   mounted() {
     //날씨
     let weather = JSON.parse(localStorage.getItem('weather'));
     this.temperature = Math.round(weather.current.temperature);
     this.apparent_temperature = Math.round(weather.current.apparent_temperature);
+    this.weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
 
     //미세먼지
     let airQuality = JSON.parse(localStorage.getItem('airQuality'));
-    this.pm10 = getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0]
-    this.pm2_5 = getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
+    this.pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0]
+    this.pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
 
     //노래
     this.musicImgPath = MUSIC[0].coverImgPath;
     this.musicTitle = MUSIC[0].musicTitle;
 
-    UTIL.getWeatherIcon();
+    //메세지
+    console.log(UTIL.getMainMsg());
+    
+    this.mainMsg = UTIL.getMainMsg();
   },
   data() {
     return {
+      weatherIcon: "",          //날씨 아이콘
       temperature: "",          //온도
       apparent_temperature: "", //체감온도
 
@@ -77,6 +62,8 @@ export default {
 
       musicImgPath: "",
       musicTitle: "",
+
+      mainMsg: "", //메인화면 메세지
     };
   },
   methods: {

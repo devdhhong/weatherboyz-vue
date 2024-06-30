@@ -274,20 +274,17 @@ const getMainMsg = function(){
     msg = " ☀️ 더러분 양산 챙기세요 ☀️";
   }
   //기타
-  else if(hhmm > 2200 &&hhmm < 2400){
-    msg = "더비이이 오늘 하루도 수고했어 빵담빵담";
+  else if(hhmm > 2200 && hhmm < 2400){
+    msg = "오늘 하루도 수고했어 빵담빵담";
+  }
+  else if(hhmm < 600){
+    msg = "😴 주물어요 😴";
   }
   //기타
   else{
     msg = "🐶 🍐 🍞 🎁 🐱 🌙 🐧 🐿️ 🍊 ☀️ 🦄";
   }
   
-      //비, 눈 => 우산
-    //기온 높 => 손풍기, 부채
-    //기온 낮 => 목도리
-    //미세먼지 => 마스크
-    //자외선 => 양산
-
   return msg;
 };
 
@@ -295,6 +292,8 @@ const getMainMsg = function(){
 const getWeatherMain = function(code){
   let theme = localStorage.getItem("theme");
   let status = "";
+  let tbz = ["SY", "JC", "YH", "HJ", "JY", "KV", "NW", "QQ", "HN", "SW", "ER"];
+
     //맑음
   if([0,1].indexOf(code) > -1){  
     status = "CLEAR";
@@ -336,8 +335,11 @@ const getWeatherMain = function(code){
     status = "CLOUD";
   }
 
+  //단체 테마 선택 시 멤버 랜덤
+  if(theme.indexOf(tbz) == -1){
+    theme = tbz[Math.floor(Math.random() * 11)];
+  }
 
-  // return "../assets/images/" + status + "/" + theme + ".png";
   return "/images/" + status + "/" + theme + ".png";
 }
 

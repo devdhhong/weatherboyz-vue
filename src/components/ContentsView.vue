@@ -12,11 +12,12 @@ import * as UTIL from "../utils/UTIL.js";
 
 export default {
   mounted() {
+    let weather = JSON.parse(localStorage.getItem('weather'));
     // let language = localStorage.getItem('language') || "KOR"; //KOR or ENG
     // let theme = localStorage.getItem('theme') || "TBZ"; 
     // let display = localStorage.getItem('display') || "DARK"; //Light or Dark
     // this.temperature = Math.round(weather.temperature);
-    this.imgPath = UTIL.getWeatherMain();
+    this.imgPath = UTIL.getWeatherMain(weather.current.weather_code);
   },
   data() { 
     return {

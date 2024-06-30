@@ -1,6 +1,6 @@
 const WEATHER = {
     "T0" : { //단체
-        HOT : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-HOT",
+        HOT : "/",
         CLOUD : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-CLOUD",
         RAIN : "https://via.placeholder.com/800x1000/000000/ffffff?text=TBZ-RAIN",
     },

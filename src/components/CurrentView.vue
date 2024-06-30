@@ -43,8 +43,8 @@ export default {
     this.pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
 
     //노래
-    this.musicImgPath = MUSIC[0].coverImgPath;
-    this.musicTitle = MUSIC[0].musicTitle;
+    this.musicImgPath = MUSIC[1].coverImgPath;
+    this.musicTitle = MUSIC[1].musicTitle;
 
     //메세지
     console.log(UTIL.getMainMsg());

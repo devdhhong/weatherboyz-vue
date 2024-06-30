@@ -7,18 +7,16 @@
 </template>
 
 <script>
-import { WEATHER } from "../assets/data/WEATHER.js";
+// import { WEATHER } from "../assets/data/WEATHER.js";
+import * as UTIL from "../utils/UTIL.js";
 
 export default {
   mounted() {
     // let language = localStorage.getItem('language') || "KOR"; //KOR or ENG
-    let theme = localStorage.getItem('theme') || "T0"; //1~11
+    // let theme = localStorage.getItem('theme') || "TBZ"; 
     // let display = localStorage.getItem('display') || "DARK"; //Light or Dark
-    
-    let weather = JSON.parse(localStorage.getItem('weather'));
-    
-    this.temperature = Math.round(weather.temperature);
-    this.imgPath = WEATHER[theme]["HOT"];
+    // this.temperature = Math.round(weather.temperature);
+    this.imgPath = UTIL.getWeatherMain();
   },
   data() { 
     return {
@@ -27,10 +25,6 @@ export default {
     }
   },
   methods : {
-    setImage(){
-      // this.imageSrc = CONST[this.setLanguage]["HOT"];
-      // this.imageSrc = WEATHER["T2"]["HOT"];
-    }
   },
 } 
 

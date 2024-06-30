@@ -1,6 +1,6 @@
 <template>
   <div id="OptionView" class="scroll-area">
-    <li class="settingItem">
+    <li class="settingItem" v-show="false">
       <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
@@ -16,18 +16,18 @@
     <li class="settingItem">
       <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
-        <option value="T0">⠀단체 📢</option>
-        <option value="T1">⠀상연 🐶</option>
-        <option value="T2">⠀제이콥 🍐</option>
-        <option value="T3">⠀영훈 🍞</option>
-        <option value="T4">⠀현재 🎁</option>
-        <option value="T5">⠀주연 🐱</option>
-        <option value="T6">⠀케빈 🌙</option>
-        <option value="T7">⠀뉴 🐧</option>
-        <option value="T8">⠀큐 🐿️</option>
-        <option value="T9">⠀학년 🍊</option>
-        <option value="T10">⠀선우 ☀️</option>
-        <option value="T11">⠀에릭 🦄</option>
+        <option value="TBZ">⠀단체 📢</option>
+        <option value="SY">⠀상연 🐶</option>
+        <option value="JC">⠀제이콥 🍐</option>
+        <option value="YH">⠀영훈 🍞</option>
+        <option value="HJ">⠀현재 🎁</option>
+        <option value="JY">⠀주연 🐱</option>
+        <option value="KV">⠀케빈 🌙</option>
+        <option value="NW">⠀뉴 🐧</option>
+        <option value="QQ">⠀큐 🐿️</option>
+        <option value="HN">⠀학년 🍊</option>
+        <option value="SW">⠀선우 ☀️</option>
+        <option value="ER">⠀에릭 🦄</option>
       </select>
     </li>
     <li class="settingItem">
@@ -44,7 +44,7 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">이용 방법<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">문의 사항<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
           <div class="qna">이용하면서 가장 큰 불편함이 뭐야? 어디가서 말안할게..;;<br>
@@ -63,7 +63,7 @@
 export default {
   mounted() {
     this.setLanguage = localStorage.getItem('language') || "kor"; //KOR or ENG
-    this.setTheme = localStorage.getItem('theme') || "T0"; //1~11
+    this.setTheme = localStorage.getItem('theme') || "TBZ";
     this.setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
   },
   data() {

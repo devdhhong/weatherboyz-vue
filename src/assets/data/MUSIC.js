@@ -23,16 +23,28 @@ const IMG_URL = {
     // 일본앨범 & OST 추가 예정
 };
 
-const MUSIC = [
-    {
-        "musicId" : "1",
+const MUSIC = {
+    "1" : {
         "musicTitle" : "소년",
         "youtubeLink" : "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
         "coverImgPath" : IMG_URL["171206"],
-        "weatherCode" : ""
-    }
-];
-
+    },
+    "2" : {
+        "musicTitle" : "Right Here",
+        "youtubeLink" : "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
+        "coverImgPath" : IMG_URL["171206"],
+    },
+    "3" : {
+        "musicTitle" : "소년",
+        "youtubeLink" : "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
+        "coverImgPath" : IMG_URL["171206"],
+    },
+    "4" : {
+        "musicTitle" : "소년",
+        "youtubeLink" : "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
+        "coverImgPath" : IMG_URL["171206"],
+    },
+};
 
 export {
     MUSIC

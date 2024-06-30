@@ -18,7 +18,7 @@ export default {
     let hourly = JSON.parse(localStorage.getItem('weather')).hourly;
     this.weatherTime = hourly.time;
     this.weatherCode = hourly.weather_code;
-    this.weatherTemp = hourly.temperature_2m;
+    this.weatherTemp = hourly.temperature;
   },
   data() {
     return {

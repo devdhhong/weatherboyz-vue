@@ -336,7 +336,7 @@ const getWeatherMain = function(code){
   }
 
   //단체 테마 선택 시 멤버 랜덤
-  if(theme.indexOf(tbz) == -1){
+  if(tbz.indexOf(theme) == -1){
     theme = tbz[Math.floor(Math.random() * 11)];
   }
 

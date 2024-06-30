@@ -16,7 +16,7 @@
     <li class="settingItem">
       <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
-        <option value="TBZ">⠀단체 📢</option>
+        <option value="TBZ">⠀랜덤 📢</option>
         <option value="SY">⠀상연 🐶</option>
         <option value="JC">⠀제이콥 🍐</option>
         <option value="YH">⠀영훈 🍞</option>

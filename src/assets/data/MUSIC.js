@@ -19,7 +19,6 @@ const IMG_URL = {
     "231120" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fv93ZV%2FbtsH8EunAdR%2FbesYAkb0xZwNOvmO54Q3f0%2Fimg.webp", //워치잇
     "231206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb8up60%2FbtsH8F7HBLc%2FW2wRLsgRTLtyWblqQJ3oAk%2Fimg.webp", //디어
     "240318" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8kpCS%2FbtsH8LfF3Nb%2FVfyztWB30DdWGXIzdlJ0BK%2Fimg.webp", //넥타
-
     // 일본앨범 & OST 추가 예정
 };
 

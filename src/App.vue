@@ -39,7 +39,10 @@ export default {
   data(){
     return{
         viewportHeight : getViewportHeight(),
+        isHideModal : localStorage.getItem('isHideModal') == true,
     }
+  },
+  components: {
   },
 }
 
@@ -49,8 +52,7 @@ export default {
 @import "./scss/reset.scss";
 @import "./scss/common.scss";
 
-
-hmtl {
+html {
   background-color: var(--background-color-2) ;
 }
   
@@ -60,6 +62,4 @@ hmtl {
   height: var(--viewport-height); // CSS 변수 사용
   background-color: var(--background-color-2) ;
 }
-
-
 </style>

@@ -84,7 +84,7 @@ export default {
   width: 80%;
   height: 60%;
   position: fixed;
-  top: 20%;
+  top: 15%;
   left: 10%;
 
   /* dimmed */

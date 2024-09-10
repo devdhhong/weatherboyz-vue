@@ -8,6 +8,9 @@
 ### TO BE CONTINUED
 - 다국어처리
 
+### PULBISH
+- FONT AWESOME https://fontawesome.com/v6/icons?s=solid
+
 
 준비물 기능!!
 30도 이상이면 손풍기 부채 양산

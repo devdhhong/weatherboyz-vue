@@ -1,18 +1,5 @@
 <template>
   <div id="OptionView" class="scroll-area">
-    <li class="settingItem" v-show="false">
-      <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
-      <ul class="">
-        <li>
-          <input disabled id="r1" type="radio" name="language" value="kor" v-model="setLanguage" @change="changeSetting"/>
-          <label for="r1">한국어</label>
-        </li>
-        <li>
-          <input disabled id="r2" type="radio" name="language" value="eng" v-model="setLanguage" @change="changeSetting"/>
-          <label for="r2">영어</label>
-        </li>
-      </ul>
-    </li>
     <li class="settingItem">
       <div class="title">테마 설정<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
@@ -34,13 +21,36 @@
       <div class="title">화면 설정<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li> 
-          <input id="r3" type="radio" name="display" value="light" v-model="setDisplay" @change="changeSetting"/>
-          <label for="r3">라이트</label>
+          <input id="r1" type="radio" name="display" value="light" v-model="setDisplay" @change="changeSetting"/>
+          <label for="r1">라이트</label>
         </li>
         <li>
-          <input id="r4" type="radio" name="display" value="dark" v-model="setDisplay" @change="changeSetting"/>
-          <label for="r4">다크</label>
+          <input id="r2" type="radio" name="display" value="dark" v-model="setDisplay" @change="changeSetting"/>
+          <label for="r2">다크</label>
         </li>
+      </ul>
+    </li>
+    <li class="settingItem">
+      <div class="title">언어 설정<i class="fa-solid fa-caret-down"></i></div>
+      <ul class="">
+        <li> 
+          <input id="r3" type="radio" name="language" value="KOR" v-model="setLanguage" @change="changeSetting"/>
+          <label for="r3">한국어</label>
+        </li>
+        <li>
+          <input id="r4" type="radio" name="language" value="ENG" v-model="setLanguage" @change="changeSetting"/>
+          <label for="r4">ENGLISH</label>
+        </li>
+        <li>
+          <input id="r5" type="radio" name="language" value="JPN" v-model="setLanguage" @change="changeSetting"/>
+          <label for="r5">日本語</label>
+        </li>
+      </ul>
+    </li>
+    <li class="settingItem">
+      <div class="title">공유 하기<i class="fa-solid fa-caret-down"></i></div>
+      <ul class="">
+        <div><i id="btnShare" class="fa-solid fa-share" @click="btnShare"></i></div>
       </ul>
     </li>
     <li class="settingItem">
@@ -62,7 +72,7 @@
 <script>
 export default {
   mounted() {
-    this.setLanguage = localStorage.getItem('language') || "kor"; //KOR or ENG
+    this.setLanguage = localStorage.getItem('language') || "KOR"; //KOR or ENG
     this.setTheme = localStorage.getItem('theme') || "TBZ";
     this.setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
   },
@@ -88,6 +98,23 @@ export default {
 
       document.documentElement.classList.add(this.setDisplay + '-mode');
       document.documentElement.classList.add(this.setLanguage + '-mode');
+    },
+    btnShare: function () {
+      const shareButton = document.getElementById('btnShare');
+
+      shareButton.addEventListener('click', function(){
+        if (navigator.share) {
+          navigator.share({
+              title: 'Web Share API Demo',
+              text: 'Check out this cool page!',
+              url: "https://weatherboyz.netlify.app/",
+            });
+        } else {
+          console.warn('Web Share API is not supported in this browser');
+          alert('Web Share API is not supported in this browser.');
+        }
+      });
+
     }
   },
 };

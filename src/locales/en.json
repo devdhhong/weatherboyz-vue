@@ -1,0 +1,24 @@
+{
+  "theme": "THEME",
+  "display": "DISPLAY",
+  "language": "LANGUAGE",
+  "setting": "SETTING",
+  "light": "light",
+  "dark": "dark",
+  "mode": "mode",
+  "share": "share",
+  "qna": "qna",
+
+  "random": "random",
+  "sangyeon": "sangyeon",
+  "jacob": "jacob",
+  "younghoon": "younghoon",
+  "hyunjae": "hyunjae",
+  "juyeon": "juyeon",
+  "kevin": "kevin",
+  "new": "new",
+  "q": "q",
+  "haknyeon": "haknyeon",
+  "sunwoo": "sunwoo",
+  "eric": "eric"
+}

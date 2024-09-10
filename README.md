@@ -5,8 +5,8 @@
 - Nominatim API : 역지오코딩
 
 
-### TO BE CONTINUED
-- 다국어처리
+### 다국어처리
+- npm install vue-i18n@next
 
 ### PULBISH
 - FONT AWESOME https://fontawesome.com/v6/icons?s=solid

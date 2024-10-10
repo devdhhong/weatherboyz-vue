@@ -52,6 +52,7 @@ export default {
     if (window.Android) {
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       window.Android.receiveLocation = this.receiveLocation;
+      alert(12321321)
     }
   },
   // receiveLocation(latitude, longitude) {

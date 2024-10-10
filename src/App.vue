@@ -42,6 +42,14 @@ export default {
         isHideModal : localStorage.getItem('isHideModal') == true,
     }
   },
+  receiveLocation(latitude, longitude) {
+    // 안드로이드에서 전달받은 위치 정보를 Vue 데이터에 저장
+    // this.location = {
+    //   latitude: latitude,
+    //   longitude: longitude
+    // };
+    alert("Received location:", latitude, longitude);
+  },
   components: {
   },
 }

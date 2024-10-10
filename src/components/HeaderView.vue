@@ -2,8 +2,11 @@
   <div id="HeaderView">
     <!-- MAIN -->
     <div v-if="title == 'MAIN'">
-      <div class="btnLeft" @click="btnLeft">
+      <!-- <div class="btnLeft" @click="btnLeft">
         <i class="fa-solid fa-shirt"></i>
+      </div> -->
+      <div class="btnLeft" @click="btnRefresh">
+        <i class="fa-solid fa-arrows-rotate"></i>
       </div>
       <div class="title">
         <p>{{ cityName }}</p>
@@ -61,6 +64,9 @@ export default {
     },
   },
   methods: {
+    btnRefresh: function() {
+      this.$emit('callParentMethod');
+    },
     btnLeft: function () {
       this.$router.push("/OOTD");
     },

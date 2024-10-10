@@ -28,6 +28,7 @@
 
 import { MUSIC } from "../assets/data/MUSIC.js";
 import * as UTIL from "../utils/UTIL.js";
+import moment from "moment";
 
 export default {
   mounted() {
@@ -43,8 +44,9 @@ export default {
     this.pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
 
     //노래
-    this.musicImgPath = MUSIC[1].coverImgPath;
-    this.musicTitle = MUSIC[1].musicTitle;
+    let mmdd = moment().format("MMDD");
+    this.musicImgPath = MUSIC[mmdd].coverImgPath;
+    this.musicTitle = MUSIC[mmdd].musicTitle;
 
     //메세지
     console.log(UTIL.getMainMsg());

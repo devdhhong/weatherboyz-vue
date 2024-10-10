@@ -1,6 +1,6 @@
 <template>
     <div id="MainView">
-        <HeaderView :title="title"/>             
+        <HeaderView :title="title" @callParentMethod="callGetLocation" />             
         <CurrentView/>             
         <ContentsView/>             
         <TimelyView/>             
@@ -16,22 +16,37 @@ import TimelyView from "../components/TimelyView.vue";
 import ModalView from "../components/ModalView.vue";
 
 import * as CONST from "../utils/CONST.js";
-import * as UTIL from "../utils/UTIL.js";
+// import * as UTIL from "../utils/UTIL.js";
 import axios from "axios";
+import moment from "moment";
 
 // 현재 위치 조회 (비동기 함수)
 const getLocation = async function () {
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+  };
+
   return new Promise((resolve) => {
     navigator.geolocation.getCurrentPosition(
       function (pos) {
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
-
         localStorage.setItem("latitude", lat);
         localStorage.setItem("longitude", lon);
 
         resolve({ latitude: lat, longitude: lon });
       },
+      function(){
+        //IST ent.
+        let tempLat = "37.5276364";
+        let tempLon = "127.0344407";
+        localStorage.setItem("latitude", tempLat);
+        localStorage.setItem("longitude", tempLon);
+
+        resolve({ latitude: tempLat, longitude: tempLon });
+      },
+      options
     );
   });
 };
@@ -99,7 +114,7 @@ let weather = undefined;
 let airQuality = undefined;
 
 //한번 호출 후 5분 이내에는 재호출 하지 않음 (과도한 API 호출방지를 위함)
-if (calledTime && UTIL.getFormmatedDate() - calledTime < 2) {
+if (calledTime && moment().format("YYYYMMDDHHmm") - calledTime < 0) {
   //재호출 X
   location = localStorage.getItem("location");
   weather = localStorage.getItem("weather");
@@ -107,7 +122,7 @@ if (calledTime && UTIL.getFormmatedDate() - calledTime < 2) {
 }
 else {
   //재호출 O
-  localStorage.setItem("calledTime", UTIL.getFormmatedDate());
+  localStorage.setItem("calledTime", moment().format("YYYYMMDDHHmm"));
   location = await executeGeocoding();
   weather = await getWeather();
   airQuality = await getAirQuality();
@@ -126,6 +141,11 @@ export default {
     return {
       title: "MAIN",
       isHideModal: localStorage.getItem("isHideModal"),
+    }
+  },
+  methods: {
+    callGetLocation() {
+      getLocation();
     }
   },
   components: {

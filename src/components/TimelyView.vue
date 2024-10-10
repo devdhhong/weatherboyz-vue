@@ -2,7 +2,7 @@
   <div id="TimelyView">
     <div class="scroll-area">
       <div class="timelyCard" v-for="(weather, index) in weatherTime" :key="index">
-        <p class="date">{{ this.getFormmatedDate(new Date(weather), "mm/dd hh시") }}</p>
+        <p class="date">{{ this.getCurrentTime(weather) }}</p>
         <img :src="this.getWeatherIcon(this.weatherCode[index], new Date(weather))" alt="" />
         <p class="temperature">{{ Math.round(this.weatherTemp[index]) }}°</p>
       </div>
@@ -12,6 +12,7 @@
 
 <script>
 import * as UTIL from "../utils/UTIL.js";
+import moment from "moment";
 
 export default {
   mounted(){
@@ -22,14 +23,15 @@ export default {
   },
   data() {
     return {
+      currentTime: "",
       weatherTime: [],
       weatherCode: [],
       weatherTemp: [],
     };
   },
   methods: {
-    getFormmatedDate : function(getDate, format){
-      return UTIL.getFormmatedDate(getDate, format);
+    getCurrentTime: function(weather){
+      return moment(weather).format("MM/DD HH시");
     },
     getWeatherIcon : function(code, time){
       return UTIL.getWeatherIcon(code, time);

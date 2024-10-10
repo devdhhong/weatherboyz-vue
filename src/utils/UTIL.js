@@ -1,50 +1,15 @@
+import moment from "moment";
 import * as WEATHER_ICON from "../assets/data/WEATHER_ICON";
 // import * as MUSIC from "../assets/data/MUSIC";
-
-// 날짜 형식 파싱
-const getFormmatedDate = function (getDate, format) {
-  const date = getDate || new Date();
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1
-  const day = date.getDate().toString().padStart(2, '0');
-  const hours = date.getHours().toString().padStart(2, '0');
-  const hours12 = (hours % 12 || 12).toString().padStart(2, '0'); // 24시간 형식을 12시간 형식으로 변환
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-
-  let formatted = "";
-
-  if(format == "yyyymm"){
-    formatted = `${year}${month}${day}`;
-  }
-  else if(format == "mm"){
-    formatted = `${month}`;
-  }
-  else if(format == "mmdd"){
-    formatted = `${month}${day}`;
-  }
-  else if(format == "hhmm"){
-    formatted = `${hours}${minutes}`;
-  }
-  else if(format == "hhmm_12"){
-    formatted = `${hours12}${minutes}`;
-  }
-  else if(format == "mm/dd hh시"){
-    formatted = `${month}/${day} ${hours}시`;
-  }
-  else{
-    formatted = `${year}${month}${day}${hours}${minutes}`;
-  }
-
-  return formatted;
-};
 
 // 날씨 아이콘 이미지 경로 조회
 const getWeatherIcon = function(code, time){
     let url = ""; //아이콘 이미지 경로
     let weather = JSON.parse(localStorage.getItem("weather"));
-    let sunrise = getFormmatedDate(new Date(weather.daily.sunrise[0]), "hhmm"); //일출시간
-    let sunset = getFormmatedDate(new Date(weather.daily.sunset[0]), "hhmm"); //일몰시간
-    let hhmm = getFormmatedDate(time, "hhmm"); //현재시간
+    let sunrise = moment(weather.daily.sunrise[0]).format("HHmm"); //일출시간
+    let sunset =  moment(weather.daily.sunset[0]).format("HHmm"); //일몰시간
+    let hhmm = moment(time).format("HHmm"); //현재시간
+
     let IMG_URL = WEATHER_ICON.IMG_URL;
 
     const pad = 0; //시간 허용 범위
@@ -135,9 +100,9 @@ const getAirQualityStatus = function(degree1, degree2){
 //메인화면 메세지 조회
 const getMainMsg = function(){
   let msg = "";
-  let mmdd = getFormmatedDate("", "mmdd");
-  let hhmm = getFormmatedDate("", "hhmm");
-  let hhmm_12 = getFormmatedDate("", "hhmm_12");
+  let mmdd = moment().format("mmdd");
+  let hhmm = moment().format("hhmm");
+  let hhmm24 = moment().format("HHmm");
   
   let birthday = ["1104", "0530", "0808", "0917", "0115", "0223", "0426", "1105", "0309", "0412", "1222", "1206", "0403"];
   let weather = JSON.parse(localStorage.getItem("weather"));
@@ -154,38 +119,38 @@ const getMainMsg = function(){
   
   //날짜 관련
   //시간
-  if(birthday.indexOf(hhmm_12) > -1){
-    if(hhmm_12 == "1104"){
+  if(birthday.indexOf(hhmm) > -1){
+    if(hhmm == "1104"){
       msg = "🐶 상연시 🐶";
     }
-    else if(hhmm_12 == "0530"){
+    else if(hhmm == "0530"){
       msg = "🍐 제이콥시 🍐";
     }
-    else if(hhmm_12 == "0808"){
+    else if(hhmm == "0808"){
       msg = "🍞 영훈시 🍞";
     }
-    else if(hhmm_12 == "0917"){
+    else if(hhmm == "0917"){
       msg = "🎁 현재시 🎁";
     }
-    else if(hhmm_12 == "0115"){
+    else if(hhmm == "0115"){
       msg = "🐱 주연시 🐱";
     }
-    else if(hhmm_12 == "0223"){
+    else if(hhmm == "0223"){
       msg = "🌙 케빈시 🌙";
     }
-    else if(hhmm_12 == "0426"){
+    else if(hhmm == "0426"){
       msg = "🐧 차니시 🐧";
     }
-    else if(hhmm_12 == "1105"){
+    else if(hhmm == "1105"){
       msg = "🐿️ 창민시 🐿️";
     }
-    else if(hhmm_12 == "0309"){
+    else if(hhmm == "0309"){
       msg = " 🍊 학년시 🍊";
     }
-    else if(hhmm_12 == "0412"){
+    else if(hhmm == "0412"){
       msg = "☀️ 선우시 ☀️";
     }
-    else if(hhmm_12 == "1222"){
+    else if(hhmm == "1222"){
       msg = "🦄 영재시 🦄";
     }
   }
@@ -238,16 +203,6 @@ const getMainMsg = function(){
   else if(mmdd == "1225"){
     msg = "Merry Christmas 🎄 🎅🏻 ⛄️";
   }
-  //1회성 이벤트
-  else if(mmdd == "0712"){
-    msg = "더러분 🤍 첫콘 🤍 더비봉 꼬옥 챙기세요 📢";
-  }
-  else if(mmdd == "0713"){
-    msg = "더러분 🌀 중콘 🌀 더비봉 꼬옥 챙기세요 📢";
-  }
-  else if(mmdd == "0714"){
-    msg = "더러분 💞 막콘 💞 더비봉 꼬옥 챙기세요 📢";
-  }
   //날씨 관련
   else if(rain_6hours || showers_6hours){
     msg = "☔️ 더러분 우산 챙기세요 ☔️";
@@ -274,10 +229,10 @@ const getMainMsg = function(){
     msg = " ☀️ 더러분 양산 챙기세요 ☀️";
   }
   //기타
-  else if(hhmm > 2200 && hhmm < 2400){
+  else if(hhmm24 > 2200 && hhmm24 < 2400){
     msg = "오늘 하루도 수고했어 빵담빵담";
   }
-  else if(hhmm < 600){
+  else if(hhmm24 < 600){
     msg = "😴 주물어요 😴";
   }
   //기타
@@ -365,7 +320,7 @@ const getWeatherMain = function(code){
 // };
 
 export {
-    getFormmatedDate,
+    // getFormmatedDate,
     getWeatherIcon,
     getAirQualityStatus,
     getMainMsg,

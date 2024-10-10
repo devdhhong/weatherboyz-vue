@@ -65,7 +65,7 @@
       </ul>
     </li>
     <li class="settingItem copyRight">
-      <p>© 2024 @weather_boyz. All rights reserved.</p>
+      <p>© 2024 @tbz_weatherboyz. All rights reserved.</p>
     </li>
   </div>
 </template>
@@ -187,8 +187,12 @@ export default {
           color: var(--text-color-1);
         }
 
-        span{
+        span {
           @include text-style-5;
+        }
+
+        div {
+          padding-right: 5%;
         }
       }
     }

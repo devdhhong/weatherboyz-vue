@@ -48,6 +48,7 @@ export default {
     //   latitude: latitude,
     //   longitude: longitude
     // };
+    alert(123)
     alert("Received location:", latitude, longitude);
   },
   components: {

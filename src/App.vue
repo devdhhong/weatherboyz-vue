@@ -35,6 +35,12 @@ document.documentElement.classList.remove('eng-mode');
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
+alert(1)
+if (window.Android) {
+  alert(2)
+  // 위치 정보 수신을 위한 JavaScript 메서드 호출
+}
+
 export default {
   data(){
     return{

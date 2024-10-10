@@ -35,7 +35,8 @@ document.documentElement.classList.remove('eng-mode');
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
-alert(1)
+
+// document.documentElement.getElementById('ContentsView').style.opacity = '0.5'
 if (window.Android) {
   alert(2)
   // 위치 정보 수신을 위한 JavaScript 메서드 호출
@@ -50,11 +51,16 @@ export default {
   },
   methods: {
     receiveLocation(latitude, longitude) {
-      alert("Received location: Latitude: " + latitude + ", Longitude: " + longitude);
+      this.showToastFromAndroid("Received location: Latitude: " + latitude + ", Longitude: " + longitude);
     },
+    // Android 인터페이스로 메세지 받기
+    showToastFromAndroid(message) {
+        window.Android.showToast(message); // Android 인터페이스 메서드 호출
+    }
   },
   mounted() {
-    alert(111)
+    // alert(111)
+    document.getElementById("ContentsView").style.opacity = 0.5;
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
       alert(222)
@@ -62,15 +68,6 @@ export default {
       window.Android.receiveLocation = this.receiveLocation;
     }
   },
-  // receiveLocation(latitude, longitude) {
-  //   // 안드로이드에서 전달받은 위치 정보를 Vue 데이터에 저장
-  //   // this.location = {
-  //   //   latitude: latitude,
-  //   //   longitude: longitude
-  //   // };
-  //   alert(123)
-  //   alert("Received location:", latitude, longitude);
-  // },
   components: {
   },
 }

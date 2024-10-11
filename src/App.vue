@@ -59,15 +59,20 @@ export default {
     },
   },
   mounted() {
-      this.showToast("3", "info")
-    // document.getElementById("ContentsView").style.opacity = 0.5;
+    this.showToast(JSON.stringify(window))
+      
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.showToast("4", "info")
+      this.showToast("Android", "info")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       window.Android.receiveLocation = this.receiveLocation;
     }
+
+    if (window.vueApp) {
+      this.showToast("vueApp", "info")
+    }
+
   },
   components: {
     ToastView

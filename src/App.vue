@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     receiveLocation(latitude, longitude) {
-      this.showToast("2", "info")
-      this.showToastFromAndroid("Received location: Latitude: " + latitude + ", Longitude: " + longitude);
+      this.showToast("receiveLocation", "info");
     },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid() {
@@ -62,23 +61,18 @@ export default {
     showToast(message, type) {
       this.$refs.toast.showToast(message, type);
     },
+    writeLog(title, message){
+      window.Android.writeLog(title, message);
+    }
   },
   mounted() {
-    this.showToast("Android"+JSON.stringify(window.Android), "info")
-    this.showToast("vueApp"+JSON.stringify(window.vueApp), "info")
-      
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.showToast("Android", "info")
+      this.showToast(JOSN.stringify(window.Android.receiveLocation), "info")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
-      window.Android.receiveLocation = this.receiveLocation;
+      // window.Android.receiveLocation = this.receiveLocation;
     }
-
-    if (window.vueApp) {
-      this.showToast("vueApp", "info")
-    }
-
   },
   components: {
     ToastView

@@ -40,13 +40,13 @@ document.documentElement.classList.add(setLanguage + '-mode');
 
 /* eslint-disable no-unused-vars */
 function receiveLocation(){
-  this.writeLog("local");
+  this.writeLog("1");
 }
 
 // 전역 함수로 Vue 메서드를 설정
 window.receiveLocation = function() {
   // Vue 컴포넌트에 접근할 수 없으므로 전역적으로 처리
-  this.writeLog("worldwide");
+  this.writeLog("2");
 };
 
 export default {
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     receiveLocation() {
-      this.writeLog("receiveLocation");
+      this.writeLog("3");
     },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid(message) {
@@ -68,13 +68,13 @@ export default {
       this.$refs.toast.showToast(message, type);
     },
     writeLog(message){
-      window.Android.writeLog("JS", message);
+      window.Android.writeLog("FROM JS", message);
     }
   },
   mounted() {
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.writeLog(JSON.stringify(window.Android.receiveLocation))
+      this.writeLog("4")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       // window.Android.receiveLocation = this.receiveLocation;

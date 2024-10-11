@@ -38,8 +38,6 @@ document.documentElement.classList.remove('eng-mode');
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
-this.showInfoToast("1", "info")
-
 export default {
   data(){
     return{
@@ -49,23 +47,23 @@ export default {
   },
   methods: {
     receiveLocation(latitude, longitude) {
-      this.showInfoToast("2", "info")
+      this.showToast("2", "info")
       this.showToastFromAndroid("Received location: Latitude: " + latitude + ", Longitude: " + longitude);
     },
     // Android 인터페이스로 메세지 받기
-    showToastFromAndroid(message) {
-        window.Android.showToast(message); // Android 인터페이스 메서드 호출
+    showToastFromAndroid() {
+        window.Android.showToast("tetetetet"); // Android 인터페이스 메서드 호출
     },
     showToast(message, type) {
       this.$refs.toast.showToast(message, type);
     },
   },
   mounted() {
-      this.showInfoToast("3", "info")
+      this.showToast("3", "info")
     // document.getElementById("ContentsView").style.opacity = 0.5;
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.showInfoToast("4", "info")
+      this.showToast("4", "info")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       window.Android.receiveLocation = this.receiveLocation;

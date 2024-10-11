@@ -40,7 +40,7 @@ document.documentElement.classList.add(setLanguage + '-mode');
 
 /* eslint-disable no-unused-vars */
 function receiveLocation(){
-  this.writeLog("mount", "mount");
+  this.writeLog("mount");
 }
 
 export default {
@@ -52,8 +52,7 @@ export default {
   },
   methods: {
     receiveLocation(latitude, longitude) {
-      this.showToast("receiveLocation", "info");
-      this.writeLog("receiveLocation", "receiveLocation");
+      this.writeLog("receiveLocation");
     },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid(message) {
@@ -62,14 +61,14 @@ export default {
     showToast(message, type) {
       this.$refs.toast.showToast(message, type);
     },
-    writeLog(title, message){
-      window.Android.writeLog("[JS]----------"+title, message);
+    writeLog(message){
+      window.Android.writeLog("VUE ✏️✏️✏️✏️✏️", message);
     }
   },
   mounted() {
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.writeLog(JSON.stringify(window.Android.receiveLocation), "info")
+      this.writeLog(JSON.stringify(window.Android.receiveLocation))
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       // window.Android.receiveLocation = this.receiveLocation;

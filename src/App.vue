@@ -53,6 +53,7 @@ export default {
   methods: {
     receiveLocation(latitude, longitude) {
       this.showToast("receiveLocation", "info");
+      this.writeLog("receiveLocation", "receiveLocation");
     },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid() {
@@ -62,12 +63,13 @@ export default {
       this.$refs.toast.showToast(message, type);
     },
     writeLog(title, message){
-      window.Android.writeLog(title, message);
+      window.Android.writeLog("VUE---------->"+title, message);
     }
   },
   mounted() {
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
+      this.writeLog("Android", "Android");
       this.showToast(JSON.stringify(window.Android.receiveLocation), "info")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출

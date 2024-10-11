@@ -40,7 +40,7 @@ document.documentElement.classList.add(setLanguage + '-mode');
 
 /* eslint-disable no-unused-vars */
 function receiveLocation(){
-  alert(333)
+  this.writeLog("mount", "mount");
 }
 
 export default {

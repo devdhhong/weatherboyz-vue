@@ -38,6 +38,11 @@ document.documentElement.classList.remove('eng-mode');
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
+/* eslint-disable no-unused-vars */
+function receiveLocation(){
+  alert(333)
+}
+
 export default {
   data(){
     return{

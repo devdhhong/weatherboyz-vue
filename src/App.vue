@@ -65,9 +65,9 @@ export default {
   mounted() {
     const self = this; // Vue 인스턴스 참조
 
-    if (window.Android) {
+    // if (window.Android) {
     
-    }
+    // }
 
     window.receiveLocation = function (latitude, longitude) {
       self.writeLog("Lat: " + latitude + "Lon: "+ longitude); // Vue 인스턴스의 메서드를 호출

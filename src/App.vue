@@ -40,8 +40,14 @@ document.documentElement.classList.add(setLanguage + '-mode');
 
 /* eslint-disable no-unused-vars */
 function receiveLocation(){
-  this.writeLog("mount");
+  this.writeLog("local");
 }
+
+// 전역 함수로 Vue 메서드를 설정
+window.receiveLocation = function() {
+  // Vue 컴포넌트에 접근할 수 없으므로 전역적으로 처리
+  this.writeLog("worldwide");
+};
 
 export default {
   data(){
@@ -51,7 +57,7 @@ export default {
     }
   },
   methods: {
-    receiveLocation(latitude, longitude) {
+    receiveLocation() {
       this.writeLog("receiveLocation");
     },
     // Android 인터페이스로 메세지 받기
@@ -62,7 +68,7 @@ export default {
       this.$refs.toast.showToast(message, type);
     },
     writeLog(message){
-      window.Android.writeLog("VUE ✏️✏️✏️✏️✏️", message);
+      window.Android.writeLog("JS", message);
     }
   },
   mounted() {

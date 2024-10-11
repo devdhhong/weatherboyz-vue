@@ -43,12 +43,6 @@ function receiveLocation(){
   this.writeLog("1");
 }
 
-// 전역 함수로 Vue 메서드를 설정
-window.receiveLocation = function() {
-  // Vue 컴포넌트에 접근할 수 없으므로 전역적으로 처리
-  this.writeLog("2");
-};
-
 export default {
   data(){
     return{
@@ -57,9 +51,6 @@ export default {
     }
   },
   methods: {
-    receiveLocation() {
-      this.writeLog("3");
-    },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid(message) {
         window.Android.showToast(message); // Android 인터페이스 메서드 호출
@@ -74,17 +65,12 @@ export default {
   mounted() {
     const self = this; // Vue 인스턴스 참조
 
-    // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.writeLog("4")
-      
-      // 위치 정보 수신을 위한 JavaScript 메서드 호출
-      // window.Android.receiveLocation = this.receiveLocation;
+    
     }
 
-    // window.receiveLocation에서 Vue 메서드를 참조할 수 있게 변경
-    window.receiveLocation = function () {
-      self.writeLog("5"); // Vue 인스턴스의 메서드를 호출
+    window.receiveLocation = function (latitude, longitude) {
+      self.writeLog("Lat: " + latitude + "Lon: "+ longitude); // Vue 인스턴스의 메서드를 호출
     };
   },
   components: {

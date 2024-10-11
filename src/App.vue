@@ -1,8 +1,11 @@
 <template>
   <router-view/>
+  <ToastView ref="toast" />
 </template>
 
 <script>
+import ToastView from '@/components/ToastView.vue';
+
 /**
  * 아이폰 하단의 도구 막대때문에 뷰포트가 정상적으로 보이지 않는 현상 방지 
  */
@@ -35,12 +38,7 @@ document.documentElement.classList.remove('eng-mode');
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
-
-// document.documentElement.getElementById('ContentsView').style.opacity = '0.5'
-if (window.Android) {
-  alert(2)
-  // 위치 정보 수신을 위한 JavaScript 메서드 호출
-}
+this.showInfoToast("1", "info")
 
 export default {
   data(){
@@ -51,24 +49,30 @@ export default {
   },
   methods: {
     receiveLocation(latitude, longitude) {
+      this.showInfoToast("2", "info")
       this.showToastFromAndroid("Received location: Latitude: " + latitude + ", Longitude: " + longitude);
     },
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid(message) {
         window.Android.showToast(message); // Android 인터페이스 메서드 호출
-    }
+    },
+    showToast(message, type) {
+      this.$refs.toast.showToast(message, type);
+    },
   },
   mounted() {
-    // alert(111)
-    document.getElementById("ContentsView").style.opacity = 0.5;
+      this.showInfoToast("3", "info")
+    // document.getElementById("ContentsView").style.opacity = 0.5;
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      alert(222)
+      this.showInfoToast("4", "info")
+      
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       window.Android.receiveLocation = this.receiveLocation;
     }
   },
   components: {
+    ToastView
   },
 }
 

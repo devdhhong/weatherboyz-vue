@@ -72,6 +72,8 @@ export default {
     }
   },
   mounted() {
+    const self = this; // Vue 인스턴스 참조
+
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
       this.writeLog("4")
@@ -79,6 +81,11 @@ export default {
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       // window.Android.receiveLocation = this.receiveLocation;
     }
+
+    // window.receiveLocation에서 Vue 메서드를 참조할 수 있게 변경
+    window.receiveLocation = function () {
+      self.writeLog("5"); // Vue 인스턴스의 메서드를 호출
+    };
   },
   components: {
     ToastView

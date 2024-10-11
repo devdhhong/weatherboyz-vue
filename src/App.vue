@@ -59,7 +59,8 @@ export default {
     },
   },
   mounted() {
-    this.showToast(JSON.stringify(window))
+    this.showToast("Android"+JSON.stringify(window.Android), "info")
+    this.showToast("vueApp"+JSON.stringify(window.vueApp), "info")
       
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {

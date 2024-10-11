@@ -68,7 +68,7 @@ export default {
   mounted() {
     // Android에서 위치 정보를 받기 위해 아래의 메서드를 사용합니다.
     if (window.Android) {
-      this.showToast(JOSN.stringify(window.Android.receiveLocation), "info")
+      this.showToast(JSON.stringify(window.Android.receiveLocation), "info")
       
       // 위치 정보 수신을 위한 JavaScript 메서드 호출
       // window.Android.receiveLocation = this.receiveLocation;

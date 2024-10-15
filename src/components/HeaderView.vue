@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     btnRefresh: function() {
-      this.$emit('callParentMethod');
+      // this.$emit('callParentMethod');
     },
     btnLeft: function () {
       this.$router.push("/OOTD");

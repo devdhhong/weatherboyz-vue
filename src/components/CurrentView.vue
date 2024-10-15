@@ -3,16 +3,16 @@
     <div class="infoView">
         <div class="temperature">
           <img :src="weatherIcon" alt="" />
-          <p>{{ temperature }}도</p>
+          <p>{{ temperature }}{{ $t('도') }}</p>
         </div>
         <div class="weatherInfo">
-          <div class="feelTemp">체감온도 : {{ this.apparent_temperature }}도</div>
-          <div class="fineDust">미세먼지: {{ this.pm10 }}</div>
-          <div class="ultraFineDust">초미세먼지: {{ this.pm2_5 }}</div>
+          <div class="feelTemp">{{ $t('체감온도') }} : {{ this.apparent_temperature }}도</div>
+          <div class="fineDust">{{ $t('미세먼지') }}: {{ this.pm10 }}</div>
+          <div class="ultraFineDust">{{ $t('초미세먼지') }}: {{ this.pm2_5 }}</div>
         </div>
     </div>
     <div class="infoView" @click="openMusicSite">
-      <div>오늘의 노래 🎹</div>
+      <div>{{ $t('오늘의 노래') }} 🎹</div>
       <div class="songCover">
         <img :src="musicImgPath" alt=""/>
       </div>

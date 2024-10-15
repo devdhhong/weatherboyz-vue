@@ -3,18 +3,18 @@
     <li class="settingItem">
       <div class="title">{{ $t('theme') }}<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
-        <option value="TBZ">{{ $t('random') }} 📢</option>
-        <option value="SY">{{ $t('sangyeon') }} 🐶</option>
-        <option value="JC">{{ $t('jacob') }} 🍐</option>
-        <option value="YH">{{ $t('younghoon') }} 🍞</option>
-        <option value="HJ">{{ $t('hyunjae') }} 🎁</option>
-        <option value="JY">{{ $t('juyeon') }} 🐱</option>
-        <option value="KV">{{ $t('kevin') }} 🌙</option>
-        <option value="NW">{{ $t('new') }} 🐧</option>
-        <option value="QQ">{{ $t('Q') }} 🐿️</option>
-        <option value="HN">⠀학년 🍊</option>
-        <option value="SW">⠀선우 ☀️</option>
-        <option value="ER">⠀에릭 🦄</option>
+        <option value="TBZ">{{ $t('랜덤') }} 📢</option>
+        <option value="SY">{{ $t('상연') }} 🐶</option>
+        <option value="JC">{{ $t('제이콥') }} 🍐</option>
+        <option value="YH">{{ $t('영훈') }} 🍞</option>
+        <option value="HJ">{{ $t('현재') }} 🎁</option>
+        <option value="JY">{{ $t('주연') }} 🐱</option>
+        <option value="KV">{{ $t('케빈') }} 🌙</option>
+        <option value="NW">{{ $t('뉴') }} 🐧</option>
+        <option value="QQ">{{ $t('큐') }} 🐿️</option>
+        <option value="HN">{{ $t('학년') }} 🍊</option>
+        <option value="SW">{{ $t('선우') }} ☀️</option>
+        <option value="ER">{{ $t('에릭') }} 🦄</option>
       </select>
     </li>
     <li class="settingItem">

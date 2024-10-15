@@ -65,13 +65,31 @@ export default {
   mounted() {
     const self = this; // Vue 인스턴스 참조
 
-    // if (window.Android) {
-    
-    // }
+    if (window.Android) {
+      localStorage.setItem("isApp", true);
 
-    window.receiveLocation = function (latitude, longitude) {
-      self.writeLog("Lat: " + latitude + "Lon: "+ longitude); // Vue 인스턴스의 메서드를 호출
-    };
+      window.receiveLocation = function (latitude, longitude) {
+        //위치 정보 저장
+        if (latitude && longitude) {
+          localStorage.setItem("latitude", latitude);
+          localStorage.setItem("longitude", longitude);
+        }
+        else {
+          localStorage.setItem("latitude", "37.5276364");
+          localStorage.setItem("longitude", "127.0344407");
+        }
+
+        self.writeLog("Lat: " + latitude + "Lon: " + longitude); // Vue 인스턴스의 메서드를 호출
+      };
+    }
+    //테스트용
+    else{
+      localStorage.setItem("isApp", false);
+
+      localStorage.setItem("latitude", "37.5276364");
+      localStorage.setItem("longitude", "127.0344407");
+    }
+
   },
   components: {
     ToastView

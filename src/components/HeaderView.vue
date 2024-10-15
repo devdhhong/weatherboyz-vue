@@ -65,6 +65,8 @@ export default {
   },
   methods: {
     btnRefresh: function() {
+      window.Android.writeLog("FROM JS", "CLICK btnRefresh");
+
       // this.$emit('callParentMethod');
     },
     btnLeft: function () {

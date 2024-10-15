@@ -25,7 +25,6 @@ function getViewportHeight() {
 // 뷰포트 높이를 CSS 변수에 할당
 document.documentElement.style.setProperty('--viewport-height', getViewportHeight() + 'px');
 
-
 let setLanguage = localStorage.getItem('language') || "kor"; //KOR or ENG
 let setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
 
@@ -37,11 +36,6 @@ document.documentElement.classList.remove('eng-mode');
 
 document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
-
-/* eslint-disable no-unused-vars */
-function receiveLocation(){
-  this.writeLog("1");
-}
 
 export default {
   data(){

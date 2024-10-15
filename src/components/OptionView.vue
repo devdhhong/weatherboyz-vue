@@ -104,6 +104,8 @@ export default {
     },
     //공유하기 버튼
     btnShare: function () {
+      window.Android.writeLog("FROM JS", "CLICK btnShare");
+
       //Web Share API는 HTTPS 환경에서만 동작
       const btnShare = document.getElementById('btnShare');
 

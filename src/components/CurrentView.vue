@@ -11,12 +11,12 @@
           <div class="ultraFineDust">{{ $t('초미세먼지') }}: {{ this.pm2_5 }}</div>
         </div>
     </div>
-    <div class="infoView" @click="openMusicSite">
+    <div class="infoView" @click="openYoutubeMusic">
       <div>{{ $t('오늘의 노래') }} 🎹</div>
       <div class="songCover">
-        <img :src="musicImgPath" alt=""/>
+        <img :src="todayMusicData.coverImgPath" alt=""/>
       </div>
-      <div>{{ musicTitle }}</div>
+      <div>{{ todayMusicData.musicTitle }}</div>
     </div>
   </div>
   <div id="MessageView">
@@ -26,31 +26,25 @@
 
 <script>
 
-import { MUSIC } from "../assets/data/MUSIC.js";
 import * as UTIL from "../utils/UTIL.js";
-import moment from "moment";
 
 export default {
   mounted() {
-    //날씨
+    //날씨 정보
     let weather = JSON.parse(localStorage.getItem('weather'));
     this.temperature = Math.round(weather.current.temperature);
     this.apparent_temperature = Math.round(weather.current.apparent_temperature);
     this.weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
 
-    //미세먼지
+    //미세먼지 정보
     let airQuality = JSON.parse(localStorage.getItem('airQuality'));
     this.pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0]
     this.pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
 
-    //노래
-    let mmdd = moment().format("MMDD");
-    this.musicImgPath = MUSIC[mmdd].coverImgPath;
-    this.musicTitle = MUSIC[mmdd].musicTitle;
+    //오늘의 정보
+    this.todayMusicData = UTIL.getTodayMusic();
 
     //메세지
-    console.log(UTIL.getMainMsg());
-    
     this.mainMsg = UTIL.getMainMsg();
   },
   data() {
@@ -58,20 +52,27 @@ export default {
       weatherIcon: "",          //날씨 아이콘
       temperature: "",          //온도
       apparent_temperature: "", //체감온도
-
       pm10: "",                 //미세먼지
       pm2_5: "",                //초미세먼지
-
-      musicImgPath: "",
-      musicTitle: "",
-
       mainMsg: "", //메인화면 메세지
+      todayMusicData: {},
     };
   },
   methods: {
-    openMusicSite : function(){
-      const url = 'https://music.youtube.com/watch?v=LhBbCNaXOpc&si=uxjdwbEAd7kaeTjK';
-      window.open(url, '_blank');
+    //유튜브 뮤직 오픈
+    openYoutubeMusic : function(){
+      let isAppYn = localStorage.getItem("isAppYn"); 
+      let isAosYn = localStorage.getItem("isAosYn"); 
+
+      //안드로이드
+      if(isAppYn == "Y" && isAosYn == "Y"){
+        window.Android.openOtherApp("youtube-music://song?id=" + this.todayMusicData.songId, "market://details?id=com.google.android.apps.youtube.music");
+      }
+      //웹
+      else{
+        const url = "https://music.youtube.com/watch?v=" + this.todayMusicData.songId;
+        window.open(url, '_blank');
+      }
     }
   },
 };

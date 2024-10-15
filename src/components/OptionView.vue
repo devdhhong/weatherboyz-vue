@@ -104,12 +104,12 @@ export default {
     },
     //공유하기 버튼
     btnShare: function () {
-      let isApp = localStorage.getItem("isApp"); 
-      let isAOS = localStorage.getItem("isAOS"); 
+      let isAppYn = localStorage.getItem("isAppYn"); 
+      let isAosYn = localStorage.getItem("isAosYn"); 
 
       //안드로이드
-      if(isApp && isAOS){
-        window.Android.btnShare("FROM JS", "CLICK btnShare");
+      if(isAppYn == "Y" && isAosYn == "Y"){
+        window.Android.btnShare("weatherboyz! @tbz_weatherboyz");
       }
       //웹
       else{
@@ -123,9 +123,6 @@ export default {
               text: 'https://weatherboyz.netlify.app/',
               url: "https://weatherboyz.netlify.app/",
             });
-          } else {
-            console.warn('Web Share API is not supported in this browser');
-            alert('Web Share API is not supported in this browser.');
           }
         });
       }

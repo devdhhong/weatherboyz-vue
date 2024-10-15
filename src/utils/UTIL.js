@@ -1,6 +1,6 @@
 import moment from "moment";
 import * as WEATHER_ICON from "../assets/data/WEATHER_ICON";
-// import * as MUSIC from "../assets/data/MUSIC";
+import { MUSIC } from "../assets/data/MUSIC";
 
 // 날씨 아이콘 이미지 경로 조회
 const getWeatherIcon = function(code, time){
@@ -298,31 +298,49 @@ const getWeatherMain = function(code){
   return "/images/" + status + "/" + theme + ".png";
 }
 
-// 추천 노래 조회
-// const getMusicData = function(code, time){
-//   let mm = getFormmatedDate("", "mm");
-  
-//   //봄 (3,4,5)
-//   if([3,4,5].indexOf(Number(mm)) > -1){
-//   }
-//   //여름(6,7,8)
-//   else if([6,7,8].indexOf(Number(mm)) > -1){
+// 오늘의 노래 조회
+const getTodayMusic = function(){
+  let mmdd = moment().format("MMDD");
+  let mm = moment().format("MM");
+  let dd = moment().format("DD");
 
-//   }
-//   //가을(9,10,11)
-//   else if([9,10,11].indexOf(Number(mm)) > -1){
-//   }
-//   //겨울(10,11,12)
-//   else{
+  // let minTemp = weather.daily.temperature_2m_min;
+  // let maxTemp = weather.daily.temperature_2m_max;
+  // let dailyTemp = [...minTemp, ...maxTemp];
+  // let avgDailyTemp = dailyTemp.reduce((acc, cur) => acc + cur, 0) / (minTemp.length + maxTemp.length);
 
-//   }
+  let season = "";
+  //봄 (3,4,5)
+  if([3,4,5].indexOf(Number(mm)) > -1){
+    season = "SPRING";
+  }
+  //여름(6,7,8)
+  else if([6,7,8].indexOf(Number(mm)) > -1){
+    season = "SUMMER";
+  }
+  //가을(9,10,11)
+  else if([9,10,11].indexOf(Number(mm)) > -1){
+    season = "AUTUMN";
+  }
+  //겨울(10,11,12)
+  else{
+    season = "WINTER";
+  }
 
-// };
+  //특정 일자 
+  if(MUSIC[mmdd]){
+    return MUSIC[mmdd][0];
+  }
+  else{
+    let index = (Number(dd) - 1) % MUSIC[season].length;
+    return MUSIC[season][index];
+  }
+};
 
 export {
-    // getFormmatedDate,
     getWeatherIcon,
     getAirQualityStatus,
     getMainMsg,
-    getWeatherMain
+    getWeatherMain,
+    getTodayMusic
 };

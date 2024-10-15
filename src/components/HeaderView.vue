@@ -2,16 +2,16 @@
   <div id="HeaderView">
     <!-- MAIN -->
     <div v-if="title == 'MAIN'">
-      <!-- <div class="btnLeft" @click="btnLeft">
+      <div class="btnLeft" @click="btnEvent">
         <i class="fa-solid fa-shirt"></i>
-      </div> -->
-      <div class="btnLeft" @click="btnRefresh">
-        <i class="fa-solid fa-arrows-rotate"></i>
       </div>
+      <!-- <div class="btnLeft" @click="btnRefresh">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </div> -->
       <div class="title">
         <p>{{ cityName }}</p>
       </div>
-      <div class="btnRight" @click="btnRight">
+      <div class="btnRight" @click="btnSetting">
         <i class="fa-solid fa-gear fa-lg"></i>
       </div>
     </div>
@@ -64,15 +64,13 @@ export default {
     },
   },
   methods: {
-    btnRefresh: function() {
-      window.Android.writeLog("FROM JS", "CLICK btnRefresh");
-
-      // this.$emit('callParentMethod');
-    },
-    btnLeft: function () {
+    // btnRefresh: function() {
+    //   window.Android.writeLog("FROM JS", "CLICK btnRefresh");
+    // },
+    btnEvent: function () {
       this.$router.push("/OOTD");
     },
-    btnRight: function () {
+    btnSetting: function () {
       this.$router.push("/SETTING");
     },
     btnClose : function(){

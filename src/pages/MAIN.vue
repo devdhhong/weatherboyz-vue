@@ -21,7 +21,7 @@ import axios from "axios";
 // import moment from "moment";
 
 // 역지오코딩
-const reverseGeocode = function () {
+const getReverseGeocode = function () {
   axios.get(`${CONST.NOMINATIM_BASE_URL}reverse`, {
     params: {
       latitude: localStorage.getItem('latitude'),
@@ -47,7 +47,7 @@ const getWeather = function () {
       longitude: localStorage.getItem('longitude'),
       hourly: "temperature,showers,rain,snowfall,weather_code",
       current: "rain,temperature,apparent_temperature,weather_code",
-      daily: "sunrise,sunset",
+      daily: "sunrise,sunset,temperature_2m_max,temperature_2m_min",
       forecast_hours: "25",
       timezone: "auto"
     }})
@@ -79,8 +79,13 @@ const getAirQuality = function () {
 
 export default {
   beforeCreate() {
-    reverseGeocode();
+    // 역지오코딩
+    getReverseGeocode();
+
+    // 날씨정보 조회
     getWeather();
+
+    // 대기정보 조회
     getAirQuality();
   },
   data() {

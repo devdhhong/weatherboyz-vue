@@ -1,4 +1,5 @@
 const IMG_URL = {
+    //[한국앨범]
     //소년
     "171206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FK0Ccc%2FbtsH3yMLV0I%2Fad0WicjKhts58OpzHTqWM0%2Fimg.webp", 
     //기디업
@@ -41,7 +42,7 @@ const IMG_URL = {
     "240318" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8kpCS%2FbtsH8LfF3Nb%2FVfyztWB30DdWGXIzdlJ0BK%2Fimg.webp", 
     
     
-    //일본앨범
+    //[일본앨범]
     //타투
     "191106" : "https://i.namu.wiki/i/O32c80PhGsWhyiWlQbuWC8GIxdA5yCfy_C7gseLVc1JS5EPv61oMTwGYZjYhQAsjDu8OBzDYuRZub5Q0PcnOn83456Q9Qrn-7KUcsppDQO9YbzXIzyLJV1PFXDTMRjpnW1N_GEMViSMJA83-gmAJBg.webp", 
     //브킹던
@@ -51,7 +52,7 @@ const IMG_URL = {
     //딜리셔스
     "230613" : "https://i.namu.wiki/i/BzjiN6K7OEa_CKB5ZSwhWfeMKuem-DOtYpohjp-k9CUmqAOZMvvjmSUQXgnGYFatsMnKmKVqXNNdGSnZMBFCE9CE-b-JBzCiQHfgfjRLjZ9MDxvqyxBejOVz8pzhj-ytWOKnKcSJJsZkVU3tEnCgTg.webp", 
 
-    //싱글앨범
+    //[싱글앨범]
     //우선순위
     "210107" : "https://i.namu.wiki/i/9rBG3a3Rvop-Jn5Yd1ebi7iQF6-pgFRqlVvDHAAA9Ay6uR_yBM_1dNHH4Z3eAH_C8Pq5zWuHoaFaBFBue6TuOjSw3f_o0V8QdgNXacmak6lY62gARU7O5Yua6M_E5SQ-zvhaFioAZpEgTeAsl7ch4Q.webp", 
     //지금처럼
@@ -64,320 +65,69 @@ const IMG_URL = {
     "220617" : "https://i.namu.wiki/i/yBDFCMEaurzafrRNLqOAjwau_zUIchoGoTpGzrOkoftOkv2cI7LEB9FlVqgmK0ONneryoLPzNn7Fg6Km6FISwTi0tlhwCIh_YaUQ1no9FUaRmY14BX3d54oTfo9Ak4xlK9JfR0XkZK4-LJ4kLNFa3g.webp",
     //지버리쉬
     "240702" : "https://i.namu.wiki/i/mxm0Mo7Ja68e0l03RXfU6nw4G0e8akMYF8EJqveresdSS4x5eH5MOv2TqtozFKQk6Q8YndBWLanmtC5Ov8k9LjqycQELYXojU4bs0Vt_p2aJ_scEBl0sixnnwNbTuolpEzN4G0GRGJ2c54uu1mZr-Q.webp",
-    
-    
-    "000000" : "",
 };
 
 const MUSIC = {
-    "1001": {
-        "musicTitle": "Hurt Me Less (환상통)",
-        "youtubeLink": "https://music.youtube.com/watch?v=wjWYFrvNGpg&si=pLfu2neN_lJbhsXg",
-        "coverImgPath": IMG_URL["240318"]
-    },
-    "1002": {
-        "musicTitle": "넥타",
-        "youtubeLink": "https://music.youtube.com/watch?v=9MlsWnHy3Zk&si=MCy09qTsEPxY6nJ1",
-        "coverImgPath": IMG_URL["240318"]
-    },
-    "1003": {
-        "musicTitle": "Closer",
-        "youtubeLink": "https://music.youtube.com/watch?v=FshJ9UeV0Sc&si=2uz-NJohKHZm2Qk9",
-        "coverImgPath": IMG_URL["210317"]
-    },
-    "1004": {
-        "musicTitle": "Brighter",
-        "youtubeLink": "https://music.youtube.com/watch?v=E-EdQynul9M&si=UK0h4PNViW51fdFX",
-        "coverImgPath": IMG_URL["191106"]
-    },
-    "1005": {
-        "musicTitle": "Sweet",
-        "youtubeLink": "https://music.youtube.com/watch?v=WLvaIX0peAA&si=VxMTTpmk9cKHtitd",
-        "coverImgPath": IMG_URL["220617"]
-    },
-    "1006": {
-        "musicTitle": "Nothing Without You",
-        "youtubeLink": "https://music.youtube.com/watch?v=YKK8Eqqab9U&si=jBwfCuf3mSdo1vfJ",
-        "coverImgPath": IMG_URL["240702"]
-    },
-    "1007": {
-        "musicTitle": "Square one",
-        "youtubeLink": "https://music.youtube.com/watch?v=th0cCyxGmKU&si=UwtiIbf9mToE3Vom",
-        "coverImgPath": IMG_URL["240702"]
-    },
-
-    
-    //HERE
-    "1008": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1009": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1010": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1011": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1012": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1013": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1014": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1015": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1016": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1017": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1018": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1019": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1020": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1021": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1022": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1023": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1024": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1025": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1026": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1027": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1028": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1029": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1030": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1031": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1101": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1102": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1103": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1104": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1105": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1106": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1107": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1108": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1109": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1110": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1111": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1112": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1113": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1114": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1115": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1116": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1117": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1118": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1119": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1120": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1121": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1122": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1123": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1124": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1125": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1126": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1127": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1128": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1129": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    },
-    "1130": {
-        "musicTitle": "소년",
-        "youtubeLink": "https://music.youtube.com/watch?v=LhBbCNaXOpc&si=hFeo99kWEBotu_Pm",
-        "coverImgPath": IMG_URL["171206"]
-    }
+    //3,4,5월
+    "SPRING": [
+        {
+            "musicTitle": "Hurt Me Less (환상통)",
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "wjWYFrvNGpg",
+        },
+        {
+            "musicTitle": "넥타",
+            "songId": "9MlsWnHy3Zk",
+            "coverImgPath": IMG_URL["240318"]
+        },
+        {
+            "musicTitle": "Hurt Me Less (환상통)",
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "wjWYFrvNGpg",
+        }
+    ],
+    //6,7,8월
+    "SUMMER": [
+        {
+            "musicTitle": "Square one",
+            "coverImgPath": IMG_URL["240702"],
+            "songId": "th0cCyxGmKU",
+        }
+    ],
+    //9,10,11월
+    "AUTUMN": [
+        {
+            "musicTitle": "Hurt Me Less (환상통)",
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "wjWYFrvNGpg",
+        },
+        {
+            "musicTitle": "넥타",
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "9MlsWnHy3Zk",
+        },
+        {
+            "musicTitle": "Hurt Me Less (환상통)",
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "wjWYFrvNGpg",
+        }
+    ],
+    //12,1,2월
+    "WINTER": [
+        {
+            "musicTitle": "Square one",
+            "coverImgPath": IMG_URL["240702"],
+            "songId": "th0cCyxGmKU",
+        }
+    ],
+    //특정날짜
+    "1015": [
+        {
+            "musicTitle": "Square one",
+            "coverImgPath": IMG_URL["240702"],
+            "songId": "th0cCyxGmKU",
+        }
+    ],
 };
 
 export {

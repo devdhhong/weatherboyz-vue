@@ -40,14 +40,14 @@ document.documentElement.classList.add(setLanguage + '-mode');
 export default {
   data(){
     return{
-        viewportHeight : getViewportHeight(),
-        isHideModal : localStorage.getItem('isHideModal') == true,
+      viewportHeight : getViewportHeight(),
+      isHideModal : localStorage.getItem('isHideModal') == true,  
     }
   },
   methods: {
     // Android 인터페이스로 메세지 받기
     showToastFromAndroid(message) {
-        window.Android.showToast(message); // Android 인터페이스 메서드 호출
+      window.Android.showToast(message); // Android 인터페이스 메서드 호출
     },
     showToast(message, type) {
       this.$refs.toast.showToast(message, type);
@@ -59,9 +59,10 @@ export default {
   mounted() {
     const self = this; // Vue 인스턴스 참조
 
+    //디바이스 정보
     if (window.Android) {
-      localStorage.setItem("isApp", true);
-      localStorage.setItem("isAOS", true);
+      localStorage.setItem("isAppYn", "Y");
+      localStorage.setItem("isAosYn", "N");
 
       window.receiveLocation = function (latitude, longitude) {
         //위치 정보 저장
@@ -79,8 +80,8 @@ export default {
     }
     //테스트용
     else{
-      localStorage.setItem("isApp", false);
-      localStorage.setItem("isAOS", false);
+      localStorage.setItem("isAppYn", "N");
+      localStorage.setItem("isAosYn", "N");
 
       localStorage.setItem("latitude", "37.5276364");
       localStorage.setItem("longitude", "127.0344407");

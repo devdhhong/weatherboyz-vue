@@ -61,6 +61,7 @@ export default {
 
     if (window.Android) {
       localStorage.setItem("isApp", true);
+      localStorage.setItem("isAOS", true);
 
       window.receiveLocation = function (latitude, longitude) {
         //위치 정보 저장
@@ -79,6 +80,7 @@ export default {
     //테스트용
     else{
       localStorage.setItem("isApp", false);
+      localStorage.setItem("isAOS", false);
 
       localStorage.setItem("latitude", "37.5276364");
       localStorage.setItem("longitude", "127.0344407");

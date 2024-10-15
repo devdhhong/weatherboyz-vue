@@ -104,23 +104,31 @@ export default {
     },
     //공유하기 버튼
     btnShare: function () {
-      window.Android.writeLog("FROM JS", "CLICK btnShare");
+      let isApp = localStorage.getItem("isApp"); 
+      let isAOS = localStorage.getItem("isAOS"); 
 
-      //Web Share API는 HTTPS 환경에서만 동작
-      const btnShare = document.getElementById('btnShare');
-
-      btnShare.addEventListener('click', function(){
-        if (navigator.share) {
-          navigator.share({
-            title: 'weatherboyz!',
-            text: 'https://weatherboyz.netlify.app/',
-            url: "https://weatherboyz.netlify.app/",
-          });
-        } else {
-          console.warn('Web Share API is not supported in this browser');
-          alert('Web Share API is not supported in this browser.');
-        }
-      });
+      //안드로이드
+      if(isApp && isAOS){
+        window.Android.btnShare("FROM JS", "CLICK btnShare");
+      }
+      //웹
+      else{
+        //Web Share API는 HTTPS 환경에서만 동작
+        const btnShare = document.getElementById('btnShare');
+  
+        btnShare.addEventListener('click', function(){
+          if (navigator.share) {
+            navigator.share({
+              title: 'weatherboyz!',
+              text: 'https://weatherboyz.netlify.app/',
+              url: "https://weatherboyz.netlify.app/",
+            });
+          } else {
+            console.warn('Web Share API is not supported in this browser');
+            alert('Web Share API is not supported in this browser.');
+          }
+        });
+      }
     },
     btnShareX: function () {
       const btnShareX = document.getElementById('btnShareX');

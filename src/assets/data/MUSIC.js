@@ -1,70 +1,71 @@
 const IMG_URL = {
     //[한국앨범]
     //소년
-    "171206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FK0Ccc%2FbtsH3yMLV0I%2Fad0WicjKhts58OpzHTqWM0%2Fimg.webp", 
+    "171206" : "public/images/ALBUM_COVER/171206_소년.png", 
     //기디업
-    "180403" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYShgD%2FbtsH1atwApR%2FZRKd9FqKTEBEFQTEgNS2Lk%2Fimg.webp", 
+    "180403" : "public/images/ALBUM_COVER/180403_기디업.png", 
     //라잇히어
-    "180905" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5oHWL%2FbtsH1k3KY8n%2FxKobxCgaKjRBr17tc90c9K%2Fimg.webp", 
+    "180905" : "public/images/ALBUM_COVER/180905_라잇히어.png", 
     //노에어
-    "181129" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FxKJlA%2FbtsH0OK5GyF%2F0snTwYjTNkOamZUpMv0eYK%2Fimg.webp", 
+    "181129" : "public/images/ALBUM_COVER/181109_노에어.png", 
     //블룸블룸
-    "190429" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcCdgXq%2FbtsH08Cs66i%2FIfcDdoKeG9OWJFxlMxdrs1%2Fimg.webp", 
+    "190429" : "public/images/ALBUM_COVER/190429_블룸블룸.png", 
     //드림라이크
-    "190819" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdLF6VQ%2FbtsH8FfxOoa%2FAkWILxbXsz6H1rBCRdjpd1%2Fimg.jpg", 
+    "190819" : "public/images/ALBUM_COVER/190819_드림라이크.png", 
     //화이트
-    "191206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FMtnvC%2FbtsH9sGsThn%2FxEMeJqko5klCjrOvgu8Kk1%2Fimg.webp", 
+    "191206" : "public/images/ALBUM_COVER/191206_화이트.png", 
     //리빌
-    "200220" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrjLjU%2FbtsH82nVRIq%2F8KAElySHs9ATKcVvoAg45k%2Fimg.jpg", 
+    "200220" : "public/images/ALBUM_COVER/200220_리빌.png", 
     //더스틸러
-    "200921" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc8gmO0%2FbtsH8FGFb2a%2Ft0Ql4MglrYwbjVYpcEUny0%2Fimg.webp", 
+    "200921" : "public/images/ALBUM_COVER/200921_더스틸러.png", 
     //크리스마씨
-    "201207" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FS6RO9%2FbtsH8m8w8lp%2FU0H928xIfFqyc7AQ77MvOk%2Fimg.webp", 
+    "201207" : "public/images/ALBUM_COVER/201207_크리스마씨.png", 
     //스릴라이드
-    "210809" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyVOCI%2FbtsH8EVrAy4%2FijMmuhpIwztbhlWOzO94s0%2Fimg.webp", 
+    "210809" : "public/images/ALBUM_COVER/210809_스릴라이드.png", 
     //매버릭
-    "211101" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb8I0MW%2FbtsIaHpk4UN%2FkWP0ZLcy2DaXvVplrGDbf0%2Fimg.webp", 
+    "211101" : "public/images/ALBUM_COVER/211101_매버릭.png", 
     //캔들스
-    "211206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FduzSn5%2FbtsH8Vh8ziB%2FE2cuM4YkqIGnPHWGAkSsH1%2Fimg.webp", 
+    "211206" : "public/images/ALBUM_COVER/211206_캔들스.png", 
     //위스퍼
-    "220816" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcfL3vr%2FbtsH8Wg4rEI%2FKz5QucNtrF6Fe3r28itMSK%2Fimg.webp", 
+    "220816" : "public/images/ALBUM_COVER/220816_위스퍼.png", 
     //올어바웃유
-    "221206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcLDcfD%2FbtsIaFdZVPb%2FTuRBCXziPz6UwsfCMxGhI1%2Fimg.webp", 
+    "221206" : "public/images/ALBUM_COVER/221206_올어바웃유.png", 
     //로어
-    "230220" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchqnbX%2FbtsH9nZyyCc%2F6iR3hxk7jmFk7gbTjD49ok%2Fimg.webp", 
+    "230220" : "public/images/ALBUM_COVER/221206_올어바웃유.png", 
     //립글로즈
-    "230807" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcnnJJu%2FbtsH8K8TZTz%2FTMVjJizEkceoNQVtVbZOUK%2Fimg.webp", 
+    "230807" : "public/images/ALBUM_COVER/230807_립글로즈.png", 
     //워치잇
-    "231120" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fv93ZV%2FbtsH8EunAdR%2FbesYAkb0xZwNOvmO54Q3f0%2Fimg.webp", 
+    "231120" : "public/images/ALBUM_COVER/231120_워치잇.png", 
     //디어
-    "231206" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb8up60%2FbtsH8F7HBLc%2FW2wRLsgRTLtyWblqQJ3oAk%2Fimg.webp", 
+    "231206" : "public/images/ALBUM_COVER/231206_디어.png", 
     //넥타
-    "240318" : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F8kpCS%2FbtsH8LfF3Nb%2FVfyztWB30DdWGXIzdlJ0BK%2Fimg.webp", 
-    
+    "240318" : "public/images/ALBUM_COVER/240318_넥타.png", 
+    //도화선
+    "241028" : "public/images/ALBUM_COVER/241028_도화선.png", 
     
     //[일본앨범]
     //타투
-    "191106" : "https://i.namu.wiki/i/O32c80PhGsWhyiWlQbuWC8GIxdA5yCfy_C7gseLVc1JS5EPv61oMTwGYZjYhQAsjDu8OBzDYuRZub5Q0PcnOn83456Q9Qrn-7KUcsppDQO9YbzXIzyLJV1PFXDTMRjpnW1N_GEMViSMJA83-gmAJBg.webp", 
+    "191106" : "", 
     //브킹던
-    "210317" : "https://i.namu.wiki/i/AIvMKYfGW7Vm9L4-mOJxgqAMPe1xGiijhONqkGcLIJofQFmuuyEW4hUyLDuZLkhw5Lahz7-zAGhAaaqwCz5cqZbYIB9bcyvvgsz9KLgNuaujzzaOjCGg6S8B-E3iBRCy3iAfGw3TlzYNFpZFwU9CbQ.webp", 
+    "210317" : "", 
     //쉬더보
-    "220527" : "https://i.namu.wiki/i/qSJaye39YsoG5FErt1sUkJhshmGp6FX-9f3-EyI0axw1pi1p6zZVtTjGxdLjDXYXxNtvIh2WaNjQyx2HF2RE9BiA2y2_BPNkMmdi2pcN0yIkKbvPJJf1ZScubhbVPYd5uyW1Z4ZR-AxvDJPxVN5cdQ.webp", 
+    "220527" : "", 
     //딜리셔스
-    "230613" : "https://i.namu.wiki/i/BzjiN6K7OEa_CKB5ZSwhWfeMKuem-DOtYpohjp-k9CUmqAOZMvvjmSUQXgnGYFatsMnKmKVqXNNdGSnZMBFCE9CE-b-JBzCiQHfgfjRLjZ9MDxvqyxBejOVz8pzhj-ytWOKnKcSJJsZkVU3tEnCgTg.webp", 
+    "230613" : "", 
 
     //[싱글앨범]
     //우선순위
-    "210107" : "https://i.namu.wiki/i/9rBG3a3Rvop-Jn5Yd1ebi7iQF6-pgFRqlVvDHAAA9Ay6uR_yBM_1dNHH4Z3eAH_C8Pq5zWuHoaFaBFBue6TuOjSw3f_o0V8QdgNXacmak6lY62gARU7O5Yua6M_E5SQ-zvhaFioAZpEgTeAsl7ch4Q.webp", 
+    "210107" : "", 
     //지금처럼
-    "210601" : "https://i.namu.wiki/i/7BpRL2c1sUEtajUvWks5dQUyj7ZiPqRecfeJwB6srFaIvqzTnM4tkuKvOLqptQuB2hKGX6tW1LkRtNxpoOvXr2YHEaWQey5KntMNKJq9Ogr5zMLysy3qnjvprY_AxsxNxv_1Nd3EDryODNdghtzfBQ.webp", 
+    "210601" : "", 
     //우리는
-    "231111" : "https://i.namu.wiki/i/IcaIFuZWqqdMB1CkbOrsejoB9Kevd9N1u4euhDpzwImVXEuHeXYT-LiiYQO2FCmNrjsvB2p9jjtkDjpJ5q0zYXupb-zPxISPfDpfIrPJYxe2tZ9f_u5Znnb2Gvf4XMRunwoKvEgVH-iD2GuNZ5x8PA.webp",
+    "231111" : "",
     //넌 어떻게 생각해?
-    "240509" : "https://i.namu.wiki/i/va0zU5VBl0iIjHZ_aXqXRTOO-Q3APY6l4di3cZKx5HggGGv8ZZ1ooFsiyn6e2zinzuZm873GILEsKLX9-BV1IKE1nCbOzqCrUutOVeAIKT_NIJ5HZtvHWxT9YTkUi63B9Q_vO7WNC0iiGgxXKnA7ow.webp",
+    "240509" : "",
     //스윗
-    "220617" : "https://i.namu.wiki/i/yBDFCMEaurzafrRNLqOAjwau_zUIchoGoTpGzrOkoftOkv2cI7LEB9FlVqgmK0ONneryoLPzNn7Fg6Km6FISwTi0tlhwCIh_YaUQ1no9FUaRmY14BX3d54oTfo9Ak4xlK9JfR0XkZK4-LJ4kLNFa3g.webp",
+    "220617" : "",
     //지버리쉬
-    "240702" : "https://i.namu.wiki/i/mxm0Mo7Ja68e0l03RXfU6nw4G0e8akMYF8EJqveresdSS4x5eH5MOv2TqtozFKQk6Q8YndBWLanmtC5Ov8k9LjqycQELYXojU4bs0Vt_p2aJ_scEBl0sixnnwNbTuolpEzN4G0GRGJ2c54uu1mZr-Q.webp",
+    "240702" : "",
 };
 
 const MUSIC = {
@@ -90,7 +91,7 @@ const MUSIC = {
     "SUMMER": [
         {
             "musicTitle": "Square one",
-            "coverImgPath": IMG_URL["240702"],
+            "coverImgPath": IMG_URL["240318"],
             "songId": "th0cCyxGmKU",
         }
     ],
@@ -116,7 +117,7 @@ const MUSIC = {
     "WINTER": [
         {
             "musicTitle": "Square one",
-            "coverImgPath": IMG_URL["240702"],
+            "coverImgPath": IMG_URL["240318"],
             "songId": "th0cCyxGmKU",
         }
     ],
@@ -124,7 +125,14 @@ const MUSIC = {
     "1015": [
         {
             "musicTitle": "Square one",
-            "coverImgPath": IMG_URL["240702"],
+            "coverImgPath": IMG_URL["240318"],
+            "songId": "th0cCyxGmKU",
+        }
+    ],
+    "1107": [
+        {
+            "musicTitle": "Square one",
+            "coverImgPath": IMG_URL["241028"],
             "songId": "th0cCyxGmKU",
         }
     ],

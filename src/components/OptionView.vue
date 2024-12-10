@@ -1,7 +1,7 @@
 <template>
   <div id="OptionView" class="scroll-area">
     <li class="settingItem">
-      <div class="title">{{ $t('theme') }}<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">{{ $t('테마') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
       <select name="" class="" v-model="setTheme" @change="changeSetting">
         <option value="TBZ">{{ $t('랜덤') }} 📢</option>
         <option value="SY">{{ $t('상연') }} 🐶</option>
@@ -18,20 +18,20 @@
       </select>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('display') }} {{ $t('setting') }}<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">{{ $t('화면') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li> 
           <input id="r1" type="radio" name="display" value="light" v-model="setDisplay" @change="changeSetting"/>
-          <label for="r1">{{ $t('light') }}</label>
+          <label for="r1">{{ $t('라이트 모드') }}</label>
         </li>
         <li>
           <input id="r2" type="radio" name="display" value="dark" v-model="setDisplay" @change="changeSetting"/>
-          <label for="r2">{{ $t('dark') }}</label>
+          <label for="r2">{{ $t('다크 모드') }}</label>
         </li>
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('language') }} {{ $t('setting') }}<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">{{ $t('언어') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li> 
           <input id="r3" type="radio" name="language" value="ko" v-model="setLanguage" @change="changeSetting"/>
@@ -48,16 +48,16 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('share') }}<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">{{ $t('공유 하기') }}<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
-          <div class=""><i id="btnShareX" class="fa-solid fa-brands fa-twitter" @click="btnShareX"></i></div>
-          <div class=""><i id="btnShare" class="fa-solid fa-share" @click="btnShare"></i></div>
+          <div class=""><i id="btnShareX" class="fa-solid fa-brands fa-xmark" @click="btnShareX"></i></div>
+          <div class=""><i id="btnShare" class="fa-solid fa-arrow-up-from-bracket" @click="btnShare"></i></div>
         </li>
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('qna') }}<i class="fa-solid fa-caret-down"></i></div>
+      <div class="title">{{ $t('문의 사항') }}<i class="fa-solid fa-caret-down"></i></div>
       <ul class="">
         <li>
           <div class="qna">이용하면서 가장 큰 불편함이 뭐야? 어디가서 말안할게..;;<br><span id="btnOpenX" @click="btnOpenX">@tbz_weatherboyz</span> 여기로 연락줘...</div> 
@@ -70,96 +70,99 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted() {
-    this.setLanguage = localStorage.getItem('language') || "ko"; //KOR or ENG
-    this.setTheme = localStorage.getItem('theme') || "TBZ";
-    this.setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
-  },
-  data() {
-    return {
-      setLanguage : "",
-      setTheme : "",
-      setDisplay : "",
-      isActive: false,
-    };
-  },
-  methods: {
-    changeSetting : function(){
-      localStorage.setItem("language", this.setLanguage);
-      localStorage.setItem("theme", this.setTheme);
-      localStorage.setItem("display", this.setDisplay);
+<script setup lang="ts">
 
-      // 설정 초기화
-      document.documentElement.classList.remove('dark-mode');
-      document.documentElement.classList.remove('light-mode');
-      document.documentElement.classList.remove('kor-mode');
-      document.documentElement.classList.remove('eng-mode');
+import { onBeforeMount } from "vue";
+import { useI18n } from "vue-i18n"; // i18n 인스턴스 가져오기
 
-      document.documentElement.classList.add(this.setDisplay + '-mode');
-      document.documentElement.classList.add(this.setLanguage + '-mode');
+let setLanguage = localStorage.getItem('language') || "ko"; //KOR or ENG
+let setTheme = localStorage.getItem('theme') || "TBZ";
+let setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
+let isActive = false;
 
-      this.$i18n.locale = this.setLanguage; // 언어 변경
-    },
-    //공유하기 버튼
-    btnShare: function () {
-      let isAppYn = localStorage.getItem("isAppYn"); 
-      let isAosYn = localStorage.getItem("isAosYn"); 
+const { locale } = useI18n(); // i18n에서 locale을 가져옴
 
-      //안드로이드
-      if(isAppYn == "Y" && isAosYn == "Y"){
-        window.Android.btnShare("weatherboyz! @tbz_weatherboyz");
-      }
-      //웹
-      else{
-        //Web Share API는 HTTPS 환경에서만 동작
-        const btnShare = document.getElementById('btnShare');
-  
-        btnShare.addEventListener('click', function(){
-          if (navigator.share) {
-            navigator.share({
-              title: 'weatherboyz!',
-              text: 'https://weatherboyz.netlify.app/',
-              url: "https://weatherboyz.netlify.app/",
-            });
-          }
+onBeforeMount(() => {
+});
+
+//옵션 변경
+function changeSetting() {
+  localStorage.setItem("language", setLanguage);
+  localStorage.setItem("theme", setTheme);
+  localStorage.setItem("display", setDisplay);
+
+  // 설정 초기화
+  document.documentElement.classList.remove('dark-mode');
+  document.documentElement.classList.remove('light-mode');
+  document.documentElement.classList.remove('kor-mode');
+  document.documentElement.classList.remove('eng-mode');
+
+  document.documentElement.classList.add(setDisplay + '-mode');
+  document.documentElement.classList.add(setLanguage + '-mode');
+
+  locale.value = setLanguage; // 언어 변경
+}
+
+//공유하기 버튼
+function btnShare() {
+  let isAppYn = localStorage.getItem("isAppYn");
+  let isAosYn = localStorage.getItem("isAosYn");
+
+  //안드로이드
+  if (isAppYn == "Y" && isAosYn == "Y") {
+    window.Android.btnShare("weatherboyz! @tbz_weatherboyz");
+  }
+  //웹
+  else {
+    //Web Share API는 HTTPS 환경에서만 동작
+    const btnShare = document.getElementById('btnShare');
+
+    btnShare.addEventListener('click', function () {
+      if (navigator.share) {
+        navigator.share({
+          title: 'weatherboyz!',
+          text: 'https://weatherboyz.netlify.app/',
+          url: "https://weatherboyz.netlify.app/",
         });
       }
-    },
-    btnShareX: function () {
-      const btnShareX = document.getElementById('btnShareX');
+    });
+  }
+}
 
-      btnShareX.addEventListener('click', function () {
-        const text = encodeURIComponent('weatherboyz!\n');
-        const url = encodeURIComponent('https://weatherboyz.netlify.app/'+'\n\n');
-        const hashtags = encodeURIComponent('더보이즈,THEBOYZ'); // 해시태그 추가 가능
-        const via = 'tbz_weatherboyz'; // 트위터 사용자 이름 (@ 없이)
+function btnShareX() {
+  const btnShareX = document.getElementById('btnShareX');
 
-        const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`;
+  btnShareX.addEventListener('click', function () {
+    const text = encodeURIComponent('weatherboyz!\n');
+    const url = encodeURIComponent('https://weatherboyz.netlify.app/' + '\n\n');
+    const hashtags = encodeURIComponent('더보이즈,THEBOYZ'); // 해시태그 추가 가능
+    const via = 'tbz_weatherboyz'; // 트위터 사용자 이름 (@ 없이)
 
-        // 트위터 공유 URL로 이동
-        window.open(twitterShareUrl, '_blank');
-      });
-    },
-    btnOpenX: function () {
-      const btnOpenX = document.getElementById('btnOpenX');
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}&via=${via}`;
 
-      btnOpenX.addEventListener('click', function() {
-        // 연결하고 싶은 트위터 계정
-        const twitterProfileUrl = "https://twitter.com/tbz_weatherboyz";
-        
-        // 새 창에서 트위터 프로필로 이동
-        window.open(twitterProfileUrl, '_blank');
-      });
-    },
-  },
-};
+    // 트위터 공유 URL로 이동
+    window.open(twitterShareUrl, '_blank');
+  });
+}
+
+function btnOpenX() {
+  const btnOpenX = document.getElementById('btnOpenX');
+
+  btnOpenX.addEventListener('click', function () {
+    // 연결하고 싶은 트위터 계정
+    const twitterProfileUrl = "https://twitter.com/tbz_weatherboyz";
+
+    // 새 창에서 트위터 프로필로 이동
+    window.open(twitterProfileUrl, '_blank');
+  });
+}
+
 </script>
 
 <style lang="scss" scoped>
 // @import "../scss/reset.scss";
 @import "../scss/common.scss";
+@import "../scss/theme.scss";
 
 #OptionView {
   width: 100%;
@@ -219,5 +222,4 @@ export default {
     margin-left: 2%;
   }
 }
-
 </style>

@@ -6,9 +6,9 @@
           <p>{{ temperature }}{{ $t('도') }}</p>
         </div>
         <div class="weatherInfo">
-          <div class="feelTemp">{{ $t('체감온도') }} : {{ this.apparent_temperature }}도</div>
-          <div class="fineDust">{{ $t('미세먼지') }}: {{ this.pm10 }}</div>
-          <div class="ultraFineDust">{{ $t('초미세먼지') }}: {{ this.pm2_5 }}</div>
+          <div class="feelTemp">{{ $t('체감온도') }} : {{ apparent_temperature }}도</div>
+          <div class="fineDust">{{ $t('미세먼지') }}: {{ pm10 }}</div>
+          <div class="ultraFineDust">{{ $t('초미세먼지') }}: {{ pm2_5 }}</div>
         </div>
     </div>
     <div class="infoView" @click="openYoutubeMusic">
@@ -24,63 +24,62 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { onBeforeMount } from "vue";
+import * as UTIL from "../utils/UTIL";
+import { onMounted } from "vue";
 
-import * as UTIL from "../utils/UTIL.js";
+let weatherIcon = "";          //날씨 아이콘
+let temperature = 0;           //온도
+let apparent_temperature = 0;  //체감온도
+let pm10 = "";                 //미세먼지
+let pm2_5 = "";                //초미세먼지
+let mainMsg = "";              //메인화면 메세지
+let todayMusicData = {};
+let airQuality = {};
+let weather = {};
 
-export default {
-  mounted() {
-    //날씨 정보
-    let weather = JSON.parse(localStorage.getItem('weather'));
-    this.temperature = Math.round(weather.current.temperature);
-    this.apparent_temperature = Math.round(weather.current.apparent_temperature);
-    this.weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
+onBeforeMount(() => {
+  //날씨 정보
+  weather = JSON.parse(localStorage.getItem('weather'));
+  temperature = Math.round(weather.current.temperature);
+  apparent_temperature = Math.round(weather.current.apparent_temperature);
+  weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
 
-    //미세먼지 정보
-    let airQuality = JSON.parse(localStorage.getItem('airQuality'));
-    this.pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0]
-    this.pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1]
+  //미세먼지 정보
+  airQuality = JSON.parse(localStorage.getItem('airQuality'));
+  pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0];
+  pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1];
 
-    //오늘의 정보
-    this.todayMusicData = UTIL.getTodayMusic();
+  //오늘의 정보
+  todayMusicData = UTIL.getTodayMusic();
 
-    //메세지
-    this.mainMsg = UTIL.getMainMsg();
-  },
-  data() {
-    return {
-      weatherIcon: "",          //날씨 아이콘
-      temperature: "",          //온도
-      apparent_temperature: "", //체감온도
-      pm10: "",                 //미세먼지
-      pm2_5: "",                //초미세먼지
-      mainMsg: "", //메인화면 메세지
-      todayMusicData: {},
-    };
-  },
-  methods: {
-    //유튜브 뮤직 오픈
-    openYoutubeMusic : function(){
-      let isAppYn = localStorage.getItem("isAppYn"); 
-      let isAosYn = localStorage.getItem("isAosYn"); 
+  //메세지
+  mainMsg = UTIL.getMainMsg();
+});
 
-      //안드로이드
-      if(isAppYn == "Y" && isAosYn == "Y"){
-        window.Android.openOtherApp("youtube-music://song?id=" + this.todayMusicData.songId, "market://details?id=com.google.android.apps.youtube.music");
-      }
-      //웹
-      else{
-        const url = "https://music.youtube.com/watch?v=" + this.todayMusicData.songId;
-        window.open(url, '_blank');
-      }
-    }
-  },
-};
+
+function openYoutubeMusic() {
+  let isAppYn = localStorage.getItem("isAppYn");
+  let isAosYn = localStorage.getItem("isAosYn");
+
+  //안드로이드
+  if (isAppYn == "Y" && isAosYn == "Y") {
+    window.Android.openOtherApp("youtube-music://song?id=" + todayMusicData.songId, "market://details?id=com.google.android.apps.youtube.music");
+  }
+  //웹
+  else {
+    const url = "https://music.youtube.com/watch?v=" + todayMusicData.songId;
+    window.open(url, '_blank');
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/common.scss";
 @import "../scss/reset.scss";
+@import "../scss/theme.scss";
 
 // 정보 영역
 #CurrentView {
@@ -93,7 +92,7 @@ export default {
   .infoView {
     padding: 3%;
     height: 100%;
-    flex: 1; 
+    flex: 1;
     box-sizing: border-box;
     border-radius: 15px;
     margin: 0 5%;
@@ -113,7 +112,7 @@ export default {
 
       p {
         @include text-style-2;
-        color : var(--text-color-1);
+        color: var(--text-color-1);
       }
     }
 
@@ -124,7 +123,7 @@ export default {
 
       div {
         @include text-style-4;
-        color : var(--text-color-1);
+        color: var(--text-color-1);
         padding-left: 3%;
       }
     }
@@ -141,7 +140,7 @@ export default {
     //타이틀
     div:nth-child(1) {
       @include text-style-3;
-      color : var(--text-color-1);
+      color: var(--text-color-1);
       width: 100%;
       height: 10%;
     }
@@ -161,7 +160,7 @@ export default {
     //노래명
     div:nth-child(3) {
       @include text-style-4;
-      color : var(--text-color-1);
+      color: var(--text-color-1);
       width: 100%;
       height: 10%;
     }
@@ -178,7 +177,7 @@ export default {
 
   p {
     @include text-style-3;
-    color : var(--text-color-1);
+    color: var(--text-color-1);
   }
 }
 </style>

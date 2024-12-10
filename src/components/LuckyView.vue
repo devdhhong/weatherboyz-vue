@@ -19,38 +19,34 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { onIonViewDidEnter } from "@ionic/vue";
 import { OOTD } from "../assets/data/OOTD.js";
 
-export default {
-  mounted() {
-    this.luckyColor = OOTD[0].luckyColor;
-    this.luckyItem = OOTD[0].luckyItem;
-  },
-  data() { 
-    return {
-      isFlipped1: false,
-      isFlipped2: false,
-      luckyColor : "",
-      luckyItem : "",
-    }
-  },
-  methods : {
-    toggleClass1: function () {
-      this.isFlipped1 = !this.isFlipped1;
-    },
-    toggleClass2: function () {
-      this.isFlipped2 = !this.isFlipped2;
-    },
-  },
-} 
+let isFlipped1 = false;
+let isFlipped2 = false;
+let luckyColor = "";
+let luckyItem = "";
+
+onIonViewDidEnter(() => {
+  let luckyColor = OOTD[0].luckyColor;
+  let luckyItem = OOTD[0].luckyItem;
+});
+
+function toggleClass1(){
+  isFlipped1 = !isFlipped1;
+}
+
+function toggleClass2(){
+  isFlipped1 = !isFlipped1;
+}
 
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/common.scss";
 @import "../scss/reset.scss";
-
+@import "../scss/theme.scss";
 
 //행운 카드
 #LuckyView {

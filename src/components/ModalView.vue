@@ -79,6 +79,7 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/common.scss";
 // @import "../scss/reset.scss";
+// @import "../scss/theme.scss";
 
 #ModalView {
   width: 80%;

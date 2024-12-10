@@ -8,28 +8,23 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import { onBeforeMount } from "vue";
 import { OOTD } from "../assets/data/OOTD.js";
 
-export default {
-  mounted() {
-    this.fashionImgPath = OOTD[0].imgPath;
-  },
-  data() { 
-    return {
-      fashionImgPath : "",
-    }
-  },
-  methods : {
+let fashionImgPath = "";
 
-  },
-} 
+onBeforeMount(() => {
+  console.log(OOTD[0].imgPath);
+  fashionImgPath = OOTD[0].imgPath;
+});
 
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/common.scss";
 @import "../scss/reset.scss";
+@import "../scss/theme.scss";
 
 #FashionView {
   @include c-center-c;

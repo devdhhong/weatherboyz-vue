@@ -6,30 +6,27 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 // import { WEATHER } from "../assets/data/WEATHER.js";
-import * as UTIL from "../utils/UTIL.js";
+import { onBeforeMount } from "vue";
+import * as UTIL from "../utils/UTIL";
+import { onIonViewDidEnter } from "@ionic/vue";
 
-export default {
-  mounted() {
-    let weather = JSON.parse(localStorage.getItem('weather'));
-    this.imgPath = UTIL.getWeatherMain(weather.current.weather_code);
-  },
-  data() { 
-    return {
-      imgPath: "",
-      temperature: "",
-    }
-  },
-  methods : {
-  },
-} 
+let weather = {};
+let imgPath = "";
+let temperature = "";
+
+onBeforeMount(() => {
+  weather = JSON.parse(localStorage.getItem('weather'));
+  imgPath = UTIL.getWeatherMain(weather.current.weather_code);
+});
 
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/common.scss";
 @import "../scss/reset.scss";
+@import "../scss/theme.scss";
 
 #ContentsView {
   width: 100%;

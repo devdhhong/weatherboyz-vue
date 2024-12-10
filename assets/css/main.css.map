@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAEA,OAAO,CAAC,uFAAI;AAEZ,OAAO,CAAC,4NAAI;AAEZ,OAAO,CAAC,wWAAI",
-    "sources": [
-        "../../weatherboyz/src/scss/main.scss"
-    ],
-    "names": [],
-    "file": "main.css"
-}

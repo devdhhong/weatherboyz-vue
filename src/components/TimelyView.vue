@@ -2,47 +2,46 @@
   <div id="TimelyView">
     <div class="scroll-area">
       <div class="timelyCard" v-for="(weather, index) in weatherTime" :key="index">
-        <p class="date">{{ this.getCurrentTime(weather) }}</p>
-        <img :src="this.getWeatherIcon(this.weatherCode[index], new Date(weather))" alt="" />
-        <p class="temperature">{{ Math.round(this.weatherTemp[index]) }}°</p>
+        <p class="date">{{ getCurrentTime(weather) }}</p>
+        <img :src="getWeatherIcon(weatherCode[index], new Date(weather))" alt="" />
+        <p class="temperature">{{ Math.round(weatherTemp[index]) }}°</p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import * as UTIL from "../utils/UTIL.js";
+<script setup lang="ts">
+import * as UTIL from "../utils/UTIL";
 import moment from "moment";
+import { onBeforeMount } from "vue";
 
-export default {
-  mounted(){
-    let hourly = JSON.parse(localStorage.getItem('weather')).hourly;
-    this.weatherTime = hourly.time;
-    this.weatherCode = hourly.weather_code;
-    this.weatherTemp = hourly.temperature;
-  },
-  data() {
-    return {
-      currentTime: "",
-      weatherTime: [],
-      weatherCode: [],
-      weatherTemp: [],
-    };
-  },
-  methods: {
-    getCurrentTime: function(weather){
-      return moment(weather).format("MM/DD HH시");
-    },
-    getWeatherIcon : function(code, time){
-      return UTIL.getWeatherIcon(code, time);
-    },
-  },
-};
+let hourly = {};
+let weatherTime = [];
+let weatherCode = [];
+let weatherTemp = [];
+let currentTime = "";
+
+onBeforeMount(() => {
+  hourly = JSON.parse(localStorage.getItem('weather')).hourly;
+  weatherTime = hourly.time;
+  weatherCode = hourly.weather_code;
+  weatherTemp = hourly.temperature;
+});
+
+function getCurrentTime(weather: string){
+  return moment(weather).format("MM/DD HH시");
+}
+
+function getWeatherIcon(code: string, time: Date){
+  return UTIL.getWeatherIcon(code, time);
+}
+
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/reset.scss";
 @import "../scss/common.scss";
+@import "../scss/theme.scss";
 
 #TimelyView {
   width: 100%;
@@ -61,12 +60,13 @@ export default {
 
     .timelyCard {
       text-align: center;
-      flex: 0 0 25%; /* 기본으로 보이는 아이템 수를 설정 */
+      flex: 0 0 25%;
+      /* 기본으로 보이는 아이템 수를 설정 */
 
       //날짜
       .date {
         @include text-style-5;
-        color : var(--text-color-1);
+        color: var(--text-color-1);
       }
 
       //사진
@@ -75,9 +75,9 @@ export default {
       }
 
       //온도
-      .temperature{
+      .temperature {
         @include text-style-3;
-        color : var(--text-color-1);
+        color: var(--text-color-1);
       }
     }
   }

@@ -3,10 +3,10 @@
     <ion-content :fullscreen="true">
       <div id="container">
         <div id="MainView">
-            <HeaderView :title="title"/>
-            <CurrentView/>             
-            <ContentsView/>             
-            <TimelyView/>             
+          <HeaderView :title="title"/>
+          <CurrentView/>             
+          <ContentsView/>             
+          <TimelyView/>             
         </div>
       </div>
     </ion-content>
@@ -53,12 +53,12 @@ const getReverseGeocode = function () {
       // addressdetails: 1,
     }
   })
-    .then((response) => {
-      localStorage.setItem("address", JSON.stringify(response.data)); // 성공적으로 받아온 데이터
-    })
-    .catch((error) => {
-      console.error(error); // 오류 처리
-    });
+  .then((response) => {
+    localStorage.setItem("address", JSON.stringify(response.data)); // 성공적으로 받아온 데이터
+  })
+  .catch((error) => {
+    console.error(error); // 오류 처리
+  });
 };
 
 // 날씨정보 조회
@@ -102,4 +102,5 @@ const getAirQuality = function () {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

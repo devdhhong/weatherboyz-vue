@@ -1,8 +1,8 @@
 <template>
   <div id="OptionView" class="scroll-area">
     <li class="settingItem">
-      <div class="title">{{ $t('테마') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
-      <select name="" class="" v-model="setTheme" @change="changeSetting">
+      <div class="title" @click="isDownMemberTab = !isDownMemberTab">{{ $t('멤버') }} {{ $t('설정') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownMemberTab, 'fa-caret-down' : isDownMemberTab  }"></i></div>
+      <select name="" class="" v-model="setMember" @change="changeSetting" v-show="isDownMemberTab">
         <option value="TBZ">{{ $t('랜덤') }} 📢</option>
         <option value="SY">{{ $t('상연') }} 🐶</option>
         <option value="JC">{{ $t('제이콥') }} 🍐</option>
@@ -18,8 +18,15 @@
       </select>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('화면') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
-      <ul class="">
+      <div class="title" @click="isDownThemeTab = !isDownThemeTab">{{ $t('테마') }} {{ $t('설정') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownThemeTab, 'fa-caret-down' : isDownThemeTab  }"></i></div>
+      <select name="" class="" v-model="setTheme" @change="changeSetting" v-show="isDownThemeTab">
+        <option value="default">🅱️ ver.</option>
+        <option value="baby">🍼 ver.</option>
+      </select>
+    </li>
+    <li class="settingItem">
+      <div class="title" @click="isDownDisplayTab = !isDownDisplayTab">{{ $t('화면') }} {{ $t('설정') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownDisplayTab, 'fa-caret-down' : isDownDisplayTab  }"></i></div>
+      <ul class="" v-show="isDownDisplayTab">
         <li> 
           <input id="r1" type="radio" name="display" value="light" v-model="setDisplay" @change="changeSetting"/>
           <label for="r1">{{ $t('라이트 모드') }}</label>
@@ -31,8 +38,8 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('언어') }} {{ $t('설정') }}<i class="fa-solid fa-caret-down"></i></div>
-      <ul class="">
+      <div class="title" @click="isDownLanguageTab = !isDownLanguageTab">{{ $t('언어') }} {{ $t('설정') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownLanguageTab, 'fa-caret-down' : isDownLanguageTab  }"></i></div>
+      <ul class="" v-show="isDownLanguageTab">
         <li> 
           <input id="r3" type="radio" name="language" value="ko" v-model="setLanguage" @change="changeSetting"/>
           <label for="r3">한국어</label>
@@ -48,19 +55,33 @@
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('공유 하기') }}<i class="fa-solid fa-caret-down"></i></div>
-      <ul class="">
+      <div class="title" @click="isDownShareTab = !isDownShareTab">{{ $t('공유 하기') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownShareTab, 'fa-caret-down' : isDownShareTab  }"></i></div>
+      <ul class="" v-show="isDownShareTab">
         <li>
-          <div class=""><i id="btnShareX" class="fa-solid fa-brands fa-xmark" @click="btnShareX"></i></div>
-          <div class=""><i id="btnShare" class="fa-solid fa-arrow-up-from-bracket" @click="btnShare"></i></div>
+          <div class=""><i id="btnShareX" class="fa-solid fa-brands fa-xmark reverse" @click="btnShareX"></i></div>
+          <div class=""><i id="btnShare" class="fa-solid fa-arrow-up-from-bracket reverse" @click="btnShare"></i></div>
         </li>
       </ul>
     </li>
     <li class="settingItem">
-      <div class="title">{{ $t('문의 사항') }}<i class="fa-solid fa-caret-down"></i></div>
-      <ul class="">
+      <div class="title" @click="isDownQnaTab = !isDownQnaTab">{{ $t('문의 사항') }}<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownQnaTab, 'fa-caret-down' : isDownQnaTab  }"></i></div>
+      <ul class="" v-show="isDownQnaTab">
         <li>
           <div class="qna">이용하면서 가장 큰 불편함이 뭐야? 어디가서 말안할게..;;<br><span id="btnOpenX" @click="btnOpenX">@tbz_weatherboyz</span> 여기로 연락줘...</div> 
+        </li>
+      </ul>
+    </li>
+    <li class="settingItem">
+      <div class="title" @click="isDownLicenseTab = !isDownLicenseTab">License<i class="fa-solid" :class="{ 'fa-caret-up' : !isDownLicenseTab, 'fa-caret-down' : isDownLicenseTab  }"></i></div>
+      <ul class="" v-show="isDownLicenseTab">
+        <li>
+          <a href="https://www.flaticon.com/kr/free-icons/" title="메시지 아이콘">메시지 아이콘 제작자: winnievinzence - Flaticon</a>
+        </li>
+        <li>
+          <a href="https://www.flaticon.com/kr/free-icons/" title="메시지 아이콘">메시지 아이콘 제작자: Freepik - Flaticon</a>
+        </li>
+        <li>
+          <a href="http://osm.org/copyright">Data © OpenStreetMap contributors, ODbL 1.0.</a>
         </li>
       </ul>
     </li>
@@ -72,13 +93,21 @@
 
 <script setup lang="ts">
 
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useI18n } from "vue-i18n"; // i18n 인스턴스 가져오기
 
 let setLanguage = localStorage.getItem('language') || "ko"; //KOR or ENG
-let setTheme = localStorage.getItem('theme') || "TBZ";
+let setMember = localStorage.getItem('member') || "TBZ";
+let setTheme = localStorage.getItem('theme') || "default";
 let setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
-let isActive = false;
+
+let isDownMemberTab = ref(true); // 반응형 상태로 선언
+let isDownThemeTab = ref(true); 
+let isDownDisplayTab = ref(true);
+let isDownLanguageTab = ref(true);
+let isDownShareTab = ref(true);
+let isDownQnaTab = ref(true); 
+let isDownLicenseTab = ref(false);
 
 const { locale } = useI18n(); // i18n에서 locale을 가져옴
 
@@ -90,6 +119,7 @@ function changeSetting() {
   localStorage.setItem("language", setLanguage);
   localStorage.setItem("theme", setTheme);
   localStorage.setItem("display", setDisplay);
+  localStorage.setItem("member", setMember);
 
   // 설정 초기화
   document.documentElement.classList.remove('dark-mode');
@@ -129,6 +159,7 @@ function btnShare() {
   }
 }
 
+//트위터 공유하기
 function btnShareX() {
   const btnShareX = document.getElementById('btnShareX');
 
@@ -145,6 +176,7 @@ function btnShareX() {
   });
 }
 
+//트위터 열기
 function btnOpenX() {
   const btnOpenX = document.getElementById('btnOpenX');
 
@@ -204,6 +236,10 @@ function btnOpenX() {
         div {
           padding-right: 5%;
         }
+
+        a {
+          @include text-style-5;
+        }
       }
     }
   }
@@ -218,7 +254,7 @@ function btnOpenX() {
     }
   }
 
-  .fa-caret-down {
+  .fa-caret-down, .fa-caret-up {
     margin-left: 2%;
   }
 }

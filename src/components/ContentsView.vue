@@ -2,6 +2,10 @@
   <div id="ContentsView">
     <div class="contentsBox">
       <img :src="imgPath" alt="">
+
+      <div class="bubbleArea kevin">
+        <div class="msg">날씨좋다</div>
+      </div>
     </div>
   </div>
 </template>
@@ -40,9 +44,39 @@ onBeforeMount(() => {
     // overflow: hidden;
 
     img {
+      padding-bottom: 8%;
+      // padding: 0 10%;
       height: 90%;
     }
   }
 
 }
+
+//HERE
+.bubbleArea {
+  position: absolute; 
+  // opacity: 0;
+  background-size: contain;
+  background-repeat: no-repeat; /* 반복 방지 */
+  background-position: center; /* 가운데 정렬 */
+  width: 20%; 
+  height: 20%;
+
+  &.kevin {
+    left: 50%; 
+    bottom: 55%; 
+    background-image: url("../../public/images/bubble.png");
+  }
+
+	.msg {
+    @include text-style-4;
+    @include center;
+    padding-bottom: 5%;
+    color: var(--text-color-2);
+
+    width: 100%; 
+    height: 100%;
+  }
+}
+
 </style>

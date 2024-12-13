@@ -107,6 +107,10 @@ $fashion_height: 60%;
 
 //아이콘
 .fa-solid {
+  color : var(--background-color-2)
+}
+
+.fa-solid.reverse {
   color : var(--background-color-1)
 }
 

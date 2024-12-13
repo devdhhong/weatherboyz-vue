@@ -50,6 +50,7 @@ function getWeatherIcon(code: string, time: Date){
   position: fixed;
   bottom: 0;
   border-radius: 20px 20px 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
 
   .scroll-area {
     width: 100%;

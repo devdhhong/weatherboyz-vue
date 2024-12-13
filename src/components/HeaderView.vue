@@ -3,7 +3,7 @@
     <!-- MAIN -->
     <div v-if="props.title == 'MAIN'">
       <div class="btnLeft" @click="btnEvent">
-        <i class="fa-solid fa-shirt"></i>
+        <i class="fa-solid fa-shirt reverse"></i>
       </div>
       <!-- <div class="btnLeft" @click="btnRefresh">
         <i class="fa-solid fa-arrows-rotate"></i>
@@ -12,7 +12,7 @@
         <p>{{ address.borough }}</p>
       </div>
       <div class="btnRight" @click="btnSetting">
-        <i class="fa-solid fa-gear fa-lg"></i>
+        <i class="fa-solid fa-gear fa-lg reverse"></i>
       </div>
     </div>
     <!-- MAIN -->
@@ -20,13 +20,13 @@
     <!-- SETTING -->
     <div v-else-if="props.title == 'SETTING'">
       <div class="btnClose" @click="btnClose" style="visibility: hidden;">
-        <i class="fa-solid fa-xmark fa-xl"></i>
+        <i class="fa-solid fa-xmark fa-xl reverse"></i>
       </div>
       <div class="title">
         <p>{{ props.title }}</p>
       </div>
       <div class="btnClose" @click="btnClose">
-        <i class="fa-solid fa-xmark fa-xl"></i>
+        <i class="fa-solid fa-xmark fa-xl reverse"></i>
       </div>
     </div>
     <!-- SETTING -->
@@ -34,14 +34,14 @@
     <!-- OOTBZ -->
     <div v-else-if="props.title == 'OOTBZ'">
       <div class="btnClose" @click="btnClose" style="visibility: hidden;">
-        <i class="fa-solid fa-xmark fa-xl"></i>
+        <i class="fa-solid fa-xmark fa-xl reverse"></i>
       </div>
       <div class="title">
         <p>{{ props.title }}</p>
       </div>
       <div class="btnClose" @click="btnClose">
         <!-- <ion-back-button defaultHref="/"><i class="fa-solid fa-xmark fa-xl"></i></ion-back-button> -->
-        <i class="fa-solid fa-xmark fa-xl"></i>
+        <i class="fa-solid fa-xmark fa-xl reverse"></i>
       </div>
     </div>
     <!-- OOTBZ -->
@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount } from "vue";
+import { nextTick, onBeforeMount, onMounted } from "vue";
 import router from "@/router";
 import { useIonRouter } from '@ionic/vue';
 
@@ -109,3 +109,11 @@ function btnClose() {
   }
 }
 </style>
+
+function onMount(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+
+function onMount(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}

@@ -163,13 +163,13 @@ const MUSIC = {
             "coverImgPath": IMG_URL["200220"],
             "songId": "jF-H3j8-gIw",
         },
+        // {
+        //     "musicTitle": "Nothing Without You",
+        //     "coverImgPath": IMG_URL["240719"],
+        //     "songId": "YKK8Eqqab9U",
+        // },
         {
-            "musicTitle": "Nothing Without You",
-            "coverImgPath": IMG_URL["240719"],
-            "songId": "YKK8Eqqab9U",
-        },
-        {
-            "musicTitle": "Square one",
+            "musicTitle": "숨바꼭질 (Slip Away)",
             "coverImgPath": IMG_URL["240719"],
             "songId": "th0cCyxGmKU",
         },

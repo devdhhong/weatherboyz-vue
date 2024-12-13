@@ -101,6 +101,5 @@ html {
 #SettingView,
 #OOTDView {
   height: var(--viewport-height); // CSS 변수 사용
-  background-color: var(--background-color-2);
 }
 </style>

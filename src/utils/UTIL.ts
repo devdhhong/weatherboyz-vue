@@ -230,6 +230,7 @@ const getMainMsg = function () {
   }
   //기타
   else {
+    // msg = "🕯️";
     msg = "🐶 🍐 🍞 🎁 🐱 🌙 🐧 🐿️ 🍊 ☀️ 🦄";
   }
 
@@ -239,41 +240,44 @@ const getMainMsg = function () {
 // 날씨 메인 이미지 경로 조회
 const getWeatherMain = function (code) {
   let theme = localStorage.getItem("theme");
-  let status = "";
+  let member = localStorage.getItem("member");
+  // let status = "";
   let tbz = ["SY", "JC", "YH", "HJ", "JY", "KV", "NW", "QQ", "HN", "SW", "ER"];
 
-  //맑음
-  if ([0, 1].indexOf(code) > -1) {
-    status = "CLEAR";
-  }
-  //흐림
-  else if ([2, 3].indexOf(code) > -1) {
-    status = "CLOUD";
-  }
-  //약한 비
-  else if ([51, 56, 61, 80].indexOf(code) > -1) {
-    status = "LIGHT_RAIN";
-  }
-  //보통 비
-  else if ([53, 63, 81].indexOf(code) > -1) {
-    status = "LIGHT_RAIN";
-  }
-  //강한 비
-  else if ([55, 57, 65, 67, 82].indexOf(code) > -1) {
-    status = "HEAVY_RAIN";
-  }
-  //그 외
-  else {
-    status = "CLOUD";
-  }
+  // //맑음
+  // if ([0, 1].indexOf(code) > -1) {
+  //   status = "CLEAR";
+  // }
+  // //흐림
+  // else if ([2, 3].indexOf(code) > -1) {
+  //   status = "CLOUD";
+  // }
+  // //약한 비
+  // else if ([51, 56, 61, 80].indexOf(code) > -1) {
+  //   status = "LIGHT_RAIN";
+  // }
+  // //보통 비
+  // else if ([53, 63, 81].indexOf(code) > -1) {
+  //   status = "LIGHT_RAIN";
+  // }
+  // //강한 비
+  // else if ([55, 57, 65, 67, 82].indexOf(code) > -1) {
+  //   status = "HEAVY_RAIN";
+  // }
+  // //그 외
+  // else {
+  //   status = "CLOUD";
+  // }
 
   //단체 테마 선택 시 멤버 랜덤
-  if (tbz.indexOf(theme) == -1) {
-    theme = tbz[Math.floor(Math.random() * 11)];
+  if (tbz.indexOf(member) == -1) {
+    member = tbz[Math.floor(Math.random() * 11)];
   }
 
-  return "https://via.placeholder.com/800x1000/000000/ffffff?text=temp";
+  // return "https://via.placeholder.com/800x1000/000000/ffffff?text=temp";
+  return "/images/THEME/" + theme + "/" + member + ".jpg";
   // return "/images/" + status + "/" + theme + ".png";
+  // return "/images/TBZ/KEVIN.png";
 }
 
 // 오늘의 노래 조회

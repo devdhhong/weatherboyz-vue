@@ -14,7 +14,7 @@ let viewportHeight = getViewportHeight();
 let isHideModal = localStorage.getItem('isHideModal') == "true";
 
 // 디바이스 정보
-if ((window as any).Android) {
+if (window?.Android) {
   localStorage.setItem("isAppYn", "Y");
   localStorage.setItem("isAosYn", "N");
 

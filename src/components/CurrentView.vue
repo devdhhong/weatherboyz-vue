@@ -28,6 +28,7 @@
 import { onBeforeMount } from "vue";
 import * as UTIL from "@/utils/UTIL.js";
 import { onMounted } from "vue";
+import moment from "moment";
 
 let weatherIcon = "";          //날씨 아이콘
 let temperature = 0;           //온도
@@ -44,7 +45,7 @@ onBeforeMount(() => {
   weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
   temperature = Math.round(weather.current.temperature);
   apparent_temperature = Math.round(weather.current.apparent_temperature);
-  weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
+  weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code, moment(new Date()).format("HHmm"));
 
   //미세먼지 정보
   airQuality = JSON.parse(UTIL.getLocalStorageItem('airQuality'));

@@ -3,7 +3,7 @@
     <div class="scroll-area">
       <div class="timelyCard" v-for="(weather, index) in weatherTime" :key="index">
         <p class="date">{{ getCurrentTime(weather) }}</p>
-        <img :src="getWeatherIcon(weatherCode[index], new Date(weather))" alt="" />
+        <img :src="getWeatherIcon(weatherCode[index], moment(weather).format('HHmm'))" alt="" />
         <p class="temperature">{{ Math.round(weatherTemp[index]) }}°</p>
       </div>
     </div>
@@ -32,7 +32,7 @@ function getCurrentTime(weather: string){
   return moment(weather).format("MM/DD HH시");
 }
 
-function getWeatherIcon(code: string, time: any){
+function getWeatherIcon(code: number, time: any){
   return UTIL.getWeatherIcon(code, time);
 }
 

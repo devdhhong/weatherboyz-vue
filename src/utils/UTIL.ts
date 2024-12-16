@@ -12,19 +12,19 @@ const setLocalStorageItem = function(key: string, value: any) {
 }
 
 // 날씨 아이콘 이미지 경로 조회
-const getWeatherIcon = function (code: string, time: string) {
+const getWeatherIcon = function (code: number, time: string) {
   let url = ""; //아이콘 이미지 경로
   let weather = JSON.parse(getLocalStorageItem("weather"));
   let sunrise = Number(moment(weather.daily.sunrise[0]).format("HHmm")); //일출시간
   let sunset = Number(moment(weather.daily.sunset[0]).format("HHmm")); //일몰시간
-  let hhmm = Number(moment(time).format("HHmm")); //현재시간
+  let hhmm = Number(time); //현재시간
 
   let IMG_URL = WEATHER_ICON.IMG_URL;
 
   const pad = 0; //시간 허용 범위
 
   //맑음
-  if (["0", "1"].indexOf(code) > -1) {
+  if ([0, 1].indexOf(code) > -1) {
     if (hhmm < (sunrise - pad) || hhmm > (sunset + pad)) {
       //밤
       url = IMG_URL["SUNNY_NIGHT"];
@@ -114,8 +114,8 @@ const getMainMsg = function () {
   let hhmm24 = moment().format("HHmm");
 
   let birthday = ["1104", "0530", "0808", "0917", "0115", "0223", "0426", "1105", "0309", "0412", "1222", "1206", "0403"];
-  let weather = JSON.parse(localStorage.getItem("weather"));
-  let airQuality = JSON.parse(localStorage.getItem("airQuality"));
+  let weather = JSON.parse(getLocalStorageItem("weather"));
+  let airQuality = JSON.parse(getLocalStorageItem("airQuality"));
 
   //평균량
   let rain_6hours = (weather.hourly.rain.slice(0, 6).reduce((acc, num) => acc + num, 0)) / 6;

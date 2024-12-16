@@ -8,25 +8,26 @@
 <script setup lang="ts">
 import { IonApp } from '@ionic/vue';
 import router from "@/router"; // 라우터 가져오기
+import * as UTIL from "@/utils/UTIL.js";
 // import ToastView from '@/components/ToastView.vue';
 
 let viewportHeight = getViewportHeight();
-let isHideModal = localStorage.getItem('isHideModal') == "true";
+let isHideModal = UTIL.getLocalStorageItem('isHideModal') == "true";
 
 // 디바이스 정보
 if (window?.Android) {
-  localStorage.setItem("isAppYn", "Y");
-  localStorage.setItem("isAosYn", "N");
+  UTIL.setLocalStorageItem("isAppYn", "Y");
+  UTIL.setLocalStorageItem("isAosYn", "N");
 
   window.receiveLocation = function (latitude, longitude) {
     //위치 정보 저장
     if (latitude && longitude) {
-      localStorage.setItem("latitude", latitude);
-      localStorage.setItem("longitude", longitude);
+      UTIL.setLocalStorageItem("latitude", latitude);
+      UTIL.setLocalStorageItem("longitude", longitude);
     }
     else {
-      localStorage.setItem("latitude", "37.5276364");
-      localStorage.setItem("longitude", "127.0344407");
+      UTIL.setLocalStorageItem("latitude", 37.5276364);
+      UTIL.setLocalStorageItem("longitude", 127.0344407);
     }
 
     writeLog("Lat: " + latitude + "Lon: " + longitude); // Vue 인스턴스의 메서드를 호출
@@ -34,19 +35,19 @@ if (window?.Android) {
 }
 //테스트용
 else {
-  localStorage.setItem("isAppYn", "N");
-  localStorage.setItem("isAosYn", "N");
+  UTIL.setLocalStorageItem("isAppYn", "N");
+  UTIL.setLocalStorageItem("isAosYn", "N");
 
-  localStorage.setItem("latitude", "37.5276364");
-  localStorage.setItem("longitude", "127.0344407");
+  UTIL.setLocalStorageItem("latitude", 37.5276364);
+  UTIL.setLocalStorageItem("longitude", 127.0344407);
 }
 
 
 // 뷰포트 높이를 CSS 변수에 할당
 document.documentElement.style.setProperty('--viewport-height', getViewportHeight() + 'px');
 
-let setLanguage = localStorage.getItem('language') || "kor"; //KOR or ENG
-let setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
+let setLanguage = UTIL.getLocalStorageItem('language') || "kor"; //KOR or ENG
+let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
 
 // 설정 초기화
 document.documentElement.classList.remove('dark-mode');

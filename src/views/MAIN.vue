@@ -21,14 +21,14 @@ import ModalView from "../components/ModalView.vue";
 
 import * as CONST from "../utils/CONST";
 import axios from "axios";
-// import * as UTIL from "../utils/UTIL.js";
+import * as UTIL from "@/utils/UTIL.js";
 // import moment from "moment";
 
 import { onIonViewDidEnter } from "@ionic/vue";
 import { onMounted, onBeforeMount } from "vue";
 
 let title = "MAIN";
-let isHideModal = localStorage.getItem("isHideModal");
+let isHideModal = UTIL.getLocalStorageItem("isHideModal");
 
 onBeforeMount(() => {
   // 역지오코딩
@@ -45,16 +45,16 @@ onBeforeMount(() => {
 const getReverseGeocode = function () {
   axios.get(`${CONST.NOMINATIM_BASE_URL}reverse`, {
     params: {
-      latitude: localStorage.getItem('latitude'),
-      longitude: localStorage.getItem('longitude'),
-      lat: localStorage.getItem('latitude'),
-      lon: localStorage.getItem('longitude'),
+      latitude: UTIL.getLocalStorageItem('latitude'),
+      longitude: UTIL.getLocalStorageItem('longitude'),
+      lat: UTIL.getLocalStorageItem('latitude'),
+      lon: UTIL.getLocalStorageItem('longitude'),
       format: "json",
       // addressdetails: 1,
     }
   })
   .then((response) => {
-    localStorage.setItem("address", JSON.stringify(response.data)); // 성공적으로 받아온 데이터
+    UTIL.setLocalStorageItem("address", response.data); // 성공적으로 받아온 데이터
   })
   .catch((error) => {
     console.error(error); // 오류 처리
@@ -65,8 +65,8 @@ const getReverseGeocode = function () {
 const getWeather = function () {
   axios.get(`${CONST.NOW_FORECAST_URL}`, {
     params: {
-      latitude: localStorage.getItem('latitude'),
-      longitude: localStorage.getItem('longitude'),
+      latitude: UTIL.getLocalStorageItem('latitude'),
+      longitude: UTIL.getLocalStorageItem('longitude'),
       hourly: "temperature,showers,rain,snowfall,weather_code",
       current: "rain,temperature,apparent_temperature,weather_code",
       daily: "sunrise,sunset,temperature_2m_max,temperature_2m_min",
@@ -75,7 +75,7 @@ const getWeather = function () {
     }
   })
     .then((response) => {
-      localStorage.setItem("weather", JSON.stringify(response.data)); // 성공적으로 받아온 데이터
+      UTIL.setLocalStorageItem("weather", response.data); // 성공적으로 받아온 데이터
     })
     .catch((error) => {
       console.error(error); // 오류 처리
@@ -87,13 +87,13 @@ const getWeather = function () {
 const getAirQuality = function () {
   axios.get(`${CONST.NOW_AIRQUALITY_URL}`, {
     params: {
-      latitude: localStorage.getItem('latitude'),
-      longitude: localStorage.getItem('longitude'),
+      latitude: UTIL.getLocalStorageItem('latitude'),
+      longitude: UTIL.getLocalStorageItem('longitude'),
       current: "pm10,pm2_5,uv_index"
     }
   })
     .then((response) => {
-      localStorage.setItem("airQuality", JSON.stringify(response.data)); // 성공적으로 받아온 데이터
+      UTIL.setLocalStorageItem("airQuality", response.data); // 성공적으로 받아온 데이터
     })
     .catch((error) => {
       console.error(error); // 오류 처리

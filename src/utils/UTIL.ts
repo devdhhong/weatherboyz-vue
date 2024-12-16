@@ -2,20 +2,29 @@ import moment from "moment";
 import * as WEATHER_ICON from "../assets/data/WEATHER_ICON";
 import { MUSIC } from "../assets/data/MUSIC";
 
+const getLocalStorageItem = function(key: string): string {
+  const value = localStorage.getItem(key);
+  return value !== null ? value : "";
+}
+
+const setLocalStorageItem = function(key: string, value: any) {
+  localStorage.setItem(key, JSON.stringify(value) || ""); // 성공적으로 받아온 데이터
+}
+
 // 날씨 아이콘 이미지 경로 조회
-const getWeatherIcon = function (code, time) {
+const getWeatherIcon = function (code: string, time: string) {
   let url = ""; //아이콘 이미지 경로
-  let weather = JSON.parse(localStorage.getItem("weather"));
-  let sunrise = moment(weather.daily.sunrise[0]).format("HHmm"); //일출시간
-  let sunset = moment(weather.daily.sunset[0]).format("HHmm"); //일몰시간
-  let hhmm = moment(time).format("HHmm"); //현재시간
+  let weather = JSON.parse(getLocalStorageItem("weather"));
+  let sunrise = Number(moment(weather.daily.sunrise[0]).format("HHmm")); //일출시간
+  let sunset = Number(moment(weather.daily.sunset[0]).format("HHmm")); //일몰시간
+  let hhmm = Number(moment(time).format("HHmm")); //현재시간
 
   let IMG_URL = WEATHER_ICON.IMG_URL;
 
   const pad = 0; //시간 허용 범위
 
   //맑음
-  if ([0, 1].indexOf(code) > -1) {
+  if (["0", "1"].indexOf(code) > -1) {
     if (hhmm < (sunrise - pad) || hhmm > (sunset + pad)) {
       //밤
       url = IMG_URL["SUNNY_NIGHT"];
@@ -79,7 +88,7 @@ const getWeatherIcon = function (code, time) {
 };
 
 //미세먼지 상태 조회 
-const getAirQualityStatus = function (degree1, degree2) {
+const getAirQualityStatus = function (degree1: number, degree2: number) {
   let pm10 = ""; //미세먼지
   let pm2_5 = ""; //초미세먼지
 
@@ -238,9 +247,9 @@ const getMainMsg = function () {
 };
 
 // 날씨 메인 이미지 경로 조회
-const getWeatherMain = function (code) {
-  let theme = localStorage.getItem("theme");
-  let member = localStorage.getItem("member");
+const getWeatherMain = function (code: string) {
+  let theme = localStorage.getItem("theme") || "";
+  let member = localStorage.getItem("member") || "";
   // let status = "";
   let tbz = ["SY", "JC", "YH", "HJ", "JY", "KV", "NW", "QQ", "HN", "SW", "ER"];
 
@@ -320,6 +329,8 @@ const getTodayMusic = function () {
 };
 
 export {
+  getLocalStorageItem,
+  setLocalStorageItem,
   getWeatherIcon,
   getAirQualityStatus,
   getMainMsg,

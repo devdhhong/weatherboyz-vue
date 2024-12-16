@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount } from "vue";
-import * as UTIL from "../utils/UTIL";
+import * as UTIL from "@/utils/UTIL.js";
 import { onMounted } from "vue";
 
 let weatherIcon = "";          //날씨 아이콘
@@ -41,13 +41,13 @@ let weather = {};
 
 onBeforeMount(() => {
   //날씨 정보
-  weather = JSON.parse(localStorage.getItem('weather'));
+  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
   temperature = Math.round(weather.current.temperature);
   apparent_temperature = Math.round(weather.current.apparent_temperature);
   weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code);
 
   //미세먼지 정보
-  airQuality = JSON.parse(localStorage.getItem('airQuality'));
+  airQuality = JSON.parse(UTIL.getLocalStorageItem('airQuality'));
   pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0];
   pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1];
 

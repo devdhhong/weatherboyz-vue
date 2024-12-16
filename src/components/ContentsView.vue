@@ -13,15 +13,15 @@
 <script setup lang="ts">
 // import { WEATHER } from "../assets/data/WEATHER.js";
 import { onBeforeMount } from "vue";
-import * as UTIL from "../utils/UTIL";
 import { onIonViewDidEnter } from "@ionic/vue";
+import * as UTIL from "@/utils/UTIL.js";
 
 let weather = {};
 let imgPath = "";
 let temperature = "";
 
 onBeforeMount(() => {
-  weather = JSON.parse(localStorage.getItem('weather'));
+  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
   imgPath = UTIL.getWeatherMain(weather.current.weather_code);
 });
 

@@ -46,8 +46,6 @@
 </template>
 
 <script>
-// import { WEATHER } from "../assets/data/WEATHER.js";
-// import * as UTIL from "../utils/UTIL.js";
 
 export default {
   mounted() {
@@ -67,7 +65,7 @@ export default {
   },
   methods: {
     btnClose: function () {
-      localStorage.setItem("isHideModal", true);
+      setLocalStorageItem("isHideModal", true);
       this.isHideModal = true;
       // this.$router.back();
     },

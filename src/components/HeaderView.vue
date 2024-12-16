@@ -9,7 +9,7 @@
         <i class="fa-solid fa-arrows-rotate"></i>
       </div> -->
       <div class="title">
-        <p>{{ address.borough }}</p>
+        <p>{{ address?.borough }}</p>
       </div>
       <div class="btnRight" @click="btnSetting">
         <i class="fa-solid fa-gear fa-lg reverse"></i>
@@ -52,6 +52,7 @@
 import { nextTick, onBeforeMount, onMounted } from "vue";
 import router from "@/router";
 import { useIonRouter } from '@ionic/vue';
+import * as UTIL from "@/utils/UTIL.js";
 
 const ionRouter = useIonRouter();
 
@@ -60,7 +61,7 @@ let props = defineProps(["title"]);
 let address = {};
 
 onBeforeMount(() => {
-  address = JSON.parse(localStorage.getItem('address')).address;
+  address = JSON.parse(UTIL.getLocalStorageItem('address')).address;
 });
 
 function btnRefresh() {

@@ -4,4 +4,4 @@ declare global {
   }
 }
 
-export {}  // Important! See note.
+export {} 

@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import * as UTIL from "../utils/UTIL";
+import * as UTIL from "@/utils/UTIL.js";
 import moment from "moment";
 import { onBeforeMount } from "vue";
 
@@ -22,7 +22,7 @@ let weatherTemp = [];
 let currentTime = "";
 
 onBeforeMount(() => {
-  hourly = JSON.parse(localStorage.getItem('weather')).hourly;
+  hourly = JSON.parse(UTIL.getLocalStorageItem('weather')).hourly;
   weatherTime = hourly.time;
   weatherCode = hourly.weather_code;
   weatherTemp = hourly.temperature;
@@ -32,7 +32,7 @@ function getCurrentTime(weather: string){
   return moment(weather).format("MM/DD HH시");
 }
 
-function getWeatherIcon(code: string, time: Date){
+function getWeatherIcon(code: string, time: any){
   return UTIL.getWeatherIcon(code, time);
 }
 

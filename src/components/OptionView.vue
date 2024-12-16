@@ -93,13 +93,14 @@
 
 <script setup lang="ts">
 
+import * as UTIL from "@/utils/UTIL.js";
 import { onBeforeMount, ref } from "vue";
 import { useI18n } from "vue-i18n"; // i18n 인스턴스 가져오기
 
-let setLanguage = localStorage.getItem('language') || "ko"; //KOR or ENG
-let setMember = localStorage.getItem('member') || "TBZ";
-let setTheme = localStorage.getItem('theme') || "default";
-let setDisplay = localStorage.getItem('display') || "dark"; //Light or Dark
+let setLanguage = UTIL.getLocalStorageItem('language') || "ko"; //KOR or ENG
+let setMember = UTIL.getLocalStorageItem('member') || "TBZ";
+let setTheme = UTIL.getLocalStorageItem('theme') || "default";
+let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
 
 let isDownMemberTab = ref(true); // 반응형 상태로 선언
 let isDownThemeTab = ref(true); 
@@ -116,10 +117,10 @@ onBeforeMount(() => {
 
 //옵션 변경
 function changeSetting() {
-  localStorage.setItem("language", setLanguage);
-  localStorage.setItem("theme", setTheme);
-  localStorage.setItem("display", setDisplay);
-  localStorage.setItem("member", setMember);
+  UTIL.setLocalStorageItem("language", setLanguage);
+  UTIL.setLocalStorageItem("theme", setTheme);
+  UTIL.setLocalStorageItem("display", setDisplay);
+  UTIL.setLocalStorageItem("member", setMember);
 
   // 설정 초기화
   document.documentElement.classList.remove('dark-mode');
@@ -135,8 +136,8 @@ function changeSetting() {
 
 //공유하기 버튼
 function btnShare() {
-  let isAppYn = localStorage.getItem("isAppYn");
-  let isAosYn = localStorage.getItem("isAosYn");
+  let isAppYn = UTIL.getLocalStorageItem("isAppYn");
+  let isAosYn = UTIL.getLocalStorageItem("isAosYn");
 
   //안드로이드
   if (isAppYn == "Y" && isAosYn == "Y") {

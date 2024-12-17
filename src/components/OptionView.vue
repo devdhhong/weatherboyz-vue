@@ -148,7 +148,7 @@ function btnShare() {
     //Web Share API는 HTTPS 환경에서만 동작
     const btnShare = document.getElementById('btnShare');
 
-    btnShare.addEventListener('click', function () {
+    btnShare?.addEventListener('click', function () {
       if (navigator.share) {
         navigator.share({
           title: 'weatherboyz!',
@@ -164,7 +164,7 @@ function btnShare() {
 function btnShareX() {
   const btnShareX = document.getElementById('btnShareX');
 
-  btnShareX.addEventListener('click', function () {
+  btnShareX?.addEventListener('click', function () {
     const text = encodeURIComponent('weatherboyz!\n');
     const url = encodeURIComponent('https://weatherboyz.netlify.app/' + '\n\n');
     const hashtags = encodeURIComponent('더보이즈,THEBOYZ'); // 해시태그 추가 가능
@@ -181,7 +181,7 @@ function btnShareX() {
 function btnOpenX() {
   const btnOpenX = document.getElementById('btnOpenX');
 
-  btnOpenX.addEventListener('click', function () {
+  btnOpenX?.addEventListener('click', function () {
     // 연결하고 싶은 트위터 계정
     const twitterProfileUrl = "https://twitter.com/tbz_weatherboyz";
 

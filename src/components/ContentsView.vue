@@ -11,12 +11,11 @@
 </template>
 
 <script setup lang="ts">
-// import { WEATHER } from "../assets/data/WEATHER.js";
 import { onBeforeMount } from "vue";
 import { onIonViewDidEnter } from "@ionic/vue";
-import * as UTIL from "@/utils/UTIL.js";
+import * as UTIL from "../utils/UTIL.js";
 
-let weather = {};
+let weather: Weather;
 let imgPath = "";
 let temperature = "";
 

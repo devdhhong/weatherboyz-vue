@@ -10,12 +10,11 @@
 
 <script setup lang="ts">
 import { onBeforeMount } from "vue";
-import { OOTD } from "../assets/data/OOTD.js";
+import OOTD from "@/assets/data/OOTD.js";
 
 let fashionImgPath = "";
 
 onBeforeMount(() => {
-  console.log(OOTD[0].imgPath);
   fashionImgPath = OOTD[0].imgPath;
 });
 

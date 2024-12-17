@@ -19,7 +19,4 @@ const OOTD = [
     }
 ];
 
-
-export {
-    OOTD
-};
+export default OOTD;

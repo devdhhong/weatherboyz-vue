@@ -36,9 +36,9 @@ let apparent_temperature = 0;  //체감온도
 let pm10 = "";                 //미세먼지
 let pm2_5 = "";                //초미세먼지
 let mainMsg = "";              //메인화면 메세지
-let todayMusicData = {};
-let airQuality = {};
-let weather = {};
+let todayMusicData: Music;
+let airQuality: AirQuality;
+let weather: Weather;
 
 onBeforeMount(() => {
   //날씨 정보

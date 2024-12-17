@@ -15,17 +15,16 @@ import * as UTIL from "@/utils/UTIL.js";
 import moment from "moment";
 import { onBeforeMount } from "vue";
 
-let hourly = {};
-let weatherTime = [];
-let weatherCode = [];
-let weatherTemp = [];
-let currentTime = "";
+let weather: Weather ;
+let weatherTime = {};
+let weatherCode = {};
+let weatherTemp = {};
 
 onBeforeMount(() => {
-  hourly = JSON.parse(UTIL.getLocalStorageItem('weather')).hourly;
-  weatherTime = hourly.time;
-  weatherCode = hourly.weather_code;
-  weatherTemp = hourly.temperature;
+  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
+  weatherTime = weather.hourly.time;
+  weatherCode = weather.hourly.weather_code;
+  weatherTemp = weather.hourly.temperature;
 });
 
 function getCurrentTime(weather: string){

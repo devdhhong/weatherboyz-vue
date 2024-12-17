@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { onIonViewDidEnter } from "@ionic/vue";
-import { OOTD } from "../assets/data/OOTD.js";
+import OOTD from "@/assets/data/OOTD.js";
 
 let isFlipped1 = false;
 let isFlipped2 = false;

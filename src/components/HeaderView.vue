@@ -9,7 +9,7 @@
         <i class="fa-solid fa-arrows-rotate"></i>
       </div> -->
       <div class="title">
-        <p>{{ address?.borough }}</p>
+        <p>{{ address.borough }}</p>
       </div>
       <div class="btnRight" @click="btnSetting">
         <i class="fa-solid fa-gear fa-lg reverse"></i>
@@ -58,7 +58,7 @@ const ionRouter = useIonRouter();
 
 let cityName: any;
 let props = defineProps(["title"]);
-let address = {};
+let address: Address;
 
 onBeforeMount(() => {
   address = JSON.parse(UTIL.getLocalStorageItem('address')).address;
@@ -110,11 +110,3 @@ function btnClose() {
   }
 }
 </style>
-
-function onMount(arg0: () => void) {
-  throw new Error("Function not implemented.");
-}
-
-function onMount(arg0: () => void) {
-  throw new Error("Function not implemented.");
-}

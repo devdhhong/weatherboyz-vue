@@ -1,4 +1,4 @@
-const IMG_URL = {
+const ALBUM_IMG_URL = {
     //[🎹 한국앨범 🎹]
     //소년
     "171206" : "public/images/ALBUM_COVER/171206_소년.png", 
@@ -70,137 +70,137 @@ const IMG_URL = {
     "240719" : "public/images/ALBUM_COVER/240719_지버리쉬.png",
 };
 
-const MUSIC = {
+const MUSIC_LIST = {
     //3,4,5월
-    "SPRING": [
+    "spring": [
         {
             "musicTitle": "Hurt Me Less (환상통)",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "wjWYFrvNGpg",
         },
         {
             "musicTitle": "넥타",
             "songId": "9MlsWnHy3Zk",
-            "coverImgPath": IMG_URL["240318"]
+            "coverImgPath": ALBUM_IMG_URL["240318"]
         },
         {
             "musicTitle": "Hurt Me Less (환상통)",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "wjWYFrvNGpg",
         }
     ],
     //6,7,8월
-    "SUMMER": [
+    "summer": [
         {
             "musicTitle": "Square one",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "th0cCyxGmKU",
         }
     ],
     //9,10,11월
-    "AUTUMN": [
+    "autumn": [
         {
             "musicTitle": "Hurt Me Less (환상통)",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "wjWYFrvNGpg",
         },
         {
             "musicTitle": "넥타",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "9MlsWnHy3Zk",
         },
         {
             "musicTitle": "Hurt Me Less (환상통)",
-            "coverImgPath": IMG_URL["240318"],
+            "coverImgPath": ALBUM_IMG_URL["240318"],
             "songId": "wjWYFrvNGpg",
         }
     ],
     //12,1,2월
-    "WINTER": [
+    "winter": [
         {
             "musicTitle": "Christmassy!",
-            "coverImgPath": IMG_URL["201207"],
+            "coverImgPath": ALBUM_IMG_URL["201207"],
             "songId": "bZS34g39zYE",
         },
         {
             "musicTitle": "화이트 (White)",
-            "coverImgPath": IMG_URL["191206"],
+            "coverImgPath": ALBUM_IMG_URL["191206"],
             "songId": "Wi8ItBPSBs0",
         },
         {
             "musicTitle": "겨울잠",
-            "coverImgPath": IMG_URL["241202"],
+            "coverImgPath": ALBUM_IMG_URL["241202"],
             "songId": "lDzf-NS7Ghk",
         },
         {
             "musicTitle": "Candle Light",
-            "coverImgPath": IMG_URL["241202"],
+            "coverImgPath": ALBUM_IMG_URL["241202"],
             "songId": "NQHftH1ppGY",
         },
         {
             "musicTitle": "Last Kiss",
-            "coverImgPath": IMG_URL["241202"],
+            "coverImgPath": ALBUM_IMG_URL["241202"],
             "songId": "rh2tvsLyOUs",
         },
         {
             "musicTitle": "All About You",
-            "coverImgPath": IMG_URL["221206"],
+            "coverImgPath": ALBUM_IMG_URL["221206"],
             "songId": "NheP5prQyqs",
         },
 
         {
             "musicTitle": "Dear.",
-            "coverImgPath": IMG_URL["231206"],
+            "coverImgPath": ALBUM_IMG_URL["231206"],
             "songId": "NKj7watheVQ",
         },
         {
             "musicTitle": "Candles",
-            "coverImgPath": IMG_URL["211206"],
+            "coverImgPath": ALBUM_IMG_URL["211206"],
             "songId": "zTyByEFnw2U",
         },
         {
             "musicTitle": "Spring Snow",
-            "coverImgPath": IMG_URL["200220"],
+            "coverImgPath": ALBUM_IMG_URL["200220"],
             "songId": "jF-H3j8-gIw",
         },
         // {
         //     "musicTitle": "Nothing Without You",
-        //     "coverImgPath": IMG_URL["240719"],
+        //     "coverImgPath": ALBUM_IMG_URL["240719"],
         //     "songId": "YKK8Eqqab9U",
         // },
         {
             "musicTitle": "숨바꼭질 (Slip Away)",
-            "coverImgPath": IMG_URL["240719"],
+            "coverImgPath": ALBUM_IMG_URL["240719"],
             "songId": "th0cCyxGmKU",
         },
         {
             "musicTitle": "숨바꼭질 (Slip Away)",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "IJ9w0S5aEco",
         },
         {
             "musicTitle": "They See Me Dream",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "OMkKC1bNQy8",
         },
         {
             "musicTitle": "Re-Wind",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "xy5YuBcY2NA",
         },
         {
             "musicTitle": "Bite Back",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "4Oc4b_KO-ec",
         },
         {
             "musicTitle": "TRIGGER (導火線)",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "azNgN-Alj7M",
         },
         {
             "musicTitle": "bAd",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "7G5nHNSMibo",
         },
     ],
@@ -208,19 +208,17 @@ const MUSIC = {
     "1209": [
         {
             "musicTitle": "겨울잠",
-            "coverImgPath": IMG_URL["241202"],
+            "coverImgPath": ALBUM_IMG_URL["241202"],
             "songId": "lDzf-NS7Ghk",
         }
     ],
     "0223": [
         {
             "musicTitle": "Square one",
-            "coverImgPath": IMG_URL["241028"],
+            "coverImgPath": ALBUM_IMG_URL["241028"],
             "songId": "th0cCyxGmKU",
         }
     ],
 };
 
-export {
-    MUSIC
-};
+export default MUSIC_LIST; 

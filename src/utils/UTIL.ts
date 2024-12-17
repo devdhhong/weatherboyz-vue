@@ -1,6 +1,6 @@
 import moment from "moment";
-import * as WEATHER_ICON from "../assets/data/WEATHER_ICON";
-import { MUSIC } from "../assets/data/MUSIC";
+import WEATHER_IMG_URL from "@/assets/data/WEATHER";
+import MUSIC_LIST from "@/assets/data/MUSIC";
 
 const getLocalStorageItem = function(key: string): string {
   const value = localStorage.getItem(key);
@@ -8,83 +8,77 @@ const getLocalStorageItem = function(key: string): string {
 }
 
 const setLocalStorageItem = function(key: string, value: any) {
-  localStorage.setItem(key, JSON.stringify(value) || ""); // 성공적으로 받아온 데이터
+  localStorage.setItem(key, JSON.stringify(value) || ""); 
 }
 
 // 날씨 아이콘 이미지 경로 조회
 const getWeatherIcon = function (code: number, time: string) {
-  let url = ""; //아이콘 이미지 경로
   let weather = JSON.parse(getLocalStorageItem("weather"));
   let sunrise = Number(moment(weather.daily.sunrise[0]).format("HHmm")); //일출시간
   let sunset = Number(moment(weather.daily.sunset[0]).format("HHmm")); //일몰시간
   let hhmm = Number(time); //현재시간
-
-  let IMG_URL = WEATHER_ICON.IMG_URL;
-
+  
+  
+  let url = ""; //아이콘 이미지 경로
   const pad = 0; //시간 허용 범위
 
   //맑음
   if ([0, 1].indexOf(code) > -1) {
     if (hhmm < (sunrise - pad) || hhmm > (sunset + pad)) {
       //밤
-      url = IMG_URL["SUNNY_NIGHT"];
+      url = "SUNNY_NIGHT";
     }
     else if (Math.abs(sunrise - hhmm) < pad) {
       //일출
-      url = IMG_URL["SUNNY_SUNRISE"];
+      url = "SUNNY_SUNRISE";
     }
     else if (Math.abs(sunset - hhmm) < pad) {
       //일몰
-      url = IMG_URL["SUNNY_SUNSET"];
+      url = "SUNNY_SUNSET";
     }
     else {
       //낮
-      url = IMG_URL["SUNNY_DAY"];
+      url = "SUNNY_DAY";
     }
-
   }
   //흐림
   else if ([2, 3].indexOf(code) > -1) {
-    url = IMG_URL["CLOUDY"];
+    url = "CLOUDY";
   }
-  // else if(["2","3"].indexOf(code)){
-  //   //바람
-  //   url = IMG_URL["WINDY"];
-  // }
   //약한 비
   else if ([51, 56, 61, 80].indexOf(code) > -1) {
-    url = IMG_URL["RAINY_LIHGT"];
+    url = "RAINY_LIHGT";
   }
   //보통 비
   else if ([53, 63, 81].indexOf(code) > -1) {
-    url = IMG_URL["RAINY_NORMAL"];
+    url = "RAINY_NORMAL";
   }
   //강한 비
   else if ([55, 57, 65, 67, 82].indexOf(code) > -1) {
-    url = IMG_URL["RAINY_HEAVY"];
+    url = "RAINY_HEAVY";
   }
   //천둥번개
   else if ([95, 96, 99].indexOf(code) > -1) {
-    url = IMG_URL["THUNDER"];
+    url = "THUNDER";
   }
   //눈
   else if ([71, 73, 77, 85].indexOf(code) > -1) {
-    url = IMG_URL["SNOWY_LIGHT"];
+    url = "SNOWY_LIGHT";
   }
   //폭설
   else if ([75, 86].indexOf(code) > -1) {
-    url = IMG_URL["SNOW_HEAVY"];
+    url = "SNOW_HEAVY";
   }
   //안개
   else if ([45, 48].indexOf(code) > -1) {
-    url = IMG_URL["FOGGY"];
+    url = "FOGGY";
   }
   //그 외
   else {
-    url = "";
+    url = "SUNNY_DAY";
   }
 
-  return url;
+  return "/images/WHETHER/"+ url + ".png";
 };
 
 //미세먼지 상태 조회 
@@ -118,10 +112,10 @@ const getMainMsg = function () {
   let airQuality = JSON.parse(getLocalStorageItem("airQuality"));
 
   //평균량
-  let rain_6hours = (weather.hourly.rain.slice(0, 6).reduce((acc, num) => acc + num, 0)) / 6;
-  let showers_6hours = (weather.hourly.showers.slice(0, 6).reduce((acc, num) => acc + num, 0)) / 6;
-  let snowfall_6hours = (weather.hourly.snowfall.slice(0, 6).reduce((acc, num) => acc + num, 0)) / 6;
-  let temp_6hours = (weather.hourly.temperature.slice(0, 6).reduce((acc, num) => acc + num, 0)) / 6;
+  let rain_6hours = (weather.hourly.rain.slice(0, 6).reduce((acc: number, num: number) => acc + num, 0)) / 6;
+  let showers_6hours = (weather.hourly.showers.slice(0, 6).reduce((acc: number, num: number) => acc + num, 0)) / 6;
+  let snowfall_6hours = (weather.hourly.snowfall.slice(0, 6).reduce((acc: number, num: number) => acc + num, 0)) / 6;
+  let temp_6hours = (weather.hourly.temperature.slice(0, 6).reduce((acc: number, num: number) => acc + num, 0)) / 6;
 
   let pm10 = airQuality.current.pm10;
   let pm2_5 = airQuality.current.pm2_5;
@@ -247,7 +241,7 @@ const getMainMsg = function () {
 };
 
 // 날씨 메인 이미지 경로 조회
-const getWeatherMain = function (code: string) {
+const getWeatherMain = function (code: number) {
   let theme = localStorage.getItem("theme") || "";
   let member = localStorage.getItem("member") || "";
   // let status = "";
@@ -303,28 +297,28 @@ const getTodayMusic = function () {
   let season = "";
   //봄 (3,4,5)
   if ([3, 4, 5].indexOf(Number(mm)) > -1) {
-    season = "SPRING";
+    season = "spring";
   }
   //여름(6,7,8)
   else if ([6, 7, 8].indexOf(Number(mm)) > -1) {
-    season = "SUMMER";
+    season = "summer";
   }
   //가을(9,10,11)
   else if ([9, 10, 11].indexOf(Number(mm)) > -1) {
-    season = "AUTUMN";
+    season = "autumn";
   }
   //겨울(10,11,12)
   else {
-    season = "WINTER";
+    season = "winter";
   }
 
   //특정 일자 
-  if (MUSIC[mmdd]) {
-    return MUSIC[mmdd][0];
+  if (MUSIC_LIST[mmdd]) {
+    return MUSIC_LIST[mmdd][0];
   }
   else {
-    let index = (Number(dd) - 1) % MUSIC[season].length;
-    return MUSIC[season][index];
+    let index = (Number(dd) - 1) % MUSIC_LIST[season].length;
+    return MUSIC_LIST[season][index];
   }
 };
 

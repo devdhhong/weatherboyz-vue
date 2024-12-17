@@ -60,7 +60,7 @@ document.documentElement.classList.add(setDisplay + '-mode');
 document.documentElement.classList.add(setLanguage + '-mode');
 
 // Android 인터페이스로 메세지 받기
-function showToastFromAndroid(message) {
+function showToastFromAndroid(message: string) {
   window.Android.showToast(message); // Android 인터페이스 메서드 호출
 }
 
@@ -68,7 +68,7 @@ function showToastFromAndroid(message) {
 //   $refs.toast.showToast(message, type);
 // }
 
-function writeLog(message) {
+function writeLog(message : string) {
   window.Android.writeLog("FROM JS", message);
 }
 

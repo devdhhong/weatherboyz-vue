@@ -18,7 +18,6 @@ const getWeatherIcon = function (code: number, time: string) {
   let sunset = Number(moment(weather.daily.sunset[0]).format("HHmm")); //일몰시간
   let hhmm = Number(time); //현재시간
   
-  
   let url = ""; //아이콘 이미지 경로
   const pad = 0; //시간 허용 범위
 
@@ -78,7 +77,7 @@ const getWeatherIcon = function (code: number, time: string) {
     url = "SUNNY_DAY";
   }
 
-  return "/images/WHETHER/"+ url + ".png";
+  return "/images/WEATHER/"+ url + ".png";
 };
 
 //미세먼지 상태 조회 

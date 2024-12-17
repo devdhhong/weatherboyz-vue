@@ -19,7 +19,8 @@ if (window?.Android) {
   UTIL.setLocalStorageItem("isAppYn", "Y");
   UTIL.setLocalStorageItem("isAosYn", "N");
 
-  window.receiveLocation = function (latitude, longitude) {
+  window.Android.receiveLocation = function (latitude: Number, longitude: Number) {
+  // window.receiveLocation = function (latitude, longitude) {
     //위치 정보 저장
     if (latitude && longitude) {
       UTIL.setLocalStorageItem("latitude", latitude);

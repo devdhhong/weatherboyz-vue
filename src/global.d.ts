@@ -29,6 +29,16 @@ declare global {
     songId: string,
   };
 
+  type Ootd = {
+    memberId: string;
+    imgDesc: string;
+    imgPath: string;
+    linkUrl: string;
+    weatherCode: string;
+    luckyColor: string;
+    luckyItem: string;
+  };
+
   type AirQuality = {
     current: {
       pm10: number,

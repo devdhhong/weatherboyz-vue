@@ -1,6 +1,5 @@
 <template>
   <ion-app>
-    <!-- <ion-router-outlet />  -->
     <router-view/>
   </ion-app>
 </template>
@@ -11,53 +10,61 @@ import router from "@/router"; // 라우터 가져오기
 import * as UTIL from "@/utils/UTIL.js";
 // import ToastView from '@/components/ToastView.vue';
 
-let viewportHeight = getViewportHeight();
 let isHideModal = UTIL.getLocalStorageItem('isHideModal') == "true";
 
-// 디바이스 정보
-if (window?.Android) {
-  UTIL.setLocalStorageItem("isAppYn", "Y");
-  UTIL.setLocalStorageItem("isAosYn", "N");
+setInit();
 
-  window.Android.receiveLocation = function (latitude: Number, longitude: Number) {
-  // window.receiveLocation = function (latitude, longitude) {
-    //위치 정보 저장
-    if (latitude && longitude) {
-      UTIL.setLocalStorageItem("latitude", latitude);
-      UTIL.setLocalStorageItem("longitude", longitude);
-    }
-    else {
-      UTIL.setLocalStorageItem("latitude", 37.5276364);
-      UTIL.setLocalStorageItem("longitude", 127.0344407);
-    }
+function setInit() {
+  // 디바이스 정보
+  if (window?.Android) {
+    UTIL.setLocalStorageItem("isAppYn", "Y");
+    UTIL.setLocalStorageItem("isAosYn", "N");
 
-    writeLog("Lat: " + latitude + "Lon: " + longitude); // Vue 인스턴스의 메서드를 호출
-  };
+    window.Android.receiveLocation = function (latitude: Number, longitude: Number) {
+    // window.receiveLocation = function (latitude, longitude) {
+      //위치 정보 저장
+      if (latitude && longitude) {
+        UTIL.setLocalStorageItem("latitude", latitude);
+        UTIL.setLocalStorageItem("longitude", longitude);
+      }
+      else {
+        UTIL.setLocalStorageItem("latitude", 37.5276364);
+        UTIL.setLocalStorageItem("longitude", 127.0344407);
+      }
+
+      writeLog("Lat: " + latitude + "Lon: " + longitude); // Vue 인스턴스의 메서드를 호출
+    };
+  }
+  //테스트용
+  else {
+    UTIL.setLocalStorageItem("isAppYn", "N");
+    UTIL.setLocalStorageItem("isAosYn", "N");
+
+    UTIL.setLocalStorageItem("latitude", 37.5276364);
+    UTIL.setLocalStorageItem("longitude", 127.0344407);
+  }
+
+  // 뷰포트 높이를 CSS 변수에 할당
+  document.documentElement.style.setProperty('--viewport-height', getViewportHeight() + 'px');
+
+  let setLanguage = UTIL.getLocalStorageItem('language') || "kor"; //KOR or ENG
+  let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
+  let setMember = UTIL.getLocalStorageItem('member') || "TBZ";
+  let setTheme = UTIL.getLocalStorageItem('theme') || "default";
+
+  UTIL.setLocalStorageItem('language', setLanguage);
+  UTIL.setLocalStorageItem('display', setDisplay);
+  UTIL.setLocalStorageItem('member', setMember);
+  UTIL.setLocalStorageItem('theme', setTheme);
+
+  // 설정 초기화
+  document.documentElement.classList.remove('dark-mode');
+  document.documentElement.classList.remove('light-mode');
+  document.documentElement.classList.remove('kor-mode');
+  document.documentElement.classList.remove('eng-mode');
+  document.documentElement.classList.add(setDisplay + '-mode');
+  document.documentElement.classList.add(setLanguage + '-mode');
 }
-//테스트용
-else {
-  UTIL.setLocalStorageItem("isAppYn", "N");
-  UTIL.setLocalStorageItem("isAosYn", "N");
-
-  UTIL.setLocalStorageItem("latitude", 37.5276364);
-  UTIL.setLocalStorageItem("longitude", 127.0344407);
-}
-
-
-// 뷰포트 높이를 CSS 변수에 할당
-document.documentElement.style.setProperty('--viewport-height', getViewportHeight() + 'px');
-
-let setLanguage = UTIL.getLocalStorageItem('language') || "kor"; //KOR or ENG
-let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
-
-// 설정 초기화
-document.documentElement.classList.remove('dark-mode');
-document.documentElement.classList.remove('light-mode');
-document.documentElement.classList.remove('kor-mode');
-document.documentElement.classList.remove('eng-mode');
-
-document.documentElement.classList.add(setDisplay + '-mode');
-document.documentElement.classList.add(setLanguage + '-mode');
 
 // Android 인터페이스로 메세지 받기
 function showToastFromAndroid(message: string) {

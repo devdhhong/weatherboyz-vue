@@ -240,8 +240,8 @@ const getMainMsg = function () {
 
 // 날씨 메인 이미지 경로 조회
 const getWeatherMain = function (code: number) {
-  let theme = localStorage.getItem("theme") || "";
-  let member = localStorage.getItem("member") || "";
+  let theme = getLocalStorageItem("theme") || "";
+  let member = getLocalStorageItem("member") || "";
   // let status = "";
   let tbz = ["SY", "JC", "YH", "HJ", "JY", "KV", "NW", "QQ", "HN", "SW", "ER"];
 

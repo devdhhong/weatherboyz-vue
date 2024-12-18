@@ -38,8 +38,8 @@
     240719_지버리쉬
  */
 
-const getCoverImgPath = function(yyyymmdd){
-    return "public/images/ALBUM_COVER/" + yyyymmdd + ".png";
+const getCoverImgPath = function(yymmdd){
+    return "/images/ALBUM_COVER/" + yymmdd + ".png";
 }
 
 const MUSIC_LIST = {

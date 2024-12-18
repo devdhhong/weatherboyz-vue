@@ -7,7 +7,12 @@ const getLocalStorageItem = function(key: string): string {
 }
 
 const setLocalStorageItem = function(key: string, value: any) {
-  localStorage.setItem(key, JSON.stringify(value) || ""); 
+  if(typeof value == "object"){
+    localStorage.setItem(key, JSON.stringify(value) || ""); 
+  }
+  else{
+    localStorage.setItem(key, value || ""); 
+  }
 }
 
 // 날씨 아이콘 이미지 경로 조회

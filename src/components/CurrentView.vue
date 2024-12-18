@@ -14,9 +14,9 @@
     <div class="infoView" @click="openYoutubeMusic">
       <div>{{ $t('오늘의 노래') }} 🎹</div>
       <div class="songCover">
-        <img :src="todayMusicData.coverImgPath" alt=""/>
+        <img :src="todayMusicData?.coverImgPath" alt=""/>
       </div>
-      <div>{{ todayMusicData.musicTitle }}</div>
+      <div>{{ todayMusicData?.musicTitle }}</div>
     </div>
   </div>
   <div id="MessageView">
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onBeforeMount, watch } from "vue";
 import * as UTIL from "@/utils/UTIL.js";
 import { onMounted } from "vue";
 import moment from "moment";
@@ -40,24 +40,41 @@ let todayMusicData: Music;
 let airQuality: AirQuality;
 let weather: Weather;
 
-onBeforeMount(() => {
-  //날씨 정보
-  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
-  temperature = Math.round(weather.current.temperature);
-  apparent_temperature = Math.round(weather.current.apparent_temperature);
-  weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code, moment(new Date()).format("HHmm"));
+let props = defineProps(["isFetchedData"]);
 
-  //미세먼지 정보
-  airQuality = JSON.parse(UTIL.getLocalStorageItem('airQuality'));
-  pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0];
-  pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1];
+watch(() => props.isFetchedData, (newValue) => {
+    //데이터 모두 받은 후에 파싱 처리
+    if (newValue) {
+      initData();
+   }
+  }
+);
 
-  //오늘의 정보
-  todayMusicData = UTIL.getTodayMusic();
-
-  //메세지
-  mainMsg = UTIL.getMainMsg();
+onMounted(() => {
+  // onBeforeMount(() => {
+  initData();
 });
+
+function initData(){
+  if(UTIL.getLocalStorageItem('weather') && UTIL.getLocalStorageItem('airQuality')){
+    //날씨 정보
+    weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
+    temperature = Math.round(weather.current.temperature);
+    apparent_temperature = Math.round(weather.current.apparent_temperature);
+    weatherIcon = UTIL.getWeatherIcon(weather.current.weather_code, moment(new Date()).format("HHmm"));
+
+    //미세먼지 정보
+    airQuality = JSON.parse(UTIL.getLocalStorageItem('airQuality'));
+    pm10 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[0];
+    pm2_5 = UTIL.getAirQualityStatus(airQuality.current.pm10, airQuality.current.pm2_5)[1];
+    
+    //오늘의 정보
+    todayMusicData = UTIL.getTodayMusic();
+    
+    //메세지
+    mainMsg = UTIL.getMainMsg();
+  }
+}
 
 
 function openYoutubeMusic() {

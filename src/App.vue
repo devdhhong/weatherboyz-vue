@@ -47,7 +47,7 @@ function setInit() {
   // 뷰포트 높이를 CSS 변수에 할당
   document.documentElement.style.setProperty('--viewport-height', getViewportHeight() + 'px');
 
-  let setLanguage = UTIL.getLocalStorageItem('language') || "kor"; //KOR or ENG
+  let setLanguage = UTIL.getLocalStorageItem('language') || "ko"; //ko or en
   let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
   let setMember = UTIL.getLocalStorageItem('member') || "TBZ";
   let setTheme = UTIL.getLocalStorageItem('theme') || "default";
@@ -60,8 +60,8 @@ function setInit() {
   // 설정 초기화
   document.documentElement.classList.remove('dark-mode');
   document.documentElement.classList.remove('light-mode');
-  document.documentElement.classList.remove('kor-mode');
-  document.documentElement.classList.remove('eng-mode');
+  document.documentElement.classList.remove('ko-mode');
+  document.documentElement.classList.remove('en-mode');
   document.documentElement.classList.add(setDisplay + '-mode');
   document.documentElement.classList.add(setLanguage + '-mode');
 }

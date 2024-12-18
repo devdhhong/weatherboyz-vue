@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from "vue";
+import { onBeforeMount, watch } from "vue";
 import { onIonViewDidEnter } from "@ionic/vue";
 import * as UTIL from "../utils/UTIL.js";
 
@@ -19,10 +19,26 @@ let weather: Weather;
 let imgPath = "";
 let temperature = "";
 
+let props = defineProps(["isFetchedData"]);
+
+watch(() => props.isFetchedData, (newValue) => {
+    //데이터 모두 받은 후에 파싱 처리
+    if (newValue) {
+      initData();
+   }
+  }
+);
+
 onBeforeMount(() => {
-  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
-  imgPath = UTIL.getWeatherMain(weather.current.weather_code);
+  initData();
 });
+
+function initData(){
+  if(UTIL.getLocalStorageItem('weather')){
+    weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
+    imgPath = UTIL.getWeatherMain(weather.current.weather_code);
+  }
+}
 
 </script>
 

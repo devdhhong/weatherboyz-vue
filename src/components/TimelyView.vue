@@ -13,19 +13,35 @@
 <script setup lang="ts">
 import * as UTIL from "@/utils/UTIL.js";
 import moment from "moment";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, watch } from "vue";
 
 let weather: Weather ;
 let weatherTime = {};
 let weatherCode = {};
 let weatherTemp = {};
 
+let props = defineProps(["isFetchedData"]);
+
+watch(() => props.isFetchedData, (newValue) => {
+    //데이터 모두 받은 후에 파싱 처리
+    if (newValue) {
+      initData();
+   }
+  }
+);
+
 onBeforeMount(() => {
-  weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
-  weatherTime = weather.hourly.time;
-  weatherCode = weather.hourly.weather_code;
-  weatherTemp = weather.hourly.temperature;
+  initData();
 });
+
+function initData(){
+  if(UTIL.getLocalStorageItem('weather')){
+    weather = JSON.parse(UTIL.getLocalStorageItem('weather'));
+    weatherTime = weather.hourly.time;
+    weatherCode = weather.hourly.weather_code;
+    weatherTemp = weather.hourly.temperature;
+  }
+}
 
 function getCurrentTime(weather: string){
   return moment(weather).format("MM/DD HH시");

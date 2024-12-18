@@ -97,7 +97,7 @@ import * as UTIL from "@/utils/UTIL.js";
 import { onBeforeMount, ref } from "vue";
 import { useI18n } from "vue-i18n"; // i18n 인스턴스 가져오기
 
-let setLanguage = UTIL.getLocalStorageItem('language') || "ko"; //KOR or ENG
+let setLanguage = UTIL.getLocalStorageItem('language') || "ko"; //ko or en
 let setMember = UTIL.getLocalStorageItem('member') || "TBZ";
 let setTheme = UTIL.getLocalStorageItem('theme') || "default";
 let setDisplay = UTIL.getLocalStorageItem('display') || "dark"; //Light or Dark
@@ -125,8 +125,8 @@ function changeSetting() {
   // 설정 초기화
   document.documentElement.classList.remove('dark-mode');
   document.documentElement.classList.remove('light-mode');
-  document.documentElement.classList.remove('kor-mode');
-  document.documentElement.classList.remove('eng-mode');
+  document.documentElement.classList.remove('ko-mode');
+  document.documentElement.classList.remove('en-mode');
 
   document.documentElement.classList.add(setDisplay + '-mode');
   document.documentElement.classList.add(setLanguage + '-mode');
@@ -240,6 +240,7 @@ function btnOpenX() {
 
         a {
           @include text-style-5;
+          color: var(--text-color-1);
         }
       }
     }

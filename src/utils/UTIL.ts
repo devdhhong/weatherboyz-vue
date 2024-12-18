@@ -1,5 +1,7 @@
 import moment from "moment";
+import * as CONST from "@/utils/CONST";
 import MUSIC_LIST from "@/assets/data/MUSIC";
+import axios from "axios";
 
 const getLocalStorageItem = function(key: string): string {
   const value = localStorage.getItem(key);
@@ -325,6 +327,73 @@ const getTodayMusic = function () {
   }
 };
 
+// 역지오코딩
+const getReverseGeocode = async function () {
+  try {
+    // axios.get()는 Promise를 반환
+    const response = await axios.get(`${CONST.NOMINATIM_BASE_URL}reverse`, {
+      params: {
+        latitude: getLocalStorageItem('latitude'),
+        longitude: getLocalStorageItem('longitude'),
+        lat: getLocalStorageItem('latitude'),
+        lon: getLocalStorageItem('longitude'),
+        format: "json",
+        // addressdetails: 1,
+      }
+    });
+
+    setLocalStorageItem("address", response.data); // 성공적으로 받아온 데이터 저장
+
+  } catch (error) {
+    console.error('Error occurred while fetching air quality:', error);
+    throw error; // 상위 호출부로 에러 전달
+  }
+};
+
+// 날씨정보 조회
+const getWeather = async function () {
+  try {
+    // axios.get()는 Promise를 반환
+    const response = await axios.get(`${CONST.NOW_FORECAST_URL}`, {
+      params: {
+        latitude: getLocalStorageItem('latitude'),
+        longitude: getLocalStorageItem('longitude'),
+        hourly: "temperature,showers,rain,snowfall,weather_code",
+        current: "rain,temperature,apparent_temperature,weather_code",
+        daily: "sunrise,sunset,temperature_2m_max,temperature_2m_min",
+        forecast_hours: "25",
+        timezone: "auto"
+      }
+    });
+
+    setLocalStorageItem("weather", response.data); // 성공적으로 받아온 데이터 저장
+
+  } catch (error) {
+    console.error('Error occurred while fetching air quality:', error);
+    throw error; // 상위 호출부로 에러 전달
+  }
+};
+
+// 대기정보 조회
+const getAirQuality = async function () {
+  try {
+    // axios.get()는 Promise를 반환
+    const response = await axios.get(`${CONST.NOW_AIRQUALITY_URL}`, {
+      params: {
+        latitude: getLocalStorageItem('latitude'),
+        longitude: getLocalStorageItem('longitude'),
+        current: "pm10,pm2_5,uv_index"
+      }
+    });
+
+    setLocalStorageItem("airQuality", response.data); // 성공적으로 받아온 데이터 저장
+
+  } catch (error) {
+    console.error('Error occurred while fetching air quality:', error);
+    throw error; // 상위 호출부로 에러 전달
+  }
+};
+
 export {
   getLocalStorageItem,
   setLocalStorageItem,
@@ -332,5 +401,8 @@ export {
   getAirQualityStatus,
   getMainMsg,
   getWeatherMain,
-  getTodayMusic
+  getTodayMusic,
+  getReverseGeocode,
+  getWeather,
+  getAirQuality
 };

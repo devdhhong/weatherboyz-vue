@@ -9,7 +9,7 @@
         <i class="fa-solid fa-arrows-rotate"></i>
       </div> -->
       <div class="title">
-        <p>{{ address.borough }}</p>
+        <p>{{ address?.borough }}</p>
       </div>
       <div class="btnRight" @click="btnSetting">
         <i class="fa-solid fa-gear fa-lg reverse"></i>
@@ -49,20 +49,31 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onBeforeMount, onMounted } from "vue";
+import { nextTick, onBeforeMount, onMounted, watch } from "vue";
 import router from "@/router";
 import { useIonRouter } from '@ionic/vue';
 import * as UTIL from "@/utils/UTIL.js";
 
-const ionRouter = useIonRouter();
-
-let cityName: any;
-let props = defineProps(["title"]);
+let props = defineProps(["title", "isFetchedData"]);
 let address: Address;
 
+watch(() => props.isFetchedData, (newValue) => {
+    //데이터 모두 받은 후에 파싱 처리
+    if (newValue) {
+      initData();
+    }
+  }
+);
+
 onBeforeMount(() => {
-  address = JSON.parse(UTIL.getLocalStorageItem('address')).address;
+  initData();
 });
+
+function initData(){
+  if(UTIL.getLocalStorageItem('address')){
+    address = JSON.parse(UTIL.getLocalStorageItem('address')).address;
+  }
+}
 
 function btnRefresh() {
   window.Android.writeLog("FROM JS", "CLICK btnRefresh");

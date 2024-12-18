@@ -1,5 +1,4 @@
 import moment from "moment";
-import WEATHER_IMG_URL from "@/assets/data/WEATHER";
 import MUSIC_LIST from "@/assets/data/MUSIC";
 
 const getLocalStorageItem = function(key: string): string {
